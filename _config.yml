@@ -18,7 +18,7 @@
 # You can create any custom variable you would like, and they will be accessible
 # in the templates via {{ site.myvariable }}.
 
-title: JSON-OBJECT Software Engineering Blog
+title: JSON-OBJECT Daily Life Blog
 email: jsonobject@gmail.com
 description: >- # this means to ignore newlines until "baseurl:"
   Professional Senior Backend Engineer. Specializing in high volume traffic and distributed processing with Kotlin and Spring Boot as core technologies.
@@ -41,6 +41,7 @@ kramdown:
 
 paginate: 5
 paginate_path: "/posts/:num/"
+permalink: "/:title.html"
 
 # Exclude from processing.
 # The following items will not be processed, by default.
