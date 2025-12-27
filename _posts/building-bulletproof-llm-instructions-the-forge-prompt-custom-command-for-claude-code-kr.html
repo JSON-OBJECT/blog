@@ -1,0 +1,1987 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LLM이 무시할 수 없는 지시문 만들기: /forge-prompt 커맨드 | PLAYER ONE TECH</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Orbitron:wght@400;500;600;700;800;900&family=Rajdhani:wght@300;400;500;600;700&family=Press+Start+2P&family=Noto+Sans+KR:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --neon-cyan: #00f5ff;
+            --neon-magenta: #ff00ff;
+            --neon-yellow: #ffff00;
+            --neon-green: #39ff14;
+            --neon-orange: #ff6600;
+            --deep-purple: #0a0015;
+            --mid-purple: #1a0030;
+            --card-bg: rgba(20, 0, 40, 0.85);
+            --text-primary: #ffffff;
+            --text-secondary: #b8b8d0;
+            --glow-cyan: 0 0 10px var(--neon-cyan), 0 0 20px var(--neon-cyan), 0 0 40px var(--neon-cyan);
+            --glow-magenta: 0 0 10px var(--neon-magenta), 0 0 20px var(--neon-magenta), 0 0 40px var(--neon-magenta);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Noto Sans KR', 'Rajdhani', sans-serif;
+            background: var(--deep-purple);
+            color: var(--text-primary);
+            line-height: 1.8;
+            overflow-x: hidden;
+            cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='32' viewBox='0 0 32 32'%3E%3Ccircle cx='16' cy='16' r='8' fill='%2300f5ff' opacity='0.8'/%3E%3Ccircle cx='16' cy='16' r='4' fill='%23fff'/%3E%3C/svg%3E") 16 16, auto;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: repeating-linear-gradient(
+                0deg,
+                transparent,
+                transparent 2px,
+                rgba(0, 0, 0, 0.1) 2px,
+                rgba(0, 0, 0, 0.1) 4px
+            );
+            pointer-events: none;
+            z-index: 9999;
+        }
+
+        .bg-grid {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background:
+                linear-gradient(135deg, var(--deep-purple) 0%, var(--mid-purple) 50%, #0d0020 100%),
+                repeating-linear-gradient(
+                    0deg,
+                    transparent,
+                    transparent 50px,
+                    rgba(0, 245, 255, 0.03) 50px,
+                    rgba(0, 245, 255, 0.03) 51px
+                ),
+                repeating-linear-gradient(
+                    90deg,
+                    transparent,
+                    transparent 50px,
+                    rgba(255, 0, 255, 0.03) 50px,
+                    rgba(255, 0, 255, 0.03) 51px
+                );
+            z-index: -2;
+        }
+
+        .particles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+            overflow: hidden;
+        }
+
+        .particle {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: var(--neon-cyan);
+            box-shadow: 0 0 6px var(--neon-cyan);
+            animation: float 15s infinite linear;
+        }
+
+        .particle:nth-child(odd) {
+            background: var(--neon-magenta);
+            box-shadow: 0 0 6px var(--neon-magenta);
+            animation-duration: 20s;
+        }
+
+        .particle:nth-child(3n) {
+            width: 2px;
+            height: 2px;
+            background: var(--neon-yellow);
+            box-shadow: 0 0 4px var(--neon-yellow);
+            animation-duration: 25s;
+        }
+
+        @keyframes float {
+            0% {
+                transform: translateY(100vh) rotate(0deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
+            }
+            90% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-100vh) rotate(720deg);
+                opacity: 0;
+            }
+        }
+
+        .magazine-header {
+            position: relative;
+            padding: 20px;
+            border-bottom: 2px solid var(--neon-cyan);
+            background: linear-gradient(180deg, rgba(0, 245, 255, 0.1) 0%, transparent 100%);
+        }
+
+        .header-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.5rem;
+            font-weight: 900;
+            color: var(--neon-cyan);
+            text-shadow: var(--glow-cyan);
+            letter-spacing: 4px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo::before {
+            content: '▶';
+            font-size: 1.2rem;
+            animation: pulse 1s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.3; }
+        }
+
+        .issue-info {
+            font-family: 'Press Start 2P', cursive;
+            font-size: 0.6rem;
+            color: var(--neon-magenta);
+            text-shadow: var(--glow-magenta);
+        }
+
+        .hero {
+            position: relative;
+            min-height: 80vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 60px 20px;
+            text-align: center;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 800px;
+            height: 800px;
+            background: radial-gradient(circle, rgba(255, 0, 255, 0.2) 0%, transparent 70%);
+            transform: translate(-50%, -50%);
+            animation: breathe 4s ease-in-out infinite;
+        }
+
+        @keyframes breathe {
+            0%, 100% { transform: translate(-50%, -50%) scale(1); }
+            50% { transform: translate(-50%, -50%) scale(1.2); }
+        }
+
+        .glitch-container {
+            position: relative;
+        }
+
+        .hero-title {
+            font-family: 'Black Han Sans', sans-serif;
+            font-size: clamp(2.5rem, 8vw, 5rem);
+            line-height: 1.1;
+            margin-bottom: 20px;
+            position: relative;
+            text-shadow:
+                0 0 20px var(--neon-cyan),
+                0 0 40px var(--neon-cyan),
+                0 0 80px var(--neon-cyan);
+            animation: glitch 3s infinite;
+        }
+
+        .hero-title span {
+            display: block;
+        }
+
+        .hero-title .highlight {
+            color: var(--neon-magenta);
+            text-shadow: var(--glow-magenta);
+        }
+
+        @keyframes glitch {
+            0%, 90%, 100% {
+                transform: translate(0);
+            }
+            91% {
+                transform: translate(-2px, 1px);
+            }
+            92% {
+                transform: translate(2px, -1px);
+            }
+            93% {
+                transform: translate(-1px, 2px);
+            }
+        }
+
+        .hero-subtitle {
+            font-family: 'Rajdhani', sans-serif;
+            font-size: 1.3rem;
+            font-weight: 500;
+            color: var(--text-secondary);
+            max-width: 700px;
+            margin-bottom: 40px;
+            letter-spacing: 2px;
+        }
+
+        .hero-stats {
+            display: flex;
+            gap: 40px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .stat-box {
+            background: var(--card-bg);
+            border: 2px solid var(--neon-cyan);
+            padding: 20px 30px;
+            position: relative;
+            clip-path: polygon(10px 0, 100% 0, 100% calc(100% - 10px), calc(100% - 10px) 100%, 0 100%, 0 10px);
+            transition: all 0.3s ease;
+        }
+
+        .stat-box::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(0, 245, 255, 0.1) 0%, transparent 50%);
+            pointer-events: none;
+        }
+
+        .stat-box:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 245, 255, 0.3);
+            border-color: var(--neon-magenta);
+        }
+
+        .stat-label {
+            font-family: 'Press Start 2P', cursive;
+            font-size: 0.5rem;
+            color: var(--neon-yellow);
+            margin-bottom: 5px;
+            letter-spacing: 1px;
+        }
+
+        .stat-value {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--neon-cyan);
+            text-shadow: 0 0 10px var(--neon-cyan);
+        }
+
+        .main-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        .summary-section {
+            background: var(--card-bg);
+            border: 3px solid var(--neon-magenta);
+            border-radius: 0;
+            padding: 40px;
+            margin-bottom: 60px;
+            position: relative;
+            clip-path: polygon(0 0, calc(100% - 20px) 0, 100% 20px, 100% 100%, 20px 100%, 0 calc(100% - 20px));
+        }
+
+        .summary-section::before {
+            content: 'MISSION BRIEFING';
+            position: absolute;
+            top: -15px;
+            left: 30px;
+            font-family: 'Press Start 2P', cursive;
+            font-size: 0.7rem;
+            color: var(--neon-magenta);
+            background: var(--deep-purple);
+            padding: 5px 15px;
+            text-shadow: var(--glow-magenta);
+        }
+
+        .summary-list {
+            list-style: none;
+        }
+
+        .summary-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 20px;
+            padding: 20px 0;
+            border-bottom: 1px solid rgba(255, 0, 255, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        .summary-item:last-child {
+            border-bottom: none;
+        }
+
+        .summary-item:hover {
+            transform: translateX(10px);
+            background: rgba(255, 0, 255, 0.05);
+        }
+
+        .summary-icon {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, var(--neon-cyan), var(--neon-magenta));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Press Start 2P', cursive;
+            font-size: 0.6rem;
+            flex-shrink: 0;
+            clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+        }
+
+        .summary-text {
+            font-size: 1rem;
+            line-height: 1.7;
+        }
+
+        .summary-text strong {
+            color: var(--neon-cyan);
+        }
+
+        .content-section {
+            margin-bottom: 80px;
+            position: relative;
+        }
+
+        .section-header {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            margin-bottom: 30px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid transparent;
+            border-image: linear-gradient(90deg, var(--neon-cyan), var(--neon-magenta), transparent) 1;
+        }
+
+        .section-number {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 3rem;
+            font-weight: 900;
+            color: transparent;
+            -webkit-text-stroke: 2px var(--neon-cyan);
+            text-shadow: 0 0 20px var(--neon-cyan);
+            line-height: 1;
+        }
+
+        .section-title {
+            font-family: 'Black Han Sans', sans-serif;
+            font-size: clamp(1.5rem, 4vw, 2.2rem);
+            color: var(--text-primary);
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+        }
+
+        .section-title .en {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 0.7em;
+            color: var(--neon-yellow);
+            display: block;
+            margin-top: 5px;
+            letter-spacing: 3px;
+        }
+
+        .content-section p {
+            font-size: 1.05rem;
+            margin-bottom: 20px;
+            color: var(--text-secondary);
+            text-align: justify;
+        }
+
+        .content-section p strong {
+            color: var(--neon-cyan);
+            font-weight: 600;
+        }
+
+        .content-section a {
+            color: var(--neon-magenta);
+            text-decoration: none;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
+        .content-section a::after {
+            content: '↗';
+            font-size: 0.7em;
+            margin-left: 2px;
+            opacity: 0.7;
+        }
+
+        .content-section a:hover {
+            color: var(--neon-cyan);
+            text-shadow: 0 0 10px var(--neon-cyan);
+        }
+
+        .info-box {
+            background: linear-gradient(135deg, rgba(0, 245, 255, 0.1) 0%, rgba(255, 0, 255, 0.1) 100%);
+            border-left: 4px solid var(--neon-cyan);
+            padding: 25px 30px;
+            margin: 30px 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .info-box::before {
+            content: '!';
+            position: absolute;
+            top: 10px;
+            right: 15px;
+            font-family: 'Press Start 2P', cursive;
+            font-size: 1.5rem;
+            color: var(--neon-yellow);
+            opacity: 0.3;
+        }
+
+        .info-box.warning {
+            border-left-color: var(--neon-orange);
+            background: linear-gradient(135deg, rgba(255, 102, 0, 0.1) 0%, rgba(255, 0, 0, 0.05) 100%);
+        }
+
+        .info-box.warning::before {
+            content: '⚠';
+            color: var(--neon-orange);
+        }
+
+        .table-container {
+            overflow-x: auto;
+            margin: 30px 0;
+            border: 2px solid var(--neon-cyan);
+            background: var(--card-bg);
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.95rem;
+        }
+
+        thead {
+            background: linear-gradient(90deg, rgba(0, 245, 255, 0.3) 0%, rgba(255, 0, 255, 0.3) 100%);
+        }
+
+        th {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            padding: 15px 20px;
+            text-align: left;
+            color: var(--neon-cyan);
+            border-bottom: 2px solid var(--neon-cyan);
+        }
+
+        td {
+            padding: 15px 20px;
+            border-bottom: 1px solid rgba(0, 245, 255, 0.2);
+            color: var(--text-secondary);
+        }
+
+        tr:hover td {
+            background: rgba(0, 245, 255, 0.05);
+        }
+
+        td strong {
+            color: var(--neon-magenta);
+        }
+
+        .check {
+            color: var(--neon-green);
+            text-shadow: 0 0 10px var(--neon-green);
+        }
+
+        .cross {
+            color: #ff3366;
+            text-shadow: 0 0 10px #ff3366;
+        }
+
+        .partial {
+            color: var(--neon-yellow);
+            text-shadow: 0 0 10px var(--neon-yellow);
+        }
+
+        .code-block {
+            background: #0a0a0a;
+            border: 1px solid var(--neon-green);
+            border-radius: 0;
+            padding: 25px;
+            margin: 25px 0;
+            position: relative;
+            overflow-x: auto;
+            font-family: 'Rajdhani', monospace;
+            font-size: 0.9rem;
+            line-height: 1.6;
+            color: var(--neon-green);
+        }
+
+        .code-block::before {
+            content: 'SYSTEM.PROMPT';
+            position: absolute;
+            top: 0;
+            left: 0;
+            background: var(--neon-green);
+            color: #000;
+            font-family: 'Press Start 2P', cursive;
+            font-size: 0.5rem;
+            padding: 5px 10px;
+        }
+
+        .code-block.yaml::before {
+            content: 'YAML.CONFIG';
+            background: var(--neon-yellow);
+        }
+
+        .code-block.markdown::before {
+            content: 'MARKDOWN.SKILL';
+            background: var(--neon-cyan);
+        }
+
+        .code-block.bash::before {
+            content: 'BASH.TERMINAL';
+            background: var(--neon-magenta);
+        }
+
+        .code-block code {
+            display: block;
+            margin-top: 20px;
+            white-space: pre-wrap;
+        }
+
+        .callout {
+            position: relative;
+            padding: 30px 40px;
+            margin: 40px 0;
+            background: linear-gradient(135deg, rgba(0, 245, 255, 0.05) 0%, rgba(255, 0, 255, 0.05) 100%);
+            border-left: 4px solid var(--neon-magenta);
+        }
+
+        .callout::before {
+            content: '"';
+            position: absolute;
+            top: 10px;
+            left: 15px;
+            font-family: 'Orbitron', sans-serif;
+            font-size: 3rem;
+            color: var(--neon-magenta);
+            opacity: 0.5;
+        }
+
+        .callout p {
+            font-style: italic;
+            font-size: 1.1rem;
+            color: var(--text-primary);
+        }
+
+        .callout-source {
+            font-family: 'Rajdhani', sans-serif;
+            font-size: 0.85rem;
+            color: var(--neon-cyan);
+            margin-top: 15px;
+            text-align: right;
+        }
+
+        .achievement {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            background: linear-gradient(135deg, rgba(255, 215, 0, 0.1) 0%, rgba(255, 102, 0, 0.1) 100%);
+            border: 2px solid var(--neon-yellow);
+            padding: 20px;
+            margin: 30px 0;
+            transition: all 0.3s ease;
+        }
+
+        .achievement:hover {
+            transform: scale(1.02);
+            box-shadow: 0 0 30px rgba(255, 215, 0, 0.3);
+        }
+
+        .achievement-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #ffd700, #ff6600);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            flex-shrink: 0;
+            clip-path: polygon(50% 0%, 100% 38%, 82% 100%, 18% 100%, 0% 38%);
+        }
+
+        .achievement-content {
+            flex: 1;
+        }
+
+        .achievement-title {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 0.9rem;
+            color: var(--neon-yellow);
+            margin-bottom: 5px;
+        }
+
+        .achievement-desc {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+        }
+
+        .tip-box {
+            background: linear-gradient(135deg, rgba(57, 255, 20, 0.1) 0%, rgba(0, 245, 255, 0.1) 100%);
+            border: 2px solid var(--neon-green);
+            padding: 25px;
+            margin: 30px 0;
+            position: relative;
+        }
+
+        .tip-box::before {
+            content: 'TIP';
+            position: absolute;
+            top: -12px;
+            left: 20px;
+            background: var(--deep-purple);
+            padding: 0 10px;
+            font-family: 'Orbitron', sans-serif;
+            font-size: 0.8rem;
+            color: var(--neon-green);
+        }
+
+        h3 {
+            font-family: 'Orbitron', sans-serif;
+            color: var(--neon-cyan);
+            margin: 40px 0 20px;
+            font-size: 1.2rem;
+        }
+
+        h4 {
+            font-family: 'Orbitron', sans-serif;
+            color: var(--neon-magenta);
+            margin: 30px 0 15px;
+            font-size: 1rem;
+        }
+
+        ul.component-list {
+            list-style: none;
+            margin: 20px 0;
+        }
+
+        ul.component-list li {
+            padding: 10px 0 10px 30px;
+            position: relative;
+            color: var(--text-secondary);
+        }
+
+        ul.component-list li::before {
+            content: '>';
+            position: absolute;
+            left: 0;
+            color: var(--neon-cyan);
+            font-family: 'Press Start 2P', cursive;
+            font-size: 0.6rem;
+        }
+
+        ul.component-list li strong {
+            color: var(--neon-magenta);
+        }
+
+        .magazine-footer {
+            background: linear-gradient(180deg, transparent 0%, rgba(0, 245, 255, 0.1) 100%);
+            border-top: 2px solid var(--neon-cyan);
+            padding: 60px 20px;
+            margin-top: 80px;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .references-section {
+            margin-bottom: 40px;
+        }
+
+        .references-title {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.2rem;
+            color: var(--neon-cyan);
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .references-title::before {
+            content: '//';
+        }
+
+        .references-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+
+        .reference-category {
+            background: var(--card-bg);
+            border: 1px solid rgba(0, 245, 255, 0.3);
+            padding: 20px;
+        }
+
+        .reference-category h4 {
+            font-family: 'Press Start 2P', cursive;
+            font-size: 0.6rem;
+            color: var(--neon-magenta);
+            margin-bottom: 15px;
+        }
+
+        .reference-list {
+            list-style: none;
+        }
+
+        .reference-list li {
+            margin: 8px 0;
+            font-size: 0.85rem;
+        }
+
+        .reference-list a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            transition: all 0.3s ease;
+            display: block;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+
+        .reference-list a:hover {
+            color: var(--neon-cyan);
+        }
+
+        .footer-end {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid rgba(0, 245, 255, 0.2);
+        }
+
+        .footer-logo {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.5rem;
+            color: var(--neon-cyan);
+            text-shadow: var(--glow-cyan);
+            margin-bottom: 10px;
+        }
+
+        .footer-text {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+        }
+
+        .footer-text .pixel {
+            font-family: 'Press Start 2P', cursive;
+            font-size: 0.5rem;
+            color: var(--neon-magenta);
+        }
+
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                gap: 10px;
+            }
+
+            .hero-stats {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .section-header {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+        }
+
+        .scroll-progress {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--neon-cyan), var(--neon-magenta), var(--neon-yellow));
+            z-index: 10000;
+            transition: width 0.1s ease;
+        }
+
+        .back-to-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 50px;
+            height: 50px;
+            background: var(--card-bg);
+            border: 2px solid var(--neon-cyan);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            color: var(--neon-cyan);
+            cursor: pointer;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            z-index: 1000;
+            clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+        }
+
+        .back-to-top.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .back-to-top:hover {
+            background: var(--neon-cyan);
+            color: var(--deep-purple);
+            box-shadow: 0 0 30px var(--neon-cyan);
+        }
+
+        .easter-egg {
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+            font-family: 'Press Start 2P', cursive;
+            font-size: 0.5rem;
+            color: rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .easter-egg:hover {
+            color: var(--neon-magenta);
+            text-shadow: var(--glow-magenta);
+        }
+
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s ease-out;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .iron-law-box {
+            background: linear-gradient(135deg, rgba(255, 0, 0, 0.1) 0%, rgba(255, 102, 0, 0.1) 100%);
+            border: 3px solid #ff3366;
+            padding: 30px;
+            margin: 30px 0;
+            position: relative;
+            text-align: center;
+        }
+
+        .iron-law-box::before {
+            content: 'IRON LAW';
+            position: absolute;
+            top: -12px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--deep-purple);
+            padding: 0 15px;
+            font-family: 'Press Start 2P', cursive;
+            font-size: 0.7rem;
+            color: #ff3366;
+        }
+
+        .iron-law-box p {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.1rem;
+            color: #ff3366;
+            text-shadow: 0 0 10px rgba(255, 51, 102, 0.5);
+        }
+
+        .philosophy-box {
+            background: var(--card-bg);
+            border: 2px solid var(--neon-cyan);
+            padding: 25px;
+            margin: 25px 0;
+        }
+
+        .philosophy-box h4 {
+            font-family: 'Orbitron', sans-serif;
+            color: var(--neon-cyan);
+            margin-bottom: 15px;
+        }
+
+        .philosophy-box ul {
+            list-style: none;
+        }
+
+        .philosophy-box li {
+            padding: 8px 0;
+            padding-left: 25px;
+            position: relative;
+            color: var(--text-secondary);
+        }
+
+        .philosophy-box li::before {
+            content: '//';
+            position: absolute;
+            left: 0;
+            color: var(--neon-magenta);
+            font-family: 'Press Start 2P', cursive;
+            font-size: 0.5rem;
+        }
+
+        .comparison-bar {
+            margin: 15px 0;
+        }
+
+        .bar-label {
+            display: flex;
+            justify-content: space-between;
+            font-family: 'Orbitron', sans-serif;
+            font-size: 0.75rem;
+            margin-bottom: 5px;
+        }
+
+        .bar-track {
+            height: 20px;
+            background: rgba(0, 0, 0, 0.5);
+            border: 1px solid var(--neon-cyan);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .bar-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--neon-cyan), var(--neon-magenta));
+            position: relative;
+            transition: width 1s ease-out;
+        }
+
+        .bar-fill::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: repeating-linear-gradient(
+                90deg,
+                transparent,
+                transparent 10px,
+                rgba(255, 255, 255, 0.1) 10px,
+                rgba(255, 255, 255, 0.1) 20px
+            );
+        }
+
+        .bar-value {
+            position: absolute;
+            right: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-family: 'Press Start 2P', cursive;
+            font-size: 0.5rem;
+            color: #fff;
+            text-shadow: 1px 1px 2px #000;
+        }
+    </style>
+</head>
+<body>
+    <div class="scroll-progress" id="scrollProgress"></div>
+    <div class="bg-grid"></div>
+
+    <div class="particles">
+        <div class="particle" style="left: 5%; animation-delay: 0s;"></div>
+        <div class="particle" style="left: 15%; animation-delay: 2s;"></div>
+        <div class="particle" style="left: 25%; animation-delay: 4s;"></div>
+        <div class="particle" style="left: 35%; animation-delay: 1s;"></div>
+        <div class="particle" style="left: 45%; animation-delay: 3s;"></div>
+        <div class="particle" style="left: 55%; animation-delay: 5s;"></div>
+        <div class="particle" style="left: 65%; animation-delay: 2s;"></div>
+        <div class="particle" style="left: 75%; animation-delay: 4s;"></div>
+        <div class="particle" style="left: 85%; animation-delay: 1s;"></div>
+        <div class="particle" style="left: 95%; animation-delay: 3s;"></div>
+    </div>
+
+    <header class="magazine-header">
+        <div class="header-content">
+            <div class="logo">PLAYER ONE TECH</div>
+            <div class="issue-info">ISSUE #2025.12 // FORGE YOUR INSTRUCTIONS</div>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="glitch-container">
+            <h1 class="hero-title">
+                <span>/forge-prompt</span>
+                <span class="highlight">방탄 지시문 대장간</span>
+            </h1>
+        </div>
+        <p class="hero-subtitle">Claude Code 커스텀 커맨드로 LLM이 절대 무시할 수 없는 지시문 만들기</p>
+
+        <div class="hero-stats">
+            <div class="stat-box">
+                <div class="stat-label">COMPONENTS</div>
+                <div class="stat-value">9 REQUIRED</div>
+            </div>
+            <div class="stat-box">
+                <div class="stat-label">ACTIVATION RATE</div>
+                <div class="stat-value">84%</div>
+            </div>
+            <div class="stat-box">
+                <div class="stat-label">PHILOSOPHY</div>
+                <div class="stat-value">SUPERPOWERS</div>
+            </div>
+        </div>
+    </section>
+
+    <main class="main-content">
+
+        <!-- Summary Section -->
+        <section class="summary-section fade-in">
+            <ul class="summary-list">
+                <li class="summary-item">
+                    <div class="summary-icon">01</div>
+                    <div class="summary-text"><strong>Claude Code</strong>는 Anthropic의 공식 CLI 도구다. <strong>/forge-prompt</strong>는 Claude가 실제로 따르는 방탄 지시문과 스킬을 생성하기 위한 커스텀 커맨드</div>
+                </li>
+                <li class="summary-item">
+                    <div class="summary-icon">02</div>
+                    <div class="summary-text"><strong>핵심 문제</strong>: LLM은 모호한 지시문을 받으면 합리화, 지름길, 느슨한 해석을 찾아낸다. 인간에게 명확한 지시문이 AI에게는 실패한다</div>
+                </li>
+                <li class="summary-item">
+                    <div class="summary-icon">03</div>
+                    <div class="summary-text"><strong>Superpowers 철학</strong>: "구조가 필요 없다고 생각할 때가 가장 필요할 때다." 강한 언어, 합리화 방지 테이블, Iron Law가 핵심</div>
+                </li>
+                <li class="summary-item">
+                    <div class="summary-icon">04</div>
+                    <div class="summary-text"><strong>9개 필수 구성요소</strong>: YAML 프론트매터, Iron Law, When to Use, 프로세스 구조, Red Flags, Rationalizations 테이블, Quick Reference, Key Principles, Integration</div>
+                </li>
+                <li class="summary-item">
+                    <div class="summary-icon">05</div>
+                    <div class="summary-text"><strong>검증된 결과</strong>: 강제 평가 훅으로 스킬 활성화율 20%에서 <strong>84%</strong>로 향상. 구체적인 트리거 조건이 핵심</div>
+                </li>
+            </ul>
+        </section>
+
+        <!-- Section 1: Introduction -->
+        <section class="content-section fade-in">
+            <div class="section-header">
+                <div class="section-number">01</div>
+                <h2 class="section-title">들어가며<span class="en">INTRODUCTION</span></h2>
+            </div>
+
+            <p>Claude가 내 지시를 스무 번째 무시했을 때 깨달았다. 문제는 Claude가 아니라 나였다. 인간의 뇌에는 완벽하게 명확해 보이는 지시문이 AI에게는 해석, 합리화, 그리고 지름길을 위한 여지를 너무 많이 남겼던 것이다.</p>
+
+            <p><strong>Claude Code</strong>는 Anthropic이 공식 출시한 CLI 도구다. 개발자가 터미널에서 직접 AI 코딩 어시스턴트와 상호작용할 수 있게 해준다. <a href="https://docs.anthropic.com/en/docs/claude-code">공식 문서</a></p>
+
+            <div class="info-box">
+                <p>이 기사는 Claude Code 기초—설치, 대화 흐름, 커스텀 커맨드 개념—에 이미 익숙하다는 전제로 작성했다. <strong>.claude/</strong> 디렉토리를 다루는 데 익숙하고 스킬이나 슬래시 커맨드를 직접 실험해본 적 있다면 제대로 찾아온 것이다.</p>
+            </div>
+
+            <p>Claude Code의 가장 강력하면서도 과소평가된 기능 중 하나가 <strong>커스텀 슬래시 커맨드 시스템</strong>이다. <strong>.claude/commands/</strong> 디렉토리에 재사용 가능한 프롬프트를 저장할 수 있다. <a href="https://alexop.dev/posts/claude-code-slash-commands-guide/">가이드</a></p>
+
+            <p>필자는 <strong>/forge-prompt</strong> 커스텀 커맨드를 "지시문 대장간"으로 설계했다. Claude Opus 4.5(그리고 미래 모델들)가 예외적인 정밀도로 따를 수 있는 방탄 지시문과 스킬을 생성하기 위해서다.</p>
+
+            <div class="achievement">
+                <div class="achievement-icon">*</div>
+                <div class="achievement-content">
+                    <div class="achievement-title">BENCHMARK SOURCES</div>
+                    <div class="achievement-desc">이 커맨드는 Claude 생태계에서 가장 정교한 두 스킬 시스템을 철저히 벤치마킹해서 만들었다. Anthropic의 공식 <strong>frontend-design</strong> 플러그인과 Jesse Vincent(obra)가 개발한 커뮤니티 주도의 <strong>Superpowers</strong> 플러그인</div>
+                </div>
+            </div>
+
+            <p>목표는 단순했다. LLM에게 즉석에서 지시문을 생성하라고 요청하는 대신, 인간과 LLM 모두 지시문을 어떻게 처리하는지 깊이 이해하는 세계적 수준 개발자들의 지혜를 담은 체계적인 방법론을 원했다.</p>
+        </section>
+
+        <!-- Section 2: Why forge-prompt -->
+        <section class="content-section fade-in">
+            <div class="section-header">
+                <div class="section-number">02</div>
+                <h2 class="section-title">/forge-prompt를 만든 이유<span class="en">THE PROBLEM</span></h2>
+            </div>
+
+            <p>수년간 LLM과 작업하면서 반복되는 패턴을 발견했다. <strong>인간에게 명확하게 들리는 지시문이 AI 에이전트가 실행할 때는 종종 실패한다.</strong></p>
+
+            <p>문제는 LLM이 지시를 따를 수 없다는 게 아니다. 대부분의 지시문이 해석, 합리화, 지름길을 위한 여지를 너무 많이 남긴다는 것이다.</p>
+
+            <p>필자는 Anthropic의 공식 <strong>frontend-design</strong> 스킬과 Jesse Vincent의 Superpowers 플러그인을 광범위하게 연구했다. 무엇이 그들의 지시문을 그토록 효과적으로 만드는지 분석했다.</p>
+
+            <div class="iron-law-box">
+                <p>강한 언어, 명시적인 합리화 방지 메커니즘, 그리고 모호함의 여지를 남기지 않는 구조화된 구성요소.</p>
+            </div>
+
+            <p><strong>/forge-prompt</strong>는 이 패턴들을 누구나 프로덕션급 지시문을 만들 수 있는 재사용 가능한 프레임워크로 코드화한다.</p>
+        </section>
+
+        <!-- Section 3: Rationalization Trap -->
+        <section class="content-section fade-in">
+            <div class="section-header">
+                <div class="section-number">03</div>
+                <h2 class="section-title">LLM과 합리화의 함정<span class="en">THE RATIONALIZATION TRAP</span></h2>
+            </div>
+
+            <p>Claude 같은 현대 LLM은 놀라운 능력을 갖추고 있지만 공통된 실패 모드를 공유한다. <strong>합리화</strong>다.</p>
+
+            <p>모호한 지시문을 받으면 AI 에이전트는 지름길을 정당화하고, 불필요하다고 판단한 단계를 건너뛰고, 압박을 받으면 규칙을 느슨하게 해석할 창의적인 방법을 찾아낸다.</p>
+
+            <p>Reddit 커뮤니티는 이 현상을 광범위하게 문서화했다. 사용자들은 잘 작성된 CLAUDE.md 파일조차 Claude가 특정 작업에 "과잉"이라고 결정하면 무시당한다고 보고했다. <a href="https://news.ycombinator.com/item?id=46098838">Hacker News</a></p>
+
+            <div class="callout">
+                <p>"내 친구는 Claude에게 항상 자신을 'Mr Tinkleberry'라고 부르라고 지시한다. 그는 Claude가 CLAUDE.md의 지시에 주의를 기울이지 않을 때를 알 수 있다고 한다."</p>
+                <div class="callout-source">— Hacker News 댓글</div>
+            </div>
+
+            <div class="achievement">
+                <div class="achievement-icon">!</div>
+                <div class="achievement-content">
+                    <div class="achievement-title">SUPERPOWERS PHILOSOPHY</div>
+                    <div class="achievement-desc">"구조가 필요 없다고 생각할 때가 가장 필요할 때다." — Superpowers 프레임워크</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 4: Instruction Architecture -->
+        <section class="content-section fade-in">
+            <div class="section-header">
+                <div class="section-number">04</div>
+                <h2 class="section-title">Claude Code의 지시문 아키텍처<span class="en">INSTRUCTION HIERARCHY</span></h2>
+            </div>
+
+            <p><strong>/forge-prompt</strong>로 들어가기 전에 Claude Code의 지시문 시스템 계층 구조를 이해하는 것이 필수다.</p>
+
+            <p>커뮤니티는 이 구성요소들의 차이점을 활발히 논의해왔다. <a href="https://www.reddit.com/r/ClaudeAI/comments/1ped515/understanding_claudemd_vs_skills_vs_slash/">Reddit 토론</a></p>
+
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>기능</th>
+                            <th>호출 방식</th>
+                            <th>핵심 목적</th>
+                            <th>최적 용도</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>CLAUDE.md</strong></td>
+                            <td>자동 (항상 로드)</td>
+                            <td>모든 대화의 기본 프롬프트</td>
+                            <td>프로젝트별 컨벤션</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Skills</strong></td>
+                            <td>에이전트 호출 (자동)</td>
+                            <td>온디맨드 지식, 점진적 공개</td>
+                            <td>API 문서, 스타일 가이드</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Slash Commands</strong></td>
+                            <td>사용자 또는 에이전트</td>
+                            <td>단발성 작업용 재사용 프롬프트</td>
+                            <td>PR 표준화, 테스트 실행</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Plugins</strong></td>
+                            <td>패키지 형식</td>
+                            <td>스킬, 커맨드, 에이전트, 훅 번들링</td>
+                            <td>배포 및 설치</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="info-box">
+                <p>핵심 통찰은 <strong>스킬과 슬래시 커맨드가 다른 의도를 위해 존재한다</strong>는 점이다. 스킬은 주로 관련 있을 때 Claude가 자동으로 호출하도록 설계됐고, 슬래시 커맨드는 사용자가 특정 순간에 호출하도록 설계됐다.</p>
+            </div>
+        </section>
+
+        <!-- Section 5: Superpowers Philosophy -->
+        <section class="content-section fade-in">
+            <div class="section-header">
+                <div class="section-number">05</div>
+                <h2 class="section-title">Superpowers 철학<span class="en">BATTLE-TESTED PROTOCOLS</span></h2>
+            </div>
+
+            <p>Superpowers 플러그인은 규율 있는 동작을 강제하는 조합 가능한 "스킬"로 구축된 완전한 소프트웨어 개발 워크플로우다. <a href="https://github.com/obra/superpowers">GitHub</a></p>
+
+            <div class="philosophy-box">
+                <h4>4가지 핵심 기둥</h4>
+                <ul>
+                    <li><strong>합리화 방지</strong> — 가장 흔한 실패 모드는 "이 경우는 다르다"</li>
+                    <li><strong>규율 강제</strong> — 구조가 결정 피로와 지름길을 제거한다</li>
+                    <li><strong>실패를 가시화</strong> — 명확한 기준이 궤도 이탈을 드러낸다</li>
+                    <li><strong>실행 가능하게</strong> — 모든 규칙에는 구체적인 행동이 있다. 추상적인 조언이 아니다</li>
+                </ul>
+            </div>
+
+            <p>Superpowers는 <strong>테스트 주도 개발(TDD)</strong>을 프로세스 문서 자체에 적용한다.</p>
+
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>단계</th>
+                            <th>행동</th>
+                            <th>결과</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>1</strong></td>
+                            <td>테스트 케이스 작성 (서브에이전트 압박 시나리오)</td>
+                            <td>실패를 유발하도록 설계된 엣지 케이스</td>
+                        </tr>
+                        <tr>
+                            <td><strong>2</strong></td>
+                            <td>실패 관찰</td>
+                            <td>베이스라인 동작 확인</td>
+                        </tr>
+                        <tr>
+                            <td><strong>3</strong></td>
+                            <td>스킬(문서) 작성</td>
+                            <td>실패 모드 대응</td>
+                        </tr>
+                        <tr>
+                            <td><strong>4</strong></td>
+                            <td>테스트 통과 관찰</td>
+                            <td>에이전트 준수 확인</td>
+                        </tr>
+                        <tr>
+                            <td><strong>5</strong></td>
+                            <td>리팩토링</td>
+                            <td>허점 차단</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- Section 6: Anthropic's Frontend-Design -->
+        <section class="content-section fade-in">
+            <div class="section-header">
+                <div class="section-number">06</div>
+                <h2 class="section-title">Anthropic의 Frontend-Design 스킬<span class="en">OFFICIAL BENCHMARK</span></h2>
+            </div>
+
+            <p>Anthropic의 공식 <strong>frontend-design</strong> 스킬은 Claude가 실제로 따르는 지시문 작성법을 보여준다. <a href="https://claude-plugins.dev/skills/@anthropics/claude-code/frontend-design">플러그인 상세</a></p>
+
+            <p>이 스킬은 강하고 모호하지 않은 언어 패턴을 사용한다.</p>
+
+            <div class="code-block markdown">
+                <code>**CRITICAL**: Choose a clear conceptual direction
+and execute it with precision.
+
+NEVER use generic AI-generated aesthetics like
+overused font families (Inter, Roboto, Arial,
+system fonts)...
+
+**IMPORTANT**: Match implementation complexity
+to the aesthetic vision.</code>
+            </div>
+
+            <p><strong>CRITICAL</strong>, <strong>NEVER</strong>, <strong>IMPORTANT</strong> 같은 강조 단어에 <strong>전체 대문자</strong>를 의도적으로 사용한다.</p>
+
+            <div class="tip-box">
+                <p>이 스킬은 Claude에게 하지 말아야 할 것만이 아니라 <strong>무엇을 해야 하는지</strong>도 알려준다. Anthropic의 프롬프트 엔지니어링 가이드에서 나온 핵심 모범 사례다. <a href="https://claude.com/blog/best-practices-for-prompt-engineering">가이드</a></p>
+            </div>
+        </section>
+
+        <!-- Section 7: 9 Components -->
+        <section class="content-section fade-in">
+            <div class="section-header">
+                <div class="section-number">07</div>
+                <h2 class="section-title">/forge-prompt: 9개 구성요소 프레임워크<span class="en">THE ANATOMY</span></h2>
+            </div>
+
+            <p>필자는 <strong>/forge-prompt</strong>를 Superpowers와 Anthropic 공식 스킬의 교훈을 방탄 지시문 생성을 위한 <strong>9개 구성요소 프레임워크</strong>로 통합해 설계했다.</p>
+
+            <div class="iron-law-box">
+                <p>NO INSTRUCTION WITHOUT ALL 9 COMPONENTS.<br>
+                "A skill without Iron Law is a suggestion. A skill without Red Flags is a trap."</p>
+            </div>
+
+            <h3>1. YAML 프론트매터 (메타데이터)</h3>
+
+            <div class="code-block yaml">
+                <code>---
+name: kebab-case-name
+description: Use when [TRIGGER CONDITION] -
+[WHAT IT DOES] that [WHY IT MATTERS]
+---</code>
+            </div>
+
+            <p>description 필드는 필자가 <strong>Claude Search Optimization(CSO)</strong>이라 부르는 것에 핵심적이다. Claude가 관련 있을 때 스킬을 발견하고 로드하도록 돕는 설명 작성 관행이다.</p>
+
+            <h3>2. Iron Law (협상 불가능한 핵심 규칙)</h3>
+
+            <p>위반할 수 없는 <strong>단 하나의</strong> 규칙. 예시:</p>
+
+            <ul class="component-list">
+                <li><strong>NO FIXES WITHOUT ROOT CAUSE INVESTIGATION FIRST</strong></li>
+                <li><strong>NO CODE WITHOUT FAILING TEST FIRST</strong></li>
+                <li><strong>NO COMMIT WITHOUT VERIFICATION COMMAND OUTPUT</strong></li>
+            </ul>
+
+            <h3>3. When to Use / When NOT to Use</h3>
+
+            <p>이 섹션은 반드시 직관에 반하는 트리거를 포함해야 한다. 개발자가 프로세스를 건너뛰고 싶은 유혹이 가장 강한 상황들이다.</p>
+
+            <h3>4. 프로세스/단계 구조</h3>
+
+            <p>명확하고 순차적인 단계들과 <strong>게이트</strong>(다음으로 진행하기 전 통과해야 하는 체크포인트).</p>
+
+            <h3>5. Red Flags 섹션</h3>
+
+            <p>실패 직전임을 알리는 정신적 패턴들:</p>
+
+            <div class="code-block markdown">
+                <code>If you catch yourself thinking:
+- "Quick fix for now, investigate later"
+- "This case is different/simple"
+- "I already know what the problem is"
+- "Just try this and see"
+
+**ALL of these mean: STOP. [Specific action].**</code>
+            </div>
+
+            <h3>6. Common Rationalizations 테이블</h3>
+
+            <p>모든 변명을 직접적인 반박으로 선제 대응:</p>
+
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Excuse</th>
+                            <th>Reality</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>"Simple issues don't need this"</td>
+                            <td>Simple issues have root causes too. Process is fast for simple cases.</td>
+                        </tr>
+                        <tr>
+                            <td>"Emergency, no time"</td>
+                            <td>Emergency pressure is exactly when systematic approach saves time.</td>
+                        </tr>
+                        <tr>
+                            <td>"I'll test if problems emerge"</td>
+                            <td>Problems = agents can't use skill. Test BEFORE deploying.</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <h3>7. Quick Reference 테이블</h3>
+
+            <p>실행 중 스캔을 위한 한눈에 보는 요약.</p>
+
+            <h3>8. Key Principles / Summary</h3>
+
+            <p>빠른 상기를 위한 핵심 원칙.</p>
+
+            <h3>9. Integration / Related Skills</h3>
+
+            <p>함께 작동하는 다른 스킬에 대한 상호 참조.</p>
+        </section>
+
+        <!-- Section 8: Language Patterns -->
+        <section class="content-section fade-in">
+            <div class="section-header">
+                <div class="section-number">08</div>
+                <h2 class="section-title">LLM이 실제로 따르는 언어 패턴<span class="en">LANGUAGE PATTERNS</span></h2>
+            </div>
+
+            <p><strong>/forge-prompt</strong>는 Anthropic의 연구가 효과적이라고 입증한 특정 언어 패턴을 강제한다.</p>
+
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Weak (피하기)</th>
+                            <th>Strong (사용하기)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="cross">"You should"</td>
+                            <td class="check">"You MUST"</td>
+                        </tr>
+                        <tr>
+                            <td class="cross">"Consider"</td>
+                            <td class="check">"REQUIRED"</td>
+                        </tr>
+                        <tr>
+                            <td class="cross">"It's recommended"</td>
+                            <td class="check">"This is not negotiable"</td>
+                        </tr>
+                        <tr>
+                            <td class="cross">"Try to"</td>
+                            <td class="check">"ALWAYS" / "NEVER"</td>
+                        </tr>
+                        <tr>
+                            <td class="cross">"It's helpful to"</td>
+                            <td class="check">"CRITICAL"</td>
+                        </tr>
+                        <tr>
+                            <td class="cross">"You might want to"</td>
+                            <td class="check">"You cannot proceed until"</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="callout">
+                <p>"모델에게 정확히 보고 싶은 것을 알려줘라. 포괄적인 출력을 원하면 직접 요청해라."</p>
+                <div class="callout-source">— Anthropic 프롬프트 엔지니어링 가이드</div>
+            </div>
+        </section>
+
+        <!-- Section 9: Prompt Engineering Best Practices -->
+        <section class="content-section fade-in">
+            <div class="section-header">
+                <div class="section-number">09</div>
+                <h2 class="section-title">프롬프트 엔지니어링 모범 사례<span class="en">BEST PRACTICES</span></h2>
+            </div>
+
+            <p><strong>/forge-prompt</strong> 커맨드는 2025년 프롬프트 엔지니어링 모범 사례에서 검증된 여러 기법을 통합한다.</p>
+
+            <h3>명시적이고 명확하게</h3>
+
+            <p>현대 AI 모델은 명확하고 명시적인 지시에 예외적으로 잘 반응한다.</p>
+
+            <div class="callout">
+                <p>"모델이 원하는 것을 추론할 것이라고 가정하지 마라—직접 말해라."</p>
+                <div class="callout-source">— Anthropic 가이드</div>
+            </div>
+
+            <h3>맥락과 동기 제공</h3>
+
+            <p>무엇이 왜 중요한지 설명하면 AI 모델이 목표를 더 잘 이해한다.</p>
+
+            <p>단순히 "NEVER use bullet points"라고 말하는 대신, <strong>/forge-prompt</strong> 접근법은 이렇다:</p>
+
+            <div class="code-block">
+                <code>"Use flowing prose because bullet points
+fragment ideas that should connect logically,
+making it harder for readers to follow
+the reasoning chain."</code>
+            </div>
+
+            <h3>예시 사용</h3>
+
+            <p><strong>/forge-prompt</strong> 출력에는 항상 구체적인 예시가 포함된다. Anthropic이 지적했듯이, "예시는 말하지 않고 보여주며, 설명만으로는 표현하기 어려운 미묘한 요구사항을 명확히 한다."</p>
+
+            <h3>불확실성 표현 권한 부여</h3>
+
+            <p>잘 만들어진 지시문에는 Claude가 추측하기보다 정보가 부족할 때 인정해도 된다는 명시적인 허락이 포함된다.</p>
+        </section>
+
+        <!-- Section 10: Anti-Patterns -->
+        <section class="content-section fade-in">
+            <div class="section-header">
+                <div class="section-number">10</div>
+                <h2 class="section-title">안티 패턴 경고<span class="en">WHAT NOT TO DO</span></h2>
+            </div>
+
+            <p><strong>/forge-prompt</strong>는 다음과 같은 지시문 생성을 명시적으로 경고한다.</p>
+
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>안티 패턴</th>
+                            <th>문제점</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="cross">부드러운 언어 ("consider", "try to")</td>
+                            <td>해석의 여지를 남김</td>
+                        </tr>
+                        <tr>
+                            <td class="cross">Iron Law 없음</td>
+                            <td>위반할 수 없는 핵심 규칙 부재</td>
+                        </tr>
+                        <tr>
+                            <td class="cross">Red Flags 섹션 생략</td>
+                            <td>합리화 예측 실패</td>
+                        </tr>
+                        <tr>
+                            <td class="cross">모호한 성공 기준 ("do a good job")</td>
+                            <td>측정 불가능</td>
+                        </tr>
+                        <tr>
+                            <td class="cross">융통성 허용 ("unless good reason")</td>
+                            <td>탈출구 제공</td>
+                        </tr>
+                        <tr>
+                            <td class="cross">선의 가정 ("you probably know")</td>
+                            <td>책임 전가</td>
+                        </tr>
+                        <tr>
+                            <td class="cross">너무 추상적</td>
+                            <td>구체적 행동이나 예시 없음</td>
+                        </tr>
+                        <tr>
+                            <td class="cross">명확한 단계 없이 너무 김</td>
+                            <td>텍스트 벽</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- Section 11: Practical Example -->
+        <section class="content-section fade-in">
+            <div class="section-header">
+                <div class="section-number">11</div>
+                <h2 class="section-title">실전 적용: 커밋 메시지 스킬<span class="en">PRACTICAL EXAMPLE</span></h2>
+            </div>
+
+            <p><strong>/forge-prompt</strong>로 커밋 메시지 스킬을 만드는 방법:</p>
+
+            <div class="code-block bash">
+                <code>> /forge-prompt Create a skill for writing
+semantic commit messages following
+conventional commits spec</code>
+            </div>
+
+            <p>출력물은 다음을 포함한다:</p>
+
+            <ul class="component-list">
+                <li><strong>Iron Law</strong>: NO COMMIT WITHOUT TYPE PREFIX AND SCOPE</li>
+                <li><strong>Red Flags</strong>: "If you catch yourself thinking 'this is just a small fix'..."</li>
+                <li><strong>Rationalizations Table</strong>: "Too tedious for small changes" 같은 변명을 반박으로 매핑</li>
+                <li><strong>Quick Reference</strong>: 커밋 타입 테이블 (feat, fix, docs, style, refactor, test, chore)</li>
+            </ul>
+        </section>
+
+        <!-- Section 12: Community Feedback -->
+        <section class="content-section fade-in">
+            <div class="section-header">
+                <div class="section-number">12</div>
+                <h2 class="section-title">커뮤니티 피드백과 활성화율<span class="en">ACTIVATION RATES</span></h2>
+            </div>
+
+            <p>Claude Code 커뮤니티는 스킬 활성화 신뢰성을 광범위하게 테스트했고, 이 발견들이 <strong>/forge-prompt</strong>의 출력 구조화 방식에 직접 반영됐다. <a href="https://www.reddit.com/r/ClaudeCode/comments/1oywsa1/claude_code_skills_activate_20_of_the_time_heres/">Reddit 연구</a></p>
+
+            <div style="margin: 40px 0;">
+                <div class="comparison-bar">
+                    <div class="bar-label">
+                        <span style="color: #ff3366;">단순 지시 훅</span>
+                        <span>20%</span>
+                    </div>
+                    <div class="bar-track">
+                        <div class="bar-fill" style="width: 20%; background: linear-gradient(90deg, #ff3366, #ff6699);">
+                            <span class="bar-value">20%</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="comparison-bar">
+                    <div class="bar-label">
+                        <span style="color: var(--neon-green);">강제 평가 훅</span>
+                        <span>84%</span>
+                    </div>
+                    <div class="bar-track">
+                        <div class="bar-fill" style="width: 84%; background: linear-gradient(90deg, var(--neon-green), var(--neon-cyan));">
+                            <span class="bar-value">84%</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <p><strong>강제 평가 훅</strong>을 구현하자—Claude가 진행 전 각 스킬을 YES/NO 추론으로 명시적으로 평가하게 만드는—<strong>84% 활성화율</strong>을 달성했다.</p>
+
+            <div class="achievement">
+                <div class="achievement-icon">+</div>
+                <div class="achievement-content">
+                    <div class="achievement-title">KEY ACTIVATION FACTORS</div>
+                    <div class="achievement-desc">구체적인 트리거 조건이 있는 풍부한 description 필드, 기술 중립적인 문제 설명, 에러 메시지 키워드와 증상 언어, 능동태의 서술적 명명</div>
+                </div>
+            </div>
+
+            <p><strong>/forge-prompt</strong>가 상세한 트리거 조건이 있는 YAML 프론트매터를 첫 번째 필수 구성요소로 강제하는 이유가 바로 이것이다. 관료주의가 아니라 검증된 활성화 최적화다.</p>
+        </section>
+
+        <!-- Section 13: Why It Matters -->
+        <section class="content-section fade-in">
+            <div class="section-header">
+                <div class="section-number">13</div>
+                <h2 class="section-title">AI 지원 개발에서 이것이 중요한 이유<span class="en">WHY IT MATTERS</span></h2>
+            </div>
+
+            <p>위에서 논의한 패턴들은 이론적인 것만이 아니다. 일상 개발 워크플로우에 실질적인 영향을 미친다.</p>
+
+            <div class="callout">
+                <p>"Claude가 반복적으로 틀리거나 이해하지 못하거나 많은 토큰을 소비하는 것이 있다면 CLAUDE.md에 넣어라. Claude는 이 파일을 자동으로 읽고, 같은 말을 반복하지 않는 좋은 방법이다."</p>
+                <div class="callout-source">— Boris (Claude Code 팀), Hacker News</div>
+            </div>
+
+            <p><strong>/forge-prompt</strong> 커맨드는 이 원칙을 더 발전시킨다. 다음을 수행하는 지시문 생성을 위한 <strong>체계적인 방법론</strong>을 제공한다:</p>
+
+            <ul class="component-list">
+                <li>실패 모드가 발생하기 전에 <strong>예측</strong></li>
+                <li>LLM이 이용할 수 있는 <strong>허점 차단</strong></li>
+                <li>준수율 개선이 검증된 <strong>언어 패턴 사용</strong></li>
+                <li>성공 확인을 위한 <strong>검증 메커니즘 포함</strong></li>
+            </ul>
+        </section>
+
+        <!-- Section 14: Getting Started -->
+        <section class="content-section fade-in">
+            <div class="section-header">
+                <div class="section-number">14</div>
+                <h2 class="section-title">/forge-prompt 시작하기<span class="en">GETTING STARTED</span></h2>
+            </div>
+
+            <p><strong>/forge-prompt</strong>를 사용하려면:</p>
+
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>단계</th>
+                            <th>행동</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>1</strong></td>
+                            <td><code>~/.claude/commands/forge-prompt.md</code> (전역) 또는 <code>.claude/commands/forge-prompt.md</code> (프로젝트별) 파일 생성</td>
+                        </tr>
+                        <tr>
+                            <td><strong>2</strong></td>
+                            <td>아래 제공된 완전한 커맨드 템플릿을 복사해 저장</td>
+                        </tr>
+                        <tr>
+                            <td><strong>3</strong></td>
+                            <td>어떤 지시문 주제로든 호출</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="code-block bash">
+                <code>> /forge-prompt [Your instruction topic here]</code>
+            </div>
+
+            <p>커맨드가 Claude를 9개 필수 구성요소 전체 생성으로 안내해 중요한 요소가 누락되지 않도록 한다.</p>
+        </section>
+
+        <!-- Section 15: Complete Command -->
+        <section class="content-section fade-in">
+            <div class="section-header">
+                <div class="section-number">15</div>
+                <h2 class="section-title">완전한 /forge-prompt 커맨드<span class="en">FULL TEMPLATE</span></h2>
+            </div>
+
+            <p>아래 전체 내용을 복사해 <strong>.claude/commands/</strong> 디렉토리에 <strong>forge-prompt.md</strong>로 저장한다.</p>
+
+            <div class="code-block markdown">
+                <code>---
+description: Create bulletproof instructions/skills
+following the Superpowers philosophy - strong language,
+mandatory checklists, anti-rationalization tables,
+and iron laws
+---
+
+# Forge Skill - Instruction Smithy
+
+You are creating a **bulletproof instruction/skill**
+following the Superpowers philosophy for:
+
+**$ARGUMENTS**
+
+---
+
+## The Iron Law
+
+NO INSTRUCTION WITHOUT ALL 9 COMPONENTS.
+"A skill without Iron Law is a suggestion.
+A skill without Red Flags is a trap."
+
+**Violating the letter of this structure is
+violating the spirit of effective instructions.**
+
+---
+
+## The Philosophy
+
+Superpowers skills are NOT suggestions.
+They are **battle-tested protocols** designed to:
+
+1. **Prevent rationalization** - The #1 failure mode
+   is "this case is different"
+2. **Force discipline** - Structure eliminates
+   decision fatigue and shortcuts
+3. **Make failure visible** - Clear criteria reveal
+   when you're off track
+4. **Be actionable** - Every rule has a concrete
+   action, not abstract advice
+
+**Core belief:** If you think you don't need
+the structure, you need it most.
+
+---
+
+## The 9 Required Components
+
+Create TodoWrite todos for EACH component
+as you work through them.
+
+### 1. YAML Frontmatter (Metadata)
+
+```yaml
+---
+name: kebab-case-name
+description: Use when [TRIGGER CONDITION] -
+[WHAT IT DOES] that [WHY IT MATTERS]
+---
+```
+
+### 2. Iron Law (Non-Negotiable Core Rule)
+
+The ONE rule that, if broken, guarantees failure.
+
+### 3. When to Use / When NOT to Use
+
+Include counter-intuitive triggers.
+
+### 4. Process/Phase Structure
+
+Clear phases with gate conditions.
+
+### 5. Red Flags Section
+
+Mental patterns signaling imminent failure.
+
+### 6. Common Rationalizations Table
+
+Preempt every excuse with direct rebuttal.
+
+### 7. Quick Reference Table
+
+One-glance summary.
+
+### 8. Key Principles / Summary
+
+Core principles for quick recall.
+
+### 9. Integration / Related Skills
+
+Cross-references to complementary skills.
+
+---
+
+## Language & Tone Guide
+
+| Weak (Avoid) | Strong (Use) |
+|--------------|--------------|
+| "You should" | "You MUST" |
+| "Consider" | "REQUIRED" |
+| "Try to" | "ALWAYS" / "NEVER" |
+| "It's helpful" | "CRITICAL" |
+
+---
+
+## Anti-Pattern Warnings
+
+**DO NOT create instructions that:**
+
+- Use soft language
+- Lack an Iron Law
+- Skip the Red Flags section
+- Have vague success criteria
+- Allow wiggle room
+- Assume good faith
+
+---
+
+## Final Verification Checklist
+
+Before considering the instruction complete, verify:
+
+- [ ] YAML frontmatter with trigger condition
+- [ ] Iron Law in code block
+- [ ] When to Use with counter-intuitive triggers
+- [ ] Clear phases with gate conditions
+- [ ] Red Flags section
+- [ ] Common Rationalizations table
+- [ ] Quick Reference table
+- [ ] Key Principles section
+
+---
+
+## Execution
+
+Now create a bulletproof instruction for
+**$ARGUMENTS** following ALL components above.
+
+Remember: **If you skip any component,
+the instruction will fail in production.**</code>
+            </div>
+
+            <div class="info-box">
+                <p>완전한 템플릿은 원본 기사의 전체 버전을 참조하세요. 위는 핵심 구조만 요약한 것입니다.</p>
+            </div>
+        </section>
+
+        <!-- Section 16: Conclusion -->
+        <section class="content-section fade-in">
+            <div class="section-header">
+                <div class="section-number">16</div>
+                <h2 class="section-title">결론<span class="en">FORGE YOUR INSTRUCTIONS</span></h2>
+            </div>
+
+            <p><strong>/forge-prompt</strong> 커스텀 커맨드는 Anthropic의 공식 플러그인과 실전 검증된 Superpowers 프레임워크에서 얻은 교훈의 종합이다.</p>
+
+            <p>Claude가 무시하거나, 합리화하거나, 너무 느슨하게 해석하는 지시문 작성에 지쳤기에 이 도구를 만들었다.</p>
+
+            <div class="iron-law-box">
+                <p>지름길을 택하고 싶은 유혹이 있을 때조차 AI가 실제로 따를 지시문을 어떻게 작성하는가?</p>
+            </div>
+
+            <p>답은 <strong>강한 언어</strong>, <strong>명시적인 합리화 방지 테이블</strong>, <strong>필수 체크리스트</strong>, 그리고 해석의 여지를 남기지 않는 <strong>Iron Law</strong>에 있다.</p>
+
+            <div class="achievement">
+                <div class="achievement-icon">!</div>
+                <div class="achievement-content">
+                    <div class="achievement-title">ENDGAME UNLOCKED</div>
+                    <div class="achievement-desc">Claude Code로 생산성을 극대화하려는 개발자에게 /forge-prompt 같은 도구를 통한 지시문 설계 마스터는 더 이상 선택이 아니다. 필수다.</div>
+                </div>
+            </div>
+
+            <p>위의 완전한 템플릿을 복사해 <strong>.claude/commands/</strong> 디렉토리에 저장하고, 오늘부터 방탄 지시문을 만들기 시작하라.</p>
+        </section>
+
+    </main>
+
+    <footer class="magazine-footer">
+        <div class="footer-content">
+            <section class="references-section">
+                <h3 class="references-title">REFERENCES</h3>
+                <div class="references-grid">
+                    <div class="reference-category">
+                        <h4>OFFICIAL DOCS</h4>
+                        <ul class="reference-list">
+                            <li><a href="https://docs.anthropic.com/en/docs/claude-code">Claude Code 공식 문서</a></li>
+                            <li><a href="https://claude.com/blog/skills-explained">Skills Explained</a></li>
+                            <li><a href="https://claude.com/blog/best-practices-for-prompt-engineering">프롬프트 엔지니어링 모범 사례</a></li>
+                        </ul>
+                    </div>
+                    <div class="reference-category">
+                        <h4>FRAMEWORKS</h4>
+                        <ul class="reference-list">
+                            <li><a href="https://github.com/obra/superpowers">Superpowers GitHub</a></li>
+                            <li><a href="https://github.com/anthropics/claude-code/tree/main/plugins/frontend-design">Frontend-Design 플러그인</a></li>
+                            <li><a href="https://alexop.dev/posts/claude-code-slash-commands-guide/">Slash Commands 가이드</a></li>
+                        </ul>
+                    </div>
+                    <div class="reference-category">
+                        <h4>COMMUNITY</h4>
+                        <ul class="reference-list">
+                            <li><a href="https://www.reddit.com/r/ClaudeAI/comments/1ped515/understanding_claudemd_vs_skills_vs_slash/">CLAUDE.md vs Skills vs Slash</a></li>
+                            <li><a href="https://www.reddit.com/r/ClaudeCode/comments/1oywsa1/claude_code_skills_activate_20_of_the_time_heres/">스킬 활성화율 연구</a></li>
+                            <li><a href="https://news.ycombinator.com/item?id=46256606">HN: Boris (Claude Code 팀)</a></li>
+                            <li><a href="https://news.ycombinator.com/item?id=46098838">HN: Mr Tinkleberry 테스트</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <div class="footer-end">
+                <div class="footer-logo">PLAYER ONE TECH</div>
+                <p class="footer-text">
+                    FORGE BULLETPROOF INSTRUCTIONS — ONE COMPONENT AT A TIME<br>
+                    <span class="pixel">PRESS START TO CONTINUE</span>
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <div class="back-to-top" id="backToTop">^</div>
+    <div class="easter-egg">INSERT COIN</div>
+
+    <script>
+        // Scroll Progress
+        window.addEventListener('scroll', () => {
+            const scrollProgress = document.getElementById('scrollProgress');
+            const scrollTop = window.scrollY;
+            const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+            const scrollPercent = (scrollTop / docHeight) * 100;
+            scrollProgress.style.width = scrollPercent + '%';
+
+            // Back to top button
+            const backToTop = document.getElementById('backToTop');
+            if (scrollTop > 500) {
+                backToTop.classList.add('visible');
+            } else {
+                backToTop.classList.remove('visible');
+            }
+        });
+
+        // Back to top click
+        document.getElementById('backToTop').addEventListener('click', () => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+
+        // Fade in on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.fade-in').forEach(el => {
+            observer.observe(el);
+        });
+    </script>
+</body>
+</html>
