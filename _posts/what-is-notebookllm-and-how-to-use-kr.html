@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NotebookLM: 학습의 패러다임을 바꾸다 | PLAYER ONE TECH</title>
+    <title>노트북LM: 구글이 우연히 만들어낸 걸작 | PLAYER ONE TECH</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Orbitron:wght@400;500;600;700;800;900&family=Rajdhani:wght@300;400;500;600;700&family=Press+Start+2P&family=Noto+Sans+KR:wght@300;400;500;700;900&display=swap" rel="stylesheet">
@@ -164,7 +164,7 @@
         }
 
         .logo::before {
-            content: '>';
+            content: '▶';
             font-size: 1.2rem;
             animation: pulse 1s ease-in-out infinite;
         }
@@ -263,7 +263,7 @@
 
         .hero-stats {
             display: flex;
-            gap: 40px;
+            gap: 30px;
             flex-wrap: wrap;
             justify-content: center;
         }
@@ -444,7 +444,7 @@
         }
 
         .content-section a::after {
-            content: '';
+            content: '↗';
             font-size: 0.7em;
             margin-left: 2px;
             opacity: 0.7;
@@ -481,7 +481,7 @@
         }
 
         .info-box.warning::before {
-            content: '!';
+            content: '⚠';
             color: var(--neon-orange);
         }
 
@@ -740,28 +740,148 @@
             font-size: 1rem;
         }
 
-        .feature-list {
+        .settings-list {
             list-style: none;
+            background: var(--card-bg);
+            border: 1px solid var(--neon-cyan);
+            padding: 20px 30px;
             margin: 20px 0;
         }
 
-        .feature-list li {
-            padding: 10px 0 10px 30px;
-            position: relative;
-            color: var(--text-secondary);
+        .settings-list li {
+            padding: 8px 0;
+            border-bottom: 1px solid rgba(0, 245, 255, 0.1);
+            display: flex;
+            align-items: center;
+            gap: 15px;
         }
 
-        .feature-list li::before {
+        .settings-list li:last-child {
+            border-bottom: none;
+        }
+
+        .settings-list li::before {
             content: '>';
-            position: absolute;
-            left: 0;
-            color: var(--neon-cyan);
+            color: var(--neon-green);
             font-family: 'Press Start 2P', cursive;
             font-size: 0.6rem;
         }
 
-        .feature-list li strong {
+        .settings-list strong {
+            color: var(--neon-yellow);
+        }
+
+        .use-case-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 25px;
+            margin: 30px 0;
+        }
+
+        .use-case-card {
+            background: var(--card-bg);
+            border: 1px solid rgba(0, 245, 255, 0.3);
+            padding: 25px;
+            transition: all 0.3s ease;
+        }
+
+        .use-case-card:hover {
+            border-color: var(--neon-magenta);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(255, 0, 255, 0.2);
+        }
+
+        .use-case-card h4 {
+            margin-top: 0;
+            font-size: 0.9rem;
+        }
+
+        .use-case-card .callout {
+            margin: 15px 0 0 0;
+            padding: 15px 20px;
+        }
+
+        .timeline {
+            position: relative;
+            padding-left: 30px;
+            margin: 30px 0;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: linear-gradient(180deg, var(--neon-cyan), var(--neon-magenta));
+        }
+
+        .timeline-item {
+            position: relative;
+            padding: 15px 0 15px 20px;
+            border-bottom: 1px solid rgba(0, 245, 255, 0.1);
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -34px;
+            top: 20px;
+            width: 10px;
+            height: 10px;
+            background: var(--neon-cyan);
+            border-radius: 50%;
+            box-shadow: 0 0 10px var(--neon-cyan);
+        }
+
+        .timeline-date {
+            font-family: 'Press Start 2P', cursive;
+            font-size: 0.6rem;
+            color: var(--neon-yellow);
+            margin-bottom: 5px;
+        }
+
+        .timeline-content {
+            color: var(--text-secondary);
+        }
+
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+            margin: 30px 0;
+        }
+
+        .feature-card {
+            background: var(--card-bg);
+            border: 2px solid rgba(0, 245, 255, 0.3);
+            padding: 25px;
+            position: relative;
+            clip-path: polygon(0 0, calc(100% - 15px) 0, 100% 15px, 100% 100%, 15px 100%, 0 calc(100% - 15px));
+            transition: all 0.3s ease;
+        }
+
+        .feature-card:hover {
+            border-color: var(--neon-cyan);
+            box-shadow: 0 0 20px rgba(0, 245, 255, 0.2);
+        }
+
+        .feature-card h4 {
+            margin-top: 0;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .feature-card h4::before {
+            content: '◆';
             color: var(--neon-cyan);
+        }
+
+        .feature-card p {
+            font-size: 0.95rem;
+            margin-bottom: 0;
         }
 
         .magazine-footer {
@@ -811,6 +931,7 @@
             font-size: 0.6rem;
             color: var(--neon-magenta);
             margin-bottom: 15px;
+            margin-top: 0;
         }
 
         .reference-list {
@@ -820,11 +941,6 @@
         .reference-list li {
             margin: 8px 0;
             font-size: 0.85rem;
-            padding: 0;
-        }
-
-        .reference-list li::before {
-            display: none;
         }
 
         .reference-list a {
@@ -864,23 +980,6 @@
             font-family: 'Press Start 2P', cursive;
             font-size: 0.5rem;
             color: var(--neon-magenta);
-        }
-
-        @media (max-width: 768px) {
-            .header-content {
-                flex-direction: column;
-                gap: 10px;
-            }
-
-            .hero-stats {
-                flex-direction: column;
-                align-items: center;
-            }
-
-            .section-header {
-                flex-direction: column;
-                align-items: flex-start;
-            }
         }
 
         .scroll-progress {
@@ -951,48 +1050,101 @@
             transform: translateY(0);
         }
 
-        .timeline-container {
-            position: relative;
-            padding-left: 30px;
+        .final-config {
+            background: var(--card-bg);
+            border: 2px solid var(--neon-magenta);
+            padding: 30px;
             margin: 30px 0;
         }
 
-        .timeline-container::before {
-            content: '';
-            position: absolute;
-            left: 0;
-            top: 0;
-            bottom: 0;
-            width: 2px;
-            background: linear-gradient(180deg, var(--neon-cyan), var(--neon-magenta));
-        }
-
-        .timeline-item {
-            position: relative;
-            padding: 15px 0 15px 20px;
-            border-bottom: 1px solid rgba(0, 245, 255, 0.1);
-        }
-
-        .timeline-item::before {
-            content: '';
-            position: absolute;
-            left: -34px;
-            top: 20px;
-            width: 10px;
-            height: 10px;
-            background: var(--neon-cyan);
-            box-shadow: 0 0 10px var(--neon-cyan);
-        }
-
-        .timeline-date {
+        .final-config h4 {
             font-family: 'Orbitron', sans-serif;
-            font-size: 0.8rem;
+            color: var(--neon-magenta);
+            margin-bottom: 15px;
+            font-size: 1rem;
+            margin-top: 0;
+        }
+
+        .config-group {
+            margin-bottom: 25px;
+        }
+
+        .config-group:last-child {
+            margin-bottom: 0;
+        }
+
+        .config-group h5 {
+            font-family: 'Press Start 2P', cursive;
+            font-size: 0.6rem;
             color: var(--neon-yellow);
+            margin-bottom: 10px;
+        }
+
+        .verdict-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin: 30px 0;
+        }
+
+        .verdict-card {
+            background: var(--card-bg);
+            border: 2px solid var(--neon-cyan);
+            padding: 20px;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .verdict-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 245, 255, 0.3);
+        }
+
+        .verdict-card .icon {
+            font-size: 2rem;
+            margin-bottom: 10px;
+        }
+
+        .verdict-card .user-type {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 0.9rem;
+            color: var(--neon-cyan);
             margin-bottom: 5px;
         }
 
-        .timeline-content {
+        .verdict-card .rating {
+            font-family: 'Press Start 2P', cursive;
+            font-size: 0.6rem;
+            color: var(--neon-green);
+            margin-bottom: 10px;
+        }
+
+        .verdict-card .reason {
+            font-size: 0.85rem;
             color: var(--text-secondary);
+        }
+
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                gap: 10px;
+            }
+
+            .hero-stats {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .section-header {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .use-case-grid,
+            .feature-grid,
+            .verdict-grid {
+                grid-template-columns: 1fr;
+            }
         }
     </style>
 </head>
@@ -1016,31 +1168,35 @@
     <header class="magazine-header">
         <div class="header-content">
             <div class="logo">PLAYER ONE TECH</div>
-            <div class="issue-info">ISSUE #2025.12 // YOUR AI RESEARCH PARTNER</div>
+            <div class="issue-info">ISSUE #2025.12 // AI LEARNING REVOLUTION</div>
         </div>
     </header>
 
     <section class="hero">
         <div class="glitch-container">
             <h1 class="hero-title">
-                <span>NotebookLM</span>
-                <span class="highlight">학습의 패러다임을 바꾸다</span>
+                <span>노트북LM</span>
+                <span class="highlight">학습의 패러다임을 뒤흔들다</span>
             </h1>
         </div>
-        <p class="hero-subtitle">우연히 탄생한 구글의 걸작, 소스 그라운딩으로 할루시네이션을 정복하다</p>
+        <p class="hero-subtitle">구글이 우연히 만들어낸 걸작 — 소스 그라운딩 철학으로 AI 환각을 정복한 연구 어시스턴트</p>
 
         <div class="hero-stats">
             <div class="stat-box">
+                <div class="stat-label">AI ENGINE</div>
+                <div class="stat-value">Gemini 3</div>
+            </div>
+            <div class="stat-box">
+                <div class="stat-label">GPQA DIAMOND</div>
+                <div class="stat-value">90.4%</div>
+            </div>
+            <div class="stat-box">
                 <div class="stat-label">CONTEXT WINDOW</div>
-                <div class="stat-value">1M TOKENS</div>
+                <div class="stat-value">1M TOKEN</div>
             </div>
             <div class="stat-box">
-                <div class="stat-label">MAX SOURCES</div>
-                <div class="stat-value">300 (Plus)</div>
-            </div>
-            <div class="stat-box">
-                <div class="stat-label">LANGUAGES</div>
-                <div class="stat-value">80+</div>
+                <div class="stat-label">FREE NOTEBOOKS</div>
+                <div class="stat-value">100개</div>
             </div>
         </div>
     </section>
@@ -1052,23 +1208,23 @@
             <ul class="summary-list">
                 <li class="summary-item">
                     <div class="summary-icon">01</div>
-                    <div class="summary-text"><strong>NotebookLM</strong>은 <strong>소스 그라운딩(Source Grounding)</strong> 철학을 기반으로 한다. 모든 것을 알려고 하지 않고, 사용자가 제공한 자료에 한정해 전문가가 된다</div>
+                    <div class="summary-text"><strong>노트북LM</strong>은 "소스 그라운딩" 철학을 따른다. 사용자가 업로드한 문서만 참조하기 때문에 AI 환각 현상이 눈에 띄게 줄어든다</div>
                 </li>
                 <li class="summary-item">
                     <div class="summary-icon">02</div>
-                    <div class="summary-text"><strong>오디오 오버뷰</strong>가 2024년 10월 바이럴을 타면서 월간 방문자 수가 폭발적으로 증가. 2024년 4분기에만 <strong>120% 성장</strong> 기록</div>
+                    <div class="summary-text">2025년 12월 기준 <strong>제미나이 3</strong>가 플랫폼을 구동한다. GPQA Diamond 90.4%, MMMU Pro 81.2%의 벤치마크 성능을 자랑한다</div>
                 </li>
                 <li class="summary-item">
                     <div class="summary-icon">03</div>
-                    <div class="summary-text"><strong>Gemini 2.5 Flash/Pro</strong> 기반 멀티 모델 아키텍처로 <strong>최대 2,500만 단어</strong> 분량의 소스 분석 가능</div>
+                    <div class="summary-text"><strong>오디오/비디오 오버뷰</strong>는 경쟁사가 따라오지 못하는 독보적 기능이다. 소스 자료로 팟캐스트 스타일 콘텐츠를 생성하는 도구는 아직 없다</div>
                 </li>
                 <li class="summary-item">
                     <div class="summary-icon">04</div>
-                    <div class="summary-text"><strong>오디오/비디오 오버뷰</strong>, <strong>딥 리서치</strong>, <strong>슬라이드 덱</strong>, <strong>마인드맵</strong> 등 경쟁사 누구도 따라잡지 못한 독보적 기능 보유</div>
+                    <div class="summary-text"><strong>무료 티어</strong>로 노트북 100개, 노트북당 소스 50개, 일일 오디오 오버뷰 3회를 쓸 수 있다. <strong>Pro</strong>(월 19.99달러)는 노트북 500개, 소스 300개로 확장된다</div>
                 </li>
                 <li class="summary-item">
                     <div class="summary-icon">05</div>
-                    <div class="summary-text">학생, 연구자, 콘텐츠 크리에이터에게 <strong>필수 도구</strong>. 놀라울 정도로 관대한 무료 티어와 <strong>US$19.99/월</strong> Plus 요금제 제공</div>
+                    <div class="summary-text"><strong>주요 제약:</strong> 개별 소스는 50만 단어 상한이 있다. 다단계 검색 방식 탓에 아주 긴 문서에서는 앞부분을 놓칠 수 있다</div>
                 </li>
             </ul>
         </section>
@@ -1077,15 +1233,15 @@
         <section class="content-section fade-in">
             <div class="section-header">
                 <div class="section-number">01</div>
-                <h2 class="section-title">NotebookLM이란 무엇인가?<span class="en">SOURCE GROUNDING PHILOSOPHY</span></h2>
+                <h2 class="section-title">노트북LM이란?<span class="en">WHAT IS NOTEBOOKLM</span></h2>
             </div>
 
-            <p><strong>ChatGPT</strong>, <strong>Claude</strong>, 수많은 <strong>AI</strong> 챗봇이 사용자의 관심을 끌기 위해 경쟁하는 시대다. 이 와중에 <strong>NotebookLM</strong>이 내세우는 차별화 포인트는 무엇인가? 답은 의외로 단순한 철학에 있다. 바로 <strong>소스 그라운딩(Source Grounding)</strong>이다.</p>
+            <p><strong>ChatGPT</strong>, <strong>Claude</strong> 등 수많은 AI 챗봇이 관심을 끌기 위해 경쟁하는 시대다. 그렇다면 노트북LM은 어떤 차별화된 가치를 제공할까? 답은 놀랍도록 단순한 철학에 있다: <strong>소스 그라운딩</strong>.</p>
 
-            <p><strong>구글</strong>의 <strong>AI</strong> 기반 연구 도구는 모든 것을 알려고 하지 않는다. 대신, 사용자가 제공한 자료에 한정해 전문가가 된다. <strong>PDF</strong>를 업로드하고, 웹사이트 <strong>URL</strong>을 붙여넣고, <strong>YouTube</strong> 영상을 연결하고, 스마트폰 카메라로 사진을 찍어 올리면 된다. <strong>NotebookLM</strong>은 이 자료들을 바탕으로 맞춤형 <strong>AI</strong> 튜터로 변신한다. 채팅 응답, 텍스트 요약, 오디오 팟캐스트, 비디오 개요를 생성하면서도 범용 <strong>AI</strong>를 괴롭히는 <strong>할루시네이션</strong> 문제를 최소화한다.</p>
+            <p><strong>구글</strong>의 AI 기반 연구 도구인 노트북LM은 모든 것을 알려고 하지 않는다. 대신 사용자가 제공한 자료의 전문가가 된다. PDF를 업로드하고, 웹사이트 URL을 붙여넣고, 유튜브 영상을 연결하고, 스마트폰 카메라로 사진을 찍어 올려보자. 노트북LM은 채팅 응답, 텍스트 요약, 오디오 팟캐스트, 비디오 개요를 생성하는 맞춤형 AI 튜터로 변신한다. 범용 AI를 괴롭히는 환각 문제도 최소화된다.</p>
 
             <div class="info-box">
-                <p><strong>접속 방법:</strong> <a href="https://notebooklm.google.com" target="_blank">notebooklm.google.com</a> 또는 공식 <strong>Android/iOS</strong> 모바일 앱(2025년 5월 출시)으로 접속할 수 있다.</p>
+                <p><a href="https://notebooklm.google.com">notebooklm.google.com</a>에서 접속하거나 2025년 5월 출시된 공식 안드로이드/iOS 앱으로 이용할 수 있다.</p>
             </div>
         </section>
 
@@ -1093,94 +1249,86 @@
         <section class="content-section fade-in">
             <div class="section-header">
                 <div class="section-number">02</div>
-                <h2 class="section-title">탄생 스토리<span class="en">FROM 6-WEEK PROTOTYPE TO VIRAL SENSATION</span></h2>
+                <h2 class="section-title">탄생 스토리: 6주짜리 프로토타입에서 바이럴 센세이션으로<span class="en">ORIGIN STORY</span></h2>
             </div>
 
-            <h3>프로젝트 테일윈드: "소규모 문서와 대화하기"가 거대한 무언가로 발전하다</h3>
+            <h3>프로젝트 테일윈드</h3>
 
-            <p>2022년 말, <strong>구글 랩스</strong>의 소규모 팀이 한 엔지니어 옆에서 작업하고 있었다. 그 엔지니어는 "Talk to Small Corpus"라는 프로젝트를 진행 중이었다. <strong>LLM</strong>을 활용해 문서와 대화하는 기초 프로토타입이었다. 현재 <strong>NotebookLM</strong>의 수석 <strong>PM</strong>인 <strong>Raiza Martin</strong>은 여기서 가능성을 발견했다.</p>
+            <p>2022년 말, <strong>구글 랩스</strong>의 소규모 팀은 "Talk to Small Corpus"라는 프로젝트를 진행하던 엔지니어 옆자리에 앉아 있었다. LLM(대규모 언어 모델)으로 문서와 대화하는 기초적인 프로토타입이었다. 현재 노트북LM의 수석 PM인 <strong>라이자 마틴</strong>은 그 잠재력을 알아봤다.</p>
 
             <div class="callout">
-                <p>"처음 본 순간, 이게 내 학창 시절에 있었다면 정말 도움이 됐겠다는 생각이 들었다. 나는 직장을 다니면서 대학을 다닌 성인 학습자였다. 긴 하루 일과 후에 교과서와 대화할 수 있었다면 얼마나 좋았을까."</p>
-                <div class="callout-source">— Raiza Martin, NotebookLM 프로덕트 리드</div>
+                <p>"처음 든 생각은 '이게 내 공부에 정말 도움이 됐을 텐데'였다. 나는 직장을 다니면서 대학에 다녔던 늦깎이 학생이었다. 퇴근 후 지친 몸으로 교과서와 대화할 수 있었다면 엄청났을 것이다."</p>
+                <div class="callout-source">— 라이자 마틴, 노트북LM 프로덕트 리드</div>
             </div>
 
-            <p>첫 프로토타입은 4~5명이 파트타임으로 참여해 단 <strong>6주</strong> 만에 만들었다. <strong>구글 I/O 2023</strong>에서 "프로젝트 테일윈드"라는 코드명으로 발표됐을 때, <strong>구글</strong> 내부조차 이후 벌어질 일을 예상하지 못했다. 2024년 10월 <strong>오디오 오버뷰</strong> 기능이 바이럴을 타면서 <strong>NotebookLM</strong>의 월간 방문자 수는 소소한 수준에서 수백만 명으로 폭발했다. 2024년 4분기에만 <strong>120%</strong> 성장을 기록했다.</p>
+            <p>첫 프로토타입은 4~5명이 파트타임으로 단 <strong>6주</strong> 만에 만들어냈다. 2023년 구글 I/O에서 "프로젝트 테일윈드"라는 코드명으로 발표됐을 때, 구글조차 앞으로 일어날 일을 예상하지 못했다. 2024년 10월 오디오 오버뷰 기능이 바이럴을 타자, 노트북LM의 월간 방문자 수는 소소한 수준에서 수백만으로 폭발했다. 2024년 4분기 기준 분기 대비 약 <strong>120% 성장률</strong>을 기록했다.</p>
 
             <div class="callout">
-                <p>"사실 30년 동안 NotebookLM 같은 것을 상상해왔다."</p>
-                <div class="callout-source">— Steven Johnson, NotebookLM 에디토리얼 디렉터, "좋은 아이디어는 어디서 오는가" 저자</div>
-            </div>
-
-            <div class="achievement">
-                <div class="achievement-icon">!</div>
-                <div class="achievement-content">
-                    <div class="achievement-title">VIRAL SENSATION UNLOCKED</div>
-                    <div class="achievement-desc">2024년 4분기 120% 성장, 오디오 오버뷰 기능이 인터넷을 뒤흔들다</div>
-                </div>
+                <p>"사실 30년 동안 노트북LM을 상상해왔다."</p>
+                <div class="callout-source">— 스티븐 존슨, 베스트셀러 작가 겸 노트북LM 공동 창업자</div>
             </div>
         </section>
 
-        <!-- Section 3: Core Philosophy -->
+        <!-- Section 3: Source Grounding -->
         <section class="content-section fade-in">
             <div class="section-header">
                 <div class="section-number">03</div>
-                <h2 class="section-title">핵심 철학: 소스 그라운딩 해부<span class="en">RAG ARCHITECTURE DEEP DIVE</span></h2>
+                <h2 class="section-title">핵심 철학: 소스 그라운딩 해부하기<span class="en">SOURCE GROUNDING</span></h2>
             </div>
 
-            <h3>RAG(검색 증강 생성)란 무엇인가?</h3>
+            <h3>RAG(검색 증강 생성)란?</h3>
 
-            <p><strong>NotebookLM</strong>의 마법을 이해하려면 먼저 <strong>RAG—검색 증강 생성(Retrieval-Augmented Generation)</strong>을 알아야 한다. 간단히 말해, <strong>RAG</strong> 시스템은 응답을 생성하기 전에 지식 베이스에서 관련 정보를 검색한다. <strong>AI</strong>의 사전 학습된 지식에만 의존하지 않는다.</p>
+            <p>노트북LM의 마법을 이해하려면 먼저 <strong>RAG—Retrieval-Augmented Generation(검색 증강 생성)</strong>을 알아야 한다. 쉽게 말해 RAG 시스템은 응답을 생성하기 전에 지식 베이스에서 관련 정보를 검색한다. AI의 사전 학습된 지식에만 의존하지 않는다.</p>
 
-            <p><strong>NotebookLM</strong>은 한 단계 더 엄격한 방식을 택했다. <strong>폐쇄형 RAG(closed-loop RAG)</strong>다. 사용자가 업로드한 문서에서만 정보를 가져온다. 인터넷 검색 없음. 학습 데이터 유출 없음. 오직 사용자의 소스뿐이다.</p>
+            <p>노트북LM은 한 걸음 더 나아간다: <strong>폐쇄형 RAG</strong>. 사용자가 업로드한 문서에서만 정보를 끌어온다. 인터넷 검색 없음. 학습 데이터 유출 없음. 오직 사용자의 소스뿐이다.</p>
 
             <div class="table-container">
                 <table>
                     <thead>
                         <tr>
                             <th>범용 LLM (ChatGPT, Claude 등)</th>
-                            <th>NotebookLM</th>
+                            <th>노트북LM</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr>
-                            <td>인터넷 전체 지식에서 추출</td>
-                            <td><strong>업로드된 소스만 참조</strong></td>
+                            <td>전체 인터넷 지식에서 끌어옴</td>
+                            <td><strong style="color: var(--neon-green);">업로드한 소스만 참조</strong></td>
                         </tr>
                         <tr>
-                            <td>할루시네이션 위험 높음</td>
-                            <td><span class="check">할루시네이션 대폭 감소</span></td>
+                            <td>환각 위험 높음</td>
+                            <td><strong style="color: var(--neon-green);">환각 대폭 감소</strong></td>
                         </tr>
                         <tr>
-                            <td>출처 표기 모호한 경우 많음</td>
-                            <td><span class="check">클릭 가능한 인라인 인용 제공</span></td>
+                            <td>출처 표기가 모호한 경우 많음</td>
+                            <td><strong style="color: var(--neon-green);">클릭 가능한 참조가 달린 인라인 인용</strong></td>
                         </tr>
                         <tr>
-                            <td>범용 응답</td>
-                            <td><strong>자료 맥락에 맞춘 맞춤형 답변</strong></td>
+                            <td>일반적인 응답</td>
+                            <td><strong style="color: var(--neon-green);">자료에 맞춤화된 맥락 특화 답변</strong></td>
                         </tr>
                     </tbody>
                 </table>
             </div>
 
-            <h3>왜 이게 중요한가?</h3>
+            <h3>이것이 중요한 이유</h3>
 
             <div class="callout">
-                <p>"교사가 제공한 소스 문서에 응답을 고정함으로써, NotebookLM은 표준 대형 언어 모델의 주요 단점인 할루시네이션을 완화한다. 덕분에 답변의 추적 가능성과 신뢰성이 높아진다."</p>
-                <div class="callout-source">— arXiv 연구 논문, NotebookLM 물리학 튜터 분석</div>
+                <p>"교사가 제공한 소스 문서에 응답을 고정함으로써, 노트북LM은 표준 대규모 언어 모델의 주요 단점 중 하나인 환각을 완화하고, 추적 가능하고 신뢰할 수 있는 답변을 보장한다."</p>
+                <div class="callout-source">— arXiv 연구 논문 (물리학 튜터로서의 노트북LM 검토)</div>
             </div>
 
-            <p>결과는? <strong>NotebookLM</strong>에 질문하면 모든 주장에 인용이 따라붙는다. 클릭하면 원본 소스에서 확인할 수 있다. 완벽하지는 않다. 소스가 모호하면 <strong>AI</strong>도 잘못 해석할 수 있다. 하지만 신뢰 수준은 범용 챗봇에 질문할 때와 근본적으로 다르다.</p>
+            <p>결과는 이렇다: 노트북LM에 질문하면 모든 주장에 원본 소스로 확인할 수 있는 클릭 가능한 인용이 달린다. 완벽하진 않다—소스가 모호하면 AI가 여전히 오해할 수 있다—하지만 범용 챗봇에 물어보는 것과는 신뢰 수준이 근본적으로 다르다.</p>
         </section>
 
         <!-- Section 4: LLM Models -->
         <section class="content-section fade-in">
             <div class="section-header">
                 <div class="section-number">04</div>
-                <h2 class="section-title">NotebookLM을 구동하는 LLM 모델<span class="en">MULTI-MODEL ARCHITECTURE</span></h2>
+                <h2 class="section-title">노트북LM을 구동하는 LLM 모델들<span class="en">POWERING MODELS</span></h2>
             </div>
 
-            <p>2025년 12월 기준, <strong>NotebookLM</strong>은 멀티 모델 아키텍처를 사용한다.</p>
+            <p>2025년 12월 기준, 노트북LM은 공식적으로 <strong>제미나이 3</strong>로 전환했다. 추론 및 멀티모달 이해 역량이 크게 향상됐다.</p>
 
             <div class="table-container">
                 <table>
@@ -1194,140 +1342,202 @@
                     <tbody>
                         <tr>
                             <td>채팅 쿼리</td>
-                            <td><strong>Gemini 2.5 Flash</strong></td>
-                            <td>빠른 응답, 대화형 Q&A 최적화</td>
+                            <td><strong>제미나이 3 Flash</strong></td>
+                            <td>차세대 지능, 2.5 Pro 대비 3배 빠름</td>
                         </tr>
                         <tr>
                             <td>오디오 오버뷰 생성</td>
-                            <td><strong>Gemini 2.5 Pro</strong></td>
-                            <td>고급 추론/"Thinking" 기능 탑재</td>
+                            <td><strong>제미나이 3 Flash</strong></td>
+                            <td>향상된 멀티모달 이해</td>
+                        </tr>
+                        <tr>
+                            <td>비디오 오버뷰 생성</td>
+                            <td><strong>제미나이 3 Flash</strong></td>
+                            <td>개선된 추론 역량</td>
                         </tr>
                         <tr>
                             <td>슬라이드 덱 & 인포그래픽</td>
-                            <td><strong>Nano Banana Pro</strong></td>
-                            <td>Gemini 3 기반 이미지 생성 모델</td>
+                            <td><strong>나노 바나나 Pro</strong></td>
+                            <td>제미나이 3 기반 이미지 생성 모델</td>
                         </tr>
                     </tbody>
                 </table>
             </div>
 
-            <div class="stat-box" style="display: inline-block; margin: 20px 0;">
-                <div class="stat-label">TOKEN CAPACITY</div>
-                <div class="stat-value">~25M WORDS</div>
+            <div class="achievement">
+                <div class="achievement-icon">AI</div>
+                <div class="achievement-content">
+                    <div class="achievement-title">GEMINI 3 UPGRADE COMPLETE</div>
+                    <div class="achievement-desc">"제미나이 3 업그레이드" 요청이 "다른 어떤 기능 요청보다 3배 많았다" — 구글이 귀를 기울였다.</div>
+                </div>
             </div>
 
-            <p><strong>Gemini 2.5 Flash</strong>와 <strong>Pro</strong> 모두 동일한 토큰 한도를 제공한다. <strong>최대 입력 1,024K 토큰</strong>, <strong>최대 출력 64K 토큰</strong>—약 2,500만 단어 분량의 소스를 분석할 수 있다.</p>
+            <p>노트북LM은 이제 모든 플랜에서 <strong>제미나이</strong>의 전체 <strong>100만 토큰 컨텍스트 윈도우</strong>를 활용한다. 참고: 개별 소스는 업로드당 <strong>50만 단어</strong> 또는 <strong>200MB</strong>로 제한된다.</p>
 
-            <div class="info-box">
-                <p><strong>곧 출시 예정:</strong> 모델 선택기를 개발 중이다. 사용자가 <strong>Fast</strong>와 <strong>Thinking</strong> 모드 중 선택할 수 있게 된다. <strong>Gemini 3 Pro</strong>도 고급 추론 작업용으로 제공될 예정이다. (출처: 구글 랩스 공식 확인)</p>
+            <!-- Performance Bars -->
+            <div style="margin: 40px 0;">
+                <h3>벤치마크 성능</h3>
+                <div class="comparison-bar">
+                    <div class="bar-label">
+                        <span style="color: var(--neon-cyan);">GPQA Diamond</span>
+                        <span>90.4%</span>
+                    </div>
+                    <div class="bar-track">
+                        <div class="bar-fill" style="width: 90.4%;">
+                            <span class="bar-value">90.4%</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="comparison-bar">
+                    <div class="bar-label">
+                        <span style="color: var(--neon-magenta);">MMMU Pro</span>
+                        <span>81.2%</span>
+                    </div>
+                    <div class="bar-track">
+                        <div class="bar-fill" style="width: 81.2%; background: linear-gradient(90deg, var(--neon-magenta), #ff6699);">
+                            <span class="bar-value">81.2%</span>
+                        </div>
+                    </div>
+                </div>
             </div>
         </section>
 
-        <!-- Section 5: Core Features -->
+        <!-- Section 5: Key Features -->
         <section class="content-section fade-in">
             <div class="section-header">
                 <div class="section-number">05</div>
-                <h2 class="section-title">핵심 기능 (2025년 12월 기준)<span class="en">FEATURE ARSENAL</span></h2>
+                <h2 class="section-title">노트북LM 핵심 기능 (2025년 12월)<span class="en">KEY FEATURES</span></h2>
             </div>
 
             <h3>1. 대용량 컨텍스트 윈도우 & 멀티모달 소스 지원</h3>
 
-            <p><strong>NotebookLM</strong>은 500페이지짜리 <strong>PDF</strong>부터 1시간짜리 <strong>YouTube</strong> 영상까지 다양한 소스를 종합 분석한다. 지원 업로드 형식은 다음과 같다.</p>
+            <p>노트북LM은 500페이지짜리 PDF부터 1시간짜리 유튜브 영상까지 다양한 소스를 종합 분석할 수 있다.</p>
 
-            <ul class="feature-list">
-                <li><strong>문서:</strong> pdf, txt, md, docx (2025년 11월 추가)</li>
-                <li><strong>오디오:</strong> mp3, mp4, m4a, aac, wav, ogg, opus 등</li>
-                <li><strong>비디오:</strong> YouTube URL 직접 지원</li>
-                <li><strong>이미지:</strong> 모바일 카메라로 사진 직접 업로드 (2025년 12월 4일 추가)</li>
-                <li><strong>웹:</strong> 웹사이트 URL 붙여넣기</li>
-                <li><strong>구글 생태계:</strong> Google Docs, Google Slides, Google Sheets (2025년 11월 추가)</li>
-            </ul>
+            <div class="feature-grid">
+                <div class="feature-card">
+                    <h4>문서</h4>
+                    <p>pdf, txt, md, docx (2025년 11월 추가)</p>
+                </div>
+                <div class="feature-card">
+                    <h4>오디오</h4>
+                    <p>mp3, mp4, m4a, aac, wav, ogg, opus 등</p>
+                </div>
+                <div class="feature-card">
+                    <h4>비디오</h4>
+                    <p>유튜브 URL 직접 지원</p>
+                </div>
+                <div class="feature-card">
+                    <h4>이미지</h4>
+                    <p>모바일 카메라로 직접 사진 업로드 (2025년 12월 4일 추가)</p>
+                </div>
+                <div class="feature-card">
+                    <h4>웹</h4>
+                    <p>웹사이트 URL 붙여넣기</p>
+                </div>
+                <div class="feature-card">
+                    <h4>구글 생태계</h4>
+                    <p>구글 문서, 구글 슬라이드, 구글 스프레드시트 (2025년 11월 추가)</p>
+                </div>
+            </div>
 
             <h3>2. 오디오 오버뷰: 인터넷을 뒤흔든 기능</h3>
 
-            <p><strong>NotebookLM</strong>을 바이럴로 만든 시그니처 기능이다. 두 명의 <strong>AI</strong> 호스트가 자연스러운 팟캐스트 스타일 대화로 콘텐츠를 설명한다. 로봇 같은 <strong>TTS</strong>(텍스트 음성 변환)와 다르다.</p>
+            <p>노트북LM을 바이럴로 만든 시그니처 기능: 두 명의 AI 진행자가 자연스럽고 팟캐스트 스타일의 대화로 콘텐츠를 설명한다.</p>
 
-            <ul class="feature-list">
-                <li><strong>미세 추임새:</strong> "아 진짜?", "완전", 자연스러운 "음..." 멈춤</li>
-                <li><strong>긴장과 불일치:</strong> 호스트들이 무조건 동의하지 않는다. 토론하고, 질문하고, 도전한다</li>
-                <li><strong>인사이트 생성:</strong> 단순 요약이 아니다. 호스트들이 이해를 확장하는 비유와 유추를 만들어낸다</li>
+            <ul class="settings-list">
+                <li><strong>미세 추임새:</strong> "오 정말?", "그렇지", 자연스러운 "어..." 같은 멈춤</li>
+                <li><strong>긴장과 불일치:</strong> 진행자들이 그저 동의하지 않는다—토론하고, 질문하고, 도전한다</li>
+                <li><strong>통찰 생성:</strong> 단순 요약을 넘어 이해를 확장하는 메타포와 비유를 만들어낸다</li>
             </ul>
 
             <div class="callout">
-                <p>"NotebookLM이 우리 가족 사업에 대해 생성한 팟캐스트를 보여줬더니, AI라고 믿지 않았다. 배우를 고용한 줄 알았다. 직접 시연해서 증명해야 했다."</p>
+                <p>"가족에게 노트북LM으로 만든 그들 사업 관련 팟캐스트를 들려줬더니, AI라고 믿지 않았다. 배우를 고용한 줄 알았다. 과정을 직접 시연해야 겨우 믿었다."</p>
                 <div class="callout-source">— u/knowyourcoin, Reddit</div>
             </div>
 
-            <h4>작동 원리 (기술적 인사이트)</h4>
-
-            <div class="callout">
-                <p>"미세 추임새는 LLM이 대본에서 생성하는 게 아니다. 오디오 모델 자체에 내장되어 있다. 모델이 인간 말투의 톤과 리듬을 반영하는 유려한 대화를 생성한다."</p>
-                <div class="callout-source">— NotebookLM 팀, Latent Space 팟캐스트 인터뷰</div>
+            <div class="info-box">
+                <p><strong>언어 지원:</strong> <strong>한국어</strong>, 일본어, 힌디어, 스페인어 등 80개 이상 언어를 지원한다. 팀이 처음에 4개 언어만 계획했을 때, 모델이 훨씬 더 많은 언어에서 작동한다는 걸 발견했다—4개에서 10개, 50개, 80개 언어로 확장됐다.</p>
             </div>
 
-            <p>많은 전문가들이 이 기능의 기반 기술로 <strong>구글</strong>의 <strong>SoundStorm</strong>을 꼽는다.</p>
+            <h3>3. 비디오 오버뷰: 시각적 학습의 잠금 해제</h3>
 
-            <h4>지원 언어</h4>
+            <p>2025년 7월 출시된 <strong>비디오 오버뷰</strong>는 소스를 교육 영상으로 변환한다:</p>
 
-            <p>현재 <strong>한국어</strong>, <strong>일본어</strong>, <strong>힌디어</strong>, <strong>스페인어</strong> 등 <strong>80개 이상</strong> 언어를 지원한다. 팀은 처음에 4개 언어만 계획했다. 그런데 모델이 훨씬 더 많은 언어에서 작동한다는 걸 발견했다. 4개에서 10개, 50개, 80개 언어로 확장됐다.</p>
-
-            <h3>3. 비디오 오버뷰: 시각적 학습의 해방</h3>
-
-            <p>2025년 7월 출시. <strong>비디오 오버뷰</strong>는 소스를 교육용 비디오로 변환한다.</p>
-
-            <ul class="feature-list">
-                <li><strong>AI</strong> 생성 내레이션</li>
+            <ul class="settings-list">
+                <li>AI 생성 나레이션</li>
                 <li>자동 생성 다이어그램과 이미지</li>
                 <li>80개 이상 언어 지원</li>
-                <li>스타일 맞춤화 가능 (교육용, 전문가용, 캐주얼)</li>
+                <li>커스터마이즈 가능한 스타일 (교육용, 전문가용, 캐주얼)</li>
             </ul>
 
-            <h3>4. 인터랙티브 모드: 대화에 참여하기</h3>
+            <h3>4. 인터랙티브 모드</h3>
 
-            <p>2024년 12월 추가된 기능이다. 진행 중인 <strong>오디오 오버뷰</strong>에 합류할 수 있다. <strong>Join</strong> 버튼을 누르면 <strong>AI</strong> 호스트들이 사용자를 인식하고, 질문을 받고, 소스를 기반으로 응답한다. 라이브 팟캐스트에 전화하는 것과 비슷하다.</p>
+            <p>2024년 12월 추가된 이 기능으로 진행 중인 오디오 오버뷰에 참여할 수 있다. <strong>참여</strong> 버튼을 누르면 AI 진행자들이 인식하고, 질문을 받고, 소스를 기반으로 응답한다—마치 라이브 팟캐스트에 전화 거는 것과 비슷하다.</p>
 
-            <h3>5. 딥 리서치: "소스 전용" 한계를 넘다</h3>
+            <h3>5. 딥 리서치</h3>
 
-            <p>2025년 11월, <strong>딥 리서치</strong> 통합이 도입됐다. <strong>NotebookLM</strong>이 이제 웹을 탐색하고, 수백 개 웹사이트를 스캔하고, 여러 페이지 분량의 리서치 보고서를 생성한다. 엄격한 "소스 전용" 철학에서 상당한 진화다. 명확한 출처 표기는 유지된다.</p>
+            <p>2025년 11월 <strong>딥 리서치</strong> 통합이 도입됐다—노트북LM이 이제 웹을 탐색하고, 수백 개 웹사이트를 스캔하고, 여러 페이지 분량의 연구 리포트를 생성할 수 있다. 엄격한 "소스 전용" 철학에서 중대한 진화다.</p>
 
             <h3>6. 슬라이드 덱 & 인포그래픽</h3>
 
-            <p>2025년 11월 업데이트로 시각 콘텐츠 생성 기능이 추가됐다.</p>
-
-            <ul class="feature-list">
-                <li><strong>슬라이드 덱:</strong> 소스에서 프레젠테이션 슬라이드 자동 생성</li>
-                <li><strong>인포그래픽:</strong> Nano Banana Pro 모델 기반 시각적 요약 생성</li>
-            </ul>
-
             <div class="callout">
-                <p>"파워포인트와 캔바는 끝났다. 논문을 업로드하고 버튼 하나 눌렀더니—프레젠테이션 완성."</p>
+                <p>"파워포인트와 캔바는 죽었다. 내 논문을 업로드하고 버튼 하나 눌렀더니—프레젠테이션 완성."</p>
                 <div class="callout-source">— r/notebooklm 사용자</div>
             </div>
 
             <h3>7. 플래시카드 & 퀴즈</h3>
 
-            <p>능동적 학습을 위한 교육 특화 기능이다.</p>
-
-            <ul class="feature-list">
+            <ul class="settings-list">
                 <li>모든 소스에서 학습용 플래시카드 생성</li>
                 <li>CSV로 내보내기 (Anki 호환)</li>
-                <li>자가 평가 퀴즈 생성</li>
-                <li>2025년 11월부터 모바일 앱에서 사용 가능</li>
+                <li>자기 평가 퀴즈 생성</li>
+                <li>2025년 11월부터 모바일 앱에서 이용 가능</li>
             </ul>
 
-            <h3>8. 마인드맵</h3>
+            <h3>8. 마인드 맵</h3>
 
-            <p>소스에서 시각적 개념 지도를 자동 생성한다. 각 노드는 하나의 개념을 나타내며, 클릭하면 하위 노드로 확장된다. 여러 자료에 걸친 복잡한 관계를 파악하는 데 최적이다.</p>
+            <p>소스에서 자동으로 시각적 개념 맵을 생성한다. 각 노드는 개념을 나타내고 클릭하면 하위 노드로 확장된다—자료 전반의 복잡한 관계를 이해하기에 완벽하다.</p>
+
+            <h3>9. 데이터 테이블 (2025년 12월)</h3>
+
+            <p>가장 새로운 Studio 출력물로, 흩어진 정보를 <strong>구글 스프레드시트</strong>로 내보낼 수 있는 깔끔하고 구조화된 테이블로 변환한다.</p>
+
+            <ul class="settings-list">
+                <li>회의 녹취록을 담당자별, 우선순위별로 분류된 액션 아이템으로 변환</li>
+                <li>가격과 전략을 분석하는 경쟁사 비교 테이블 구축</li>
+                <li>여러 논문의 임상 시험 결과 종합</li>
+                <li>날짜와 주요 인물별로 정리된 역사적 사건 학습 테이블 생성</li>
+            </ul>
+
+            <h3>10. 채팅 히스토리 (2025년 12월)</h3>
+
+            <p>웹과 모바일에서 대화를 끊김 없이 이어갈 수 있다—채팅 기록이 기기 간 동기화된다. 각 응답에 날짜/시간 타임스탬프가 표시되고, 채팅 기록을 삭제하고 새로 시작할 수 있다. 공유 노트북에서 내 채팅은 나에게만 비공개로 유지된다.</p>
+
+            <h3>11. 제미나이 앱 통합 (2025년 12월)</h3>
+
+            <p>게임 체인저 업데이트: 노트북LM 노트북을 <strong>제미나이</strong> 앱 대화에 직접 첨부할 수 있다. gemini.google.com에서 [+] 버튼을 클릭하고 "노트북LM"을 선택해 여러 노트북을 맥락으로 첨부하면 된다.</p>
+
+            <div class="achievement">
+                <div class="achievement-icon">+</div>
+                <div class="achievement-content">
+                    <div class="achievement-title">GEMINI INTEGRATION UNLOCKED</div>
+                    <div class="achievement-desc">단일 대화에서 여러 노트북 결합 / 노트북에서 영감받은 이미지나 앱 생성 / 온라인 리서치로 기존 노트북 확장</div>
+                </div>
+            </div>
+
+            <h3>12. Studio 내보내기</h3>
+
+            <p>학습 가이드, 브리핑 문서, 저장된 노트를 점 세 개 오버플로 메뉴를 통해 <strong>구글 문서</strong> 또는 <strong>구글 스프레드시트</strong>(테이블용)로 직접 내보낼 수 있다.</p>
         </section>
 
-        <!-- Section 6: Pricing -->
+        <!-- Section 6: Subscription Tiers -->
         <section class="content-section fade-in">
             <div class="section-header">
                 <div class="section-number">06</div>
-                <h2 class="section-title">NotebookLM Plus: 프리미엄 티어<span class="en">POWER USER PRICING</span></h2>
+                <h2 class="section-title">노트북LM 구독 티어: 무료부터 Ultra까지<span class="en">SUBSCRIPTION TIERS</span></h2>
             </div>
 
-            <h3>무료 vs Plus 비교</h3>
+            <p><strong>구글</strong>은 노트북LM을 <strong>구글 AI</strong> 플랜과 통합된 4단계 구독 시스템으로 재편했다.</p>
 
             <div class="table-container">
                 <table>
@@ -1335,74 +1545,92 @@
                         <tr>
                             <th>기능</th>
                             <th>무료</th>
-                            <th>Plus</th>
+                            <th>Plus ($9.99)</th>
+                            <th>Pro ($19.99)</th>
+                            <th>Ultra ($249.99)</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr>
-                            <td>최대 노트북 수</td>
+                            <td>노트북</td>
                             <td>100</td>
-                            <td><strong>500</strong></td>
+                            <td>200</td>
+                            <td>500</td>
+                            <td>500</td>
                         </tr>
                         <tr>
-                            <td>노트북당 소스 수</td>
+                            <td>노트북당 소스</td>
                             <td>50</td>
-                            <td><strong>300</strong></td>
+                            <td>100</td>
+                            <td>300</td>
+                            <td><strong style="color: var(--neon-green);">600</strong></td>
                         </tr>
                         <tr>
-                            <td>소스당 단어 수</td>
-                            <td>500,000</td>
-                            <td>500,000</td>
-                        </tr>
-                        <tr>
-                            <td>일일 채팅 쿼리</td>
+                            <td>일일 채팅</td>
                             <td>50</td>
-                            <td><strong>500</strong></td>
+                            <td>200</td>
+                            <td>500</td>
+                            <td>5,000</td>
                         </tr>
                         <tr>
                             <td>일일 오디오 오버뷰</td>
                             <td>3</td>
-                            <td><strong>20</strong></td>
+                            <td>6</td>
+                            <td>20</td>
+                            <td>200</td>
                         </tr>
                         <tr>
                             <td>일일 비디오 오버뷰</td>
                             <td>3</td>
-                            <td><strong>20</strong></td>
+                            <td>6</td>
+                            <td>20</td>
+                            <td>200</td>
                         </tr>
                         <tr>
                             <td>딥 리서치</td>
                             <td>월 10회</td>
-                            <td><strong>상향된 한도</strong></td>
+                            <td>일 3회</td>
+                            <td>일 20회</td>
+                            <td>일 200회</td>
                         </tr>
                         <tr>
-                            <td>채팅 커스터마이징</td>
-                            <td>500자</td>
-                            <td><strong>10,000자 (20배!)</strong></td>
+                            <td>워터마크 제거</td>
+                            <td class="cross">✗</td>
+                            <td class="cross">✗</td>
+                            <td class="cross">✗</td>
+                            <td class="check">✓</td>
                         </tr>
                     </tbody>
                 </table>
             </div>
 
-            <h3>NotebookLM Plus 이용 방법</h3>
+            <h3>구독 방법</h3>
 
-            <p>개인 사용자는 <strong>Google AI Pro</strong> 구독으로 <strong>Plus</strong> 기능을 자동 제공받는다.</p>
+            <ul class="settings-list">
+                <li><strong>구글 AI Plus</strong> (월 9.99달러): 확장된 한도의 입문 유료 티어</li>
+                <li><strong>구글 AI Pro</strong> (월 19.99달러 또는 연 199.99달러): 파워 유저에게 가장 인기</li>
+                <li><strong>학생 할인:</strong> 미국, 일본, 인도네시아, 한국, 브라질의 18세 이상 학생에게 월 9.99달러 (50% 할인)</li>
+                <li><strong>구글 AI Ultra</strong> (월 249.99달러): 연구 집약적 전문가와 기업용</li>
+            </ul>
 
-            <div class="stat-box" style="display: inline-block; margin: 10px 10px 10px 0;">
-                <div class="stat-label">MONTHLY PRICE</div>
-                <div class="stat-value">US$19.99</div>
+            <h3>Ultra 전용 혜택</h3>
+
+            <ul class="settings-list">
+                <li><strong>노트북당 600개 소스</strong> (Pro의 2배)—최대 노트북 용량</li>
+                <li>인포그래픽과 슬라이드 덱 <strong>워터마크 제거</strong></li>
+                <li>슬라이드 덱 <strong>긴 옵션</strong> (우선 접근)</li>
+                <li><strong>1,000명 노트북 협업자</strong> (Pro는 500명)</li>
+            </ul>
+        </section>
+
+        <!-- Section 7: Ecosystem Benefits -->
+        <section class="content-section fade-in">
+            <div class="section-header">
+                <div class="section-number">07</div>
+                <h2 class="section-title">구글 AI Pro의 제미나이 생태계 혜택<span class="en">ECOSYSTEM BENEFITS</span></h2>
             </div>
-            <div class="stat-box" style="display: inline-block; margin: 10px 10px 10px 0;">
-                <div class="stat-label">YEARLY PRICE</div>
-                <div class="stat-value">US$199.99</div>
-            </div>
-            <div class="stat-box" style="display: inline-block; margin: 10px 0;">
-                <div class="stat-label">STUDENT DISCOUNT</div>
-                <div class="stat-value">50% OFF</div>
-            </div>
 
-            <p><strong>학생 할인:</strong> US$9.99/월 (50% 할인) 미국, 일본, 인도네시아, 한국, 브라질의 18세 이상 학생 대상</p>
-
-            <h3>Google AI Pro 구독 시 Gemini 생태계 혜택</h3>
+            <p><strong>구글 AI Pro</strong> 구독은 전체 <strong>제미나이</strong> 생태계에서 혜택을 제공한다:</p>
 
             <div class="table-container">
                 <table>
@@ -1410,282 +1638,231 @@
                         <tr>
                             <th>혜택</th>
                             <th>무료 티어</th>
-                            <th>Google AI Pro</th>
+                            <th>구글 AI Pro</th>
+                            <th>구글 AI Ultra</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr>
-                            <td>Gemini 컨텍스트 윈도우</td>
+                            <td>제미나이 컨텍스트 윈도우</td>
                             <td>32,000 토큰</td>
-                            <td><strong>1,000,000 토큰</strong></td>
+                            <td><strong style="color: var(--neon-green);">1,000,000 토큰</strong></td>
+                            <td><strong style="color: var(--neon-green);">1,000,000 토큰</strong></td>
                         </tr>
                         <tr>
-                            <td>Gemini 3 Pro 쿼리</td>
+                            <td>제미나이 3 Pro 쿼리</td>
                             <td>제한적</td>
-                            <td><strong>일 100회</strong></td>
+                            <td>일 100회</td>
+                            <td>일 500회</td>
                         </tr>
                         <tr>
                             <td>딥 리서치 요청</td>
-                            <td>제한적</td>
-                            <td><strong>일 20회</strong></td>
+                            <td>5회 (Thinking 포함)</td>
+                            <td>일 20회</td>
+                            <td>최고</td>
                         </tr>
                         <tr>
-                            <td>Veo 3 패스트 비디오 생성</td>
-                            <td><span class="cross">불가</span></td>
-                            <td><strong>일 3회</strong></td>
+                            <td>Veo 3.1 비디오 생성</td>
+                            <td class="cross">불가</td>
+                            <td>일 3회</td>
+                            <td>최고</td>
+                        </tr>
+                        <tr>
+                            <td>Flow AI 크레딧</td>
+                            <td>—</td>
+                            <td>월 1,000</td>
+                            <td>월 25,000</td>
                         </tr>
                         <tr>
                             <td>Jules (코딩 에이전트)</td>
                             <td>기본</td>
-                            <td><strong>5배 상향 한도</strong></td>
+                            <td>더 높은 한도</td>
+                            <td>최고 한도</td>
                         </tr>
                         <tr>
                             <td>클라우드 스토리지</td>
                             <td>15 GB</td>
-                            <td><strong>2 TB</strong></td>
+                            <td>2 TB</td>
+                            <td>30 TB</td>
                         </tr>
                     </tbody>
                 </table>
             </div>
         </section>
 
-        <!-- Section 7: Audio Customization -->
-        <section class="content-section fade-in">
-            <div class="section-header">
-                <div class="section-number">07</div>
-                <h2 class="section-title">오디오 오버뷰 커스터마이징<span class="en">PLUS EXCLUSIVE FEATURE</span></h2>
-            </div>
-
-            <p><strong>Plus</strong> 구독자는 <strong>오디오 오버뷰</strong> 생성에 상세한 지시를 제공할 수 있다. 커스터마이징 한도가 대폭 확대됐다. 500자 -> 5,000자 -> <strong>10,000자</strong> (2025년 12월 5일 기준).</p>
-
-            <h3>커스터마이징 프롬프트 예시</h3>
-
-            <div class="code-block">
-                <code>소스 자료의 모든 줄을 상세히 분석해라.
-
-최소 45분 분량의 장편 오디오 팟캐스트를 만들어라.
-천천히 진행해라—건너뛰지 마라.
-
-각 개념에 대해 다음을 철저히 분해해라:
-- 역사적 맥락과 기원
-- 실용적 응용
-- 흔한 오해
-- 소스 내 다른 개념과의 연결
-
-호스트들은 가끔 의견이 다르고 함의에 대해 토론해야 한다.
-
-타겟 청중: 약간의 도메인 배경지식이 있는 대학원생 수준.</code>
-            </div>
-        </section>
-
-        <!-- Section 8: Use Cases -->
+        <!-- Section 8: Audio Customization -->
         <section class="content-section fade-in">
             <div class="section-header">
                 <div class="section-number">08</div>
-                <h2 class="section-title">실제 사용 사례<span class="en">REAL WORLD IMPLEMENTATIONS</span></h2>
+                <h2 class="section-title">오디오 오버뷰 커스터마이징<span class="en">AUDIO CUSTOMIZATION</span></h2>
             </div>
 
-            <h3>학술 & 학습</h3>
+            <p><strong>Plus</strong>에서는 <strong>오디오 오버뷰</strong> 생성에 상세한 지시를 내릴 수 있다. 커스터마이징 한도가 대폭 확장됐다: 500 → 5,000 → <strong>10,000자</strong> (2025년 12월 5일 기준).</p>
 
-            <h4>로스쿨 제2의 뇌</h4>
-            <div class="callout">
-                <p>"중간고사 직전에 NotebookLM을 발견했다. 개요 작성과 노트 종합에 결정적 차이를 만들었다. 교과서를 업로드하고 지친 근무 후에 질문했다."</p>
-                <div class="callout-source">— r/NoteTaking 사용자</div>
+            <div class="code-block">
+                <code>소스 자료의 모든 줄을 상세히 분석할 것.
+최소 45분 분량의 장편 오디오 팟캐스트 생성. 천천히 진행—건너뛰지 말 것.
+각 개념에 대해 다음을 포함해 철저히 분해할 것:
+- 역사적 맥락과 기원
+- 실용적 적용
+- 흔한 오해
+- 소스 내 다른 개념들과의 연결
+진행자들은 가끔 의견이 다르고 함의에 대해 토론해야 한다.
+타겟 청중: 일정한 도메인 배경이 있는 대학원생 수준.</code>
+            </div>
+        </section>
+
+        <!-- Section 9: Real Use Cases -->
+        <section class="content-section fade-in">
+            <div class="section-header">
+                <div class="section-number">09</div>
+                <h2 class="section-title">실제 활용 사례<span class="en">REAL USE CASES</span></h2>
             </div>
 
-            <h4>AWS 자격증 준비</h4>
-            <div class="callout">
-                <p>"모의고사가 포함된 YouTube 영상을 업로드했다. 개념 정의를 요청하고 라운드당 10개의 랜덤 객관식 문제를 요청했다. 자격증을 땄다."</p>
-                <div class="callout-source">— u/Affectionate_Gas2834</div>
+            <h3>학업 & 학습</h3>
+
+            <div class="use-case-grid">
+                <div class="use-case-card">
+                    <h4>로스쿨을 위한 나의 제2의 뇌</h4>
+                    <div class="callout">
+                        <p>"중간고사 직전에 노트북LM을 발견했다. 개요 준비와 노트 종합에 결정적 차이를 만들었다. 교과서를 업로드하고 지친 퇴근 후 질문했다."</p>
+                        <div class="callout-source">— r/NoteTaking 사용자</div>
+                    </div>
+                </div>
+                <div class="use-case-card">
+                    <h4>AWS 자격증 준비</h4>
+                    <div class="callout">
+                        <p>"모의 시험이 포함된 유튜브 영상을 업로드했다. 개념 정의를 물어보고 라운드당 무작위 객관식 10문제를 요청했다. 자격증에 합격했다."</p>
+                        <div class="callout-source">— u/Affectionate_Gas2834</div>
+                    </div>
+                </div>
             </div>
 
-            <h3>전문가 & 비즈니스</h3>
+            <h3>전문 & 비즈니스</h3>
 
-            <h4>건설 입찰 분석</h4>
-            <div class="callout">
-                <p>"건설 회사를 운영한다. 수백 페이지 입찰 문서를 읽는 건 고되고 몇 시간이 걸린다. 전부 업로드했더니 NotebookLM이 마인드맵, 핵심 노트, 팟캐스트까지 생성했다! 게임 체인저다."</p>
-                <div class="callout-source">— u/Life-Art4739</div>
+            <div class="use-case-grid">
+                <div class="use-case-card">
+                    <h4>건설 입찰 분석</h4>
+                    <div class="callout">
+                        <p>"건설 회사를 운영한다. 수백 페이지 입찰 문서를 읽는 건 고되고 몇 시간씩 걸린다. 전부 업로드했더니—노트북LM이 마인드 맵, 핵심 노트, 팟캐스트를 생성했다! 게임 체인저다."</p>
+                        <div class="callout-source">— u/Life-Art4739</div>
+                    </div>
+                </div>
+                <div class="use-case-card">
+                    <h4>영업 피치 생성</h4>
+                    <div class="callout">
+                        <p>"제품/회사 정보와 잠재 고객 및 산업에 대해 찾을 수 있는 모든 것을 로드한다. 그런 다음 노트북LM Plus에게 왜 이 고객이 우리 제품을 도입해야 하는지 물어본다."</p>
+                        <div class="callout-source">— u/bill-duncan</div>
+                    </div>
+                </div>
             </div>
 
-            <h4>세일즈 피치 생성</h4>
-            <div class="callout">
-                <p>"제품/회사 정보와 잠재 고객 및 산업에 대해 찾을 수 있는 모든 자료를 업로드한다. 그리고 NotebookLM Plus에게 왜 이 고객이 우리 제품을 채택해야 하는지 물어본다. 설득력 있는 피치, 프레젠테이션, 백서 콘텐츠를 생성한다."</p>
-                <div class="callout-source">— u/bill-duncan</div>
-            </div>
+            <h3>의료 & 헬스케어</h3>
 
-            <h4>회의 노트 & 녹음 분석</h4>
-            <p>회의 녹음과 맥락 텍스트(참석자 배경, 안건, 이전 결정)를 함께 업로드하면 균형 잡히고 쿼리 가능한 회의 요약을 생성한다. 적절한 출처 표기도 포함된다.</p>
-
-            <h3>헬스케어 & 의료</h3>
-
-            <h4>임상 레퍼런스 라이브러리</h4>
-            <div class="callout">
-                <p>"임상 헬스케어에서 일한다. 일상 진료에서 질병을 평가, 조사, 진단, 치료하는 데 쓰이는 가장 중요한 교과서 50권을 업로드했다. 받는 가이던스가 실무에 바로 적용할 수 있을 정도로 정확하다."</p>
-                <div class="callout-source">— r/Bard 사용자</div>
-            </div>
-
-            <h4>치료 세션 분석</h4>
-            <div class="callout">
-                <p>"내 치료는 Zoom으로 진행된다. 모든 세션 녹취록을 업로드하고 내 진전에 대한 인사이트를 얻는다."</p>
-                <div class="callout-source">— u/PreetHarHarah</div>
+            <div class="use-case-grid">
+                <div class="use-case-card">
+                    <h4>임상 참고 라이브러리</h4>
+                    <div class="callout">
+                        <p>"임상 의료 분야에서 일한다. 일상적으로 질병을 평가하고, 조사하고, 진단하고, 치료할 때 쓰는 가장 중요한 50권의 교과서를 업로드했다. 얻는 가이던스가 놀랍도록 유용하다."</p>
+                        <div class="callout-source">— r/Bard 사용자</div>
+                    </div>
+                </div>
+                <div class="use-case-card">
+                    <h4>상담 세션 분석</h4>
+                    <div class="callout">
+                        <p>"내 상담은 Zoom으로 진행된다. 모든 세션 녹취록을 업로드하고 내 진전에 대한 통찰을 얻는 데 쓴다."</p>
+                        <div class="callout-source">— u/PreetHarHarah</div>
+                    </div>
+                </div>
             </div>
 
             <h3>창작 & 개인</h3>
 
-            <h4>소설 쓰기 일관성 검사기</h4>
-            <div class="callout">
-                <p>"중학생 대상 판타지 소설을 쓰고 있다. 챕터 비트, 캐릭터 디테일, 테마가 담긴 마스터북 문서를 주요 NotebookLM 리소스로 쓴다. 아이디어 생성을 요청하지 않는다. 연결점과 비일관성을 찾으라고 요청한다. 팟캐스트를 생성하면 항상 새로운 아이디어나 스토리 문제의 해결책으로 이어진다."</p>
-                <div class="callout-source">— u/Altruistic-Airport28</div>
-            </div>
-
-            <h4>D&D 게임 마스터 어시스턴트</h4>
-            <div class="callout">
-                <p>"내 홈브루 게임에는 엄청난 수의 NPC, PC, 팩션이 있다. 옵시디언 마크다운 노트를 전부 업로드했다. 'Leandow 가문에 대한 피해 정보를 유출할 가능성이 가장 높은 귀족 관련 NPC는?'이라고 물으면 이유와 함께 4~5개 제안을 주고 가장 유력한 것을 선택한다."</p>
-                <div class="callout-source">— u/Trick-Two497</div>
-            </div>
-
-            <h4>초보 아빠 헬프데스크</h4>
-            <div class="callout">
-                <p>"아빠가 될 예정이다. 추천 육아 서적을 노트북에 업로드하고 모르는 게 있을 때마다 헬프데스크처럼 쓴다. 출처 인용 기능이 더 깊이 파고 싶을 때 엄청 유용하다."</p>
-                <div class="callout-source">— u/regularphoenix</div>
+            <div class="use-case-grid">
+                <div class="use-case-card">
+                    <h4>소설 작성 일관성 검사기</h4>
+                    <div class="callout">
+                        <p>"중학생 대상 판타지 소설을 쓰고 있다. 챕터 비트, 캐릭터 디테일, 주제가 담긴 마스터북 문서를 주요 노트북LM 리소스로 사용한다."</p>
+                        <div class="callout-source">— u/Altruistic-Airport28</div>
+                    </div>
+                </div>
+                <div class="use-case-card">
+                    <h4>D&D 게임 마스터 어시스턴트</h4>
+                    <div class="callout">
+                        <p>"내 홈브류 게임에는 수많은 NPC, PC, 팩션이 있다. 모든 Obsidian 마크다운 노트를 업로드했다."</p>
+                        <div class="callout-source">— u/Trick-Two497</div>
+                    </div>
+                </div>
             </div>
 
             <h3>면접 준비</h3>
+
             <div class="callout">
-                <p>"면접 전마다 산업 애널리스트 보고서, 회사 IR 페이지, 'About Us' 콘텐츠를 다운로드한다. NotebookLM에게 산업 트렌드와 도전 과제에 대해 발표하라고 요청한다. 팟캐스트를 생성하고 조깅, 운전, 헬스장에서 반복해서 듣는다."</p>
+                <p>"면접 전마다 산업 분석가 보고서, 회사 IR 페이지, 'About Us' 콘텐츠를 다운로드한다. 노트북LM에게 산업 트렌드와 도전에 대해 발표해달라고 한다. 팟캐스트를 생성해서 조깅하면서, 운전하면서, 헬스장에서 반복해서 듣는다."</p>
                 <div class="callout-source">— u/CurrentInitiative617</div>
             </div>
         </section>
 
-        <!-- Section 9: Comparison -->
+        <!-- Section 10: vs Competition -->
         <section class="content-section fade-in">
             <div class="section-header">
-                <div class="section-number">09</div>
-                <h2 class="section-title">NotebookLM vs 경쟁사<span class="en">HONEST COMPARISON</span></h2>
+                <div class="section-number">10</div>
+                <h2 class="section-title">노트북LM vs 경쟁사: 솔직한 비교<span class="en">VS COMPETITION</span></h2>
             </div>
-
-            <div class="table-container">
-                <table>
-                    <thead>
-                        <tr>
-                            <th>기능</th>
-                            <th>NotebookLM</th>
-                            <th>ChatGPT Projects</th>
-                            <th>Claude Projects</th>
-                            <th>Perplexity Spaces</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>소스 그라운딩</td>
-                            <td><span class="check">탁월</span></td>
-                            <td><span class="partial">보통</span></td>
-                            <td>양호</td>
-                            <td><span class="partial">보통</span></td>
-                        </tr>
-                        <tr>
-                            <td>오디오 오버뷰</td>
-                            <td><span class="check">탁월</span></td>
-                            <td><span class="cross">미제공</span></td>
-                            <td><span class="cross">미제공</span></td>
-                            <td><span class="cross">미제공</span></td>
-                        </tr>
-                        <tr>
-                            <td>비디오 오버뷰</td>
-                            <td><span class="check">탁월</span></td>
-                            <td><span class="cross">미제공</span></td>
-                            <td><span class="cross">미제공</span></td>
-                            <td><span class="cross">미제공</span></td>
-                        </tr>
-                        <tr>
-                            <td>마인드맵</td>
-                            <td><span class="check">탁월</span></td>
-                            <td><span class="cross">미제공</span></td>
-                            <td><span class="cross">미제공</span></td>
-                            <td><span class="cross">미제공</span></td>
-                        </tr>
-                        <tr>
-                            <td>YouTube 링크 분석</td>
-                            <td><span class="check">탁월</span></td>
-                            <td><span class="partial">보통</span></td>
-                            <td><span class="cross">미제공</span></td>
-                            <td>양호</td>
-                        </tr>
-                        <tr>
-                            <td>인라인 인용</td>
-                            <td><span class="check">탁월</span></td>
-                            <td><span class="partial">보통</span></td>
-                            <td>양호</td>
-                            <td>양호</td>
-                        </tr>
-                        <tr>
-                            <td>최대 소스 수</td>
-                            <td><strong>300 (Plus)</strong></td>
-                            <td>낮음</td>
-                            <td>중간</td>
-                            <td>32K 토큰 한도</td>
-                        </tr>
-                        <tr>
-                            <td>심층 추론</td>
-                            <td>양호</td>
-                            <td>매우 양호</td>
-                            <td><span class="check">탁월</span></td>
-                            <td>양호</td>
-                        </tr>
-                        <tr>
-                            <td>코딩 지원</td>
-                            <td><span class="partial">보통</span></td>
-                            <td><span class="check">탁월</span></td>
-                            <td><span class="check">탁월</span></td>
-                            <td><span class="partial">보통</span></td>
-                        </tr>
-                        <tr>
-                            <td>무료 티어 관대함</td>
-                            <td><span class="check">탁월</span></td>
-                            <td>양호</td>
-                            <td><span class="partial">보통</span></td>
-                            <td>양호</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-
-            <h3>커뮤니티 평가</h3>
 
             <div class="callout">
-                <p>"오디오 오버뷰를 제공하는 도구는 없다. 그것만으로 NotebookLM이 문서 분석에서 승자다. ChatGPT Projects는 작은 문서 몇 개로도 품질 저하 경고를 띄운다. NotebookLM은 RAG 접근 방식으로 대용량 데이터도 문제없이 처리한다."</p>
+                <p>"다른 어떤 도구도 오디오 오버뷰를 하지 못한다. 그것만으로도 문서 분석에서 노트북LM이 승자다. ChatGPT Projects는 작은 문서 몇 개만으로도 품질 저하 경고를 보여준다. RAG 접근법의 노트북LM은 대용량 데이터를 문제없이 처리한다."</p>
                 <div class="callout-source">— u/ozone6587</div>
             </div>
 
             <div class="callout">
-                <p>"NotebookLM은 리서치와 정보 검색에 적합하다. 소스 자료에 엄격히 기반하기 때문에 이 분야에서 탁월하다. 하지만 충실도에 집중하는 만큼 Gemini만큼 창의적이지 않다. Gemini는 창의성과 고급 미디어 작업에 적합하다."</p>
+                <p>"노트북LM은 연구와 정보 검색에서 탁월하다—소스 자료에 엄격히 기반하기 때문에 뛰어나다. 그러나 이 충실도 집중은 제미나이만큼 창의적이지 않다는 뜻이다. 창의성과 고급 미디어 작업에는 제미나이가 선택지다."</p>
                 <div class="callout-source">— u/Ryfter</div>
             </div>
 
             <h3>언제 무엇을 쓸 것인가</h3>
 
-            <ul class="feature-list">
-                <li><strong>NotebookLM:</strong> 리서치, 공부, 문서 분석, 팟캐스트 생성</li>
-                <li><strong>ChatGPT/Claude:</strong> 코딩, 창작 글쓰기, 일반 대화, 인터넷 지식이 필요한 작업</li>
-                <li><strong>Gemini (직접):</strong> 창의성과 구글 생태계 통합이 필요할 때</li>
-            </ul>
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>도구</th>
+                            <th>최적 용도</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>노트북LM</strong></td>
+                            <td>연구, 학습, 문서 분석, 팟캐스트 생성</td>
+                        </tr>
+                        <tr>
+                            <td><strong>ChatGPT/Claude</strong></td>
+                            <td>코딩, 창작 글쓰기, 일반 대화, 인터넷 지식이 필요한 작업</td>
+                        </tr>
+                        <tr>
+                            <td><strong>제미나이 (직접)</strong></td>
+                            <td>창의성과 구글 생태계 통합이 필요할 때</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
         </section>
 
-        <!-- Section 10: Update Timeline -->
+        <!-- Section 11: 2025 Timeline -->
         <section class="content-section fade-in">
             <div class="section-header">
-                <div class="section-number">10</div>
-                <h2 class="section-title">2025년 업데이트 타임라인<span class="en">RELENTLESS EVOLUTION</span></h2>
+                <div class="section-number">11</div>
+                <h2 class="section-title">2025년 업데이트 타임라인<span class="en">2025 TIMELINE</span></h2>
             </div>
 
-            <div class="timeline-container">
+            <div class="timeline">
                 <div class="timeline-item">
                     <div class="timeline-date">2월</div>
-                    <div class="timeline-content">NotebookLM Plus 개인 사용자 확대 (Google AI Pro 통해, US$19.99/월)</div>
+                    <div class="timeline-content">노트북LM Plus가 구글 AI Pro(월 19.99달러)를 통해 개인 사용자에게 확대</div>
                 </div>
                 <div class="timeline-item">
                     <div class="timeline-date">3월</div>
-                    <div class="timeline-content">멀티모달 PDF 지원 (이미지, 그래프, 차트 인식)</div>
+                    <div class="timeline-content">멀티모달 PDF 지원 (이미지, 그래프, 차트 이제 이해)</div>
                 </div>
                 <div class="timeline-item">
                     <div class="timeline-date">4월</div>
@@ -1693,7 +1870,7 @@
                 </div>
                 <div class="timeline-item">
                     <div class="timeline-date">5월</div>
-                    <div class="timeline-content">Gemini 2.5 Flash 통합; Android/iOS 앱 출시</div>
+                    <div class="timeline-content">제미나이 2.5 Flash 통합; 안드로이드/iOS 앱 출시</div>
                 </div>
                 <div class="timeline-item">
                     <div class="timeline-date">7월</div>
@@ -1709,173 +1886,184 @@
                 </div>
                 <div class="timeline-item">
                     <div class="timeline-date">11월</div>
-                    <div class="timeline-content">딥 리서치 통합; .docx & 이미지 파일 지원; 슬라이드 덱 & 인포그래픽 (Nano Banana Pro); 커스텀 페르소나 5,000자로 확대</div>
+                    <div class="timeline-content">딥 리서치 통합; .docx & 이미지 파일 지원; 슬라이드 덱 & 인포그래픽 (나노 바나나 Pro)</div>
                 </div>
                 <div class="timeline-item">
                     <div class="timeline-date">12월 4일</div>
-                    <div class="timeline-content">모바일 카메라 통합—사진 직접 소스로 촬영</div>
+                    <div class="timeline-content">모바일 카메라 통합—사진을 소스로 직접 촬영</div>
                 </div>
                 <div class="timeline-item">
                     <div class="timeline-date">12월 5일</div>
                     <div class="timeline-content">채팅 커스터마이징 10,000자로 확대 (원래 한도의 20배)</div>
                 </div>
+                <div class="timeline-item">
+                    <div class="timeline-date">12월 16일</div>
+                    <div class="timeline-content">채팅 히스토리 전면 배포 (웹과 모바일 사용자 100%)</div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-date">12월 17일</div>
+                    <div class="timeline-content"><strong>제미나이</strong> 앱 통합—제미나이 대화에서 노트북을 소스로 첨부</div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-date">12월 19일</div>
+                    <div class="timeline-content"><strong>제미나이 3</strong> 전환 공식화; <strong>데이터 테이블</strong> 출시; <strong>Studio 내보내기</strong>로 구글 문서/스프레드시트</div>
+                </div>
             </div>
         </section>
 
-        <!-- Section 11: Limitations -->
+        <!-- Section 12: Coming Soon -->
         <section class="content-section fade-in">
             <div class="section-header">
-                <div class="section-number">11</div>
-                <h2 class="section-title">알려진 한계<span class="en">WHAT YOU NEED TO KNOW</span></h2>
+                <div class="section-number">12</div>
+                <h2 class="section-title">곧 출시: 예정된 기능들<span class="en">COMING SOON</span></h2>
+            </div>
+
+            <h3>강의 모드 (테스트 중)</h3>
+
+            <p><strong>구글</strong>이 <strong>오디오 오버뷰</strong>의 새로운 "<strong>강의</strong>" 형식을 테스트하고 있다. 단일 진행자가 최대 <strong>30분</strong>의 장편 설명을 생성한다. 팟캐스트 스타일의 대화와 달리, 강의 모드는 구조화된 설명에 집중한다—복잡하거나 기술적인 자료에 이상적이다.</p>
+
+            <h3>영국식 영어 내레이션</h3>
+
+            <p><strong>구글</strong>이 새로운 내레이션 옵션을 예고했으며, <strong>영국식 영어 음성</strong>이 "2026년 출시 예정"이다.</p>
+
+            <h3>제미나이 모바일에서 노트북LM 통합</h3>
+
+            <p><strong>제미나이</strong> 앱의 <strong>노트북LM</strong> 통합은 현재 웹 전용이다. 모바일 지원은 <strong>2026년</strong> 예정이다.</p>
+        </section>
+
+        <!-- Section 13: Known Limitations -->
+        <section class="content-section fade-in">
+            <div class="section-header">
+                <div class="section-number">13</div>
+                <h2 class="section-title">알려진 제한 사항<span class="en">KNOWN LIMITATIONS</span></h2>
             </div>
 
             <h3>컨텍스트 윈도우는 무한하지 않다</h3>
 
-            <p>대용량 토큰 한도에도 불구하고, <strong>NotebookLM</strong>은 다단계 검색 시스템을 사용한다.</p>
+            <p>대용량 토큰 한도에도 불구하고, 노트북LM은 다단계 검색 시스템을 사용한다.</p>
 
             <div class="callout">
-                <p>"146페이지, 56,814단어 Word 문서를 업로드했다. NotebookLM은 21~146페이지만 볼 수 있었다. 첫 페이지 첫 문장에 대해 물었더니 접근할 수 없다고 했다."</p>
-                <div class="callout-source">— u/jess_askin</div>
+                <p>"146페이지, 56,814단어짜리 Word 문서를 업로드했다. 노트북LM은 21-146페이지만 볼 수 있었다. 첫 페이지 첫 문장에 대해 물었더니 접근할 수 없다고 했다."</p>
+                <div class="callout-source">— u/jess_askin, Reddit</div>
             </div>
 
-            <h4>NotebookLM 팀의 공식 답변</h4>
-
-            <div class="callout">
-                <p>"현재 시스템은 최종 응답을 작성하기 전에 여러 단계를 거친다. 이 시나리오에서 초기 단계는 전체 코퍼스를 고려하지만, 그 고려가 최종 응답 생성 단계까지 이어지지 않을 수 있다. 이 케이스는 더 잘 처리되어야 하며 개선을 계획 중이다!"</p>
-                <div class="callout-source">— u/googleOliver (구글 직원)</div>
+            <div class="info-box">
+                <p><strong>노트북LM 팀 공식 응답:</strong> "현재 시스템은 최종 응답을 작성하기 전에 여러 단계를 거친다. 이 시나리오에서 초기 단계는 전체 말뭉치를 고려하지만, 그 고려가 최종 응답 생성 단계까지 이어지지 않을 수 있다. 이 케이스가 더 잘 처리되어야 함을 인정하며 개선을 계획하고 있다!"</p>
             </div>
 
             <div class="tip-box">
-                <p><strong>검증 전략:</strong> 아주 긴 문서를 업로드할 때는 여러 섹션의 콘텐츠에 대해 질문해 커버리지를 확인하라.</p>
+                <p><strong>검증 전략:</strong> 아주 긴 문서를 업로드할 때, 다른 섹션의 내용에 대해 질문해서 커버리지를 확인하라.</p>
             </div>
 
-            <h3>할루시네이션이 제로는 아니다</h3>
+            <h3>환각이 제로는 아니다</h3>
 
             <div class="callout">
-                <p>"한 달 넘게 NotebookLM을 써왔고 놀랍다. 하지만 항상 정확하지는 않다. 한 작업에서 틀린 정보를 줬다. 내가 이미 주제를 알고 있어서 잡았다. 몰랐다면 심각한 반발을 일으킬 수 있는 잘못된 정보를 퍼뜨릴 뻔했다."</p>
+                <p>"한 달 넘게 노트북LM을 써왔고 놀랍다. 하지만 항상 정확하진 않다. 한 작업에서 틀린 정보를 줬다—해당 주제를 이미 알았기 때문에 잡았다. 몰랐다면 심각한 반발을 일으킬 수 있는 잘못된 정보를 게시했을 것이다."</p>
                 <div class="callout-source">— u/Sunyyan</div>
             </div>
 
             <h3>내보내기 제한</h3>
 
-            <ul class="feature-list">
-                <li>슬라이드 덱을 PowerPoint나 Google Slides로 직접 내보내 편집할 수 없다</li>
-                <li>비디오 품질이 압축됨 (~720p 수준) 서버 비용 절감을 위해</li>
-                <li>서드파티 크롬 확장 프로그램으로 우회 가능</li>
+            <ul class="settings-list">
+                <li>슬라이드 덱은 편집을 위해 PowerPoint나 구글 슬라이드로 직접 내보낼 수 없다</li>
+                <li>비디오 품질은 서버 비용 절감을 위해 압축된다 (~720p로 보임)</li>
+                <li>서드파티 Chrome 확장을 통한 우회 방법은 존재한다</li>
             </ul>
 
             <h3>프라이버시 고려사항</h3>
 
             <div class="info-box warning">
-                <p>소비자 버전의 경우, <strong>구글</strong> 개인정보처리방침에 따르면 사람 검토자가 콘텐츠를 검토할 수 있다. 엔터프라이즈급 프라이버시가 필요하면 <strong>구글 클라우드 플랫폼</strong>을 통한 <strong>NotebookLM Enterprise</strong>를 고려하라. 데이터 거주지 통제와 비학습 보장을 제공한다.</p>
+                <p>소비자 버전의 경우, <strong>구글</strong>의 개인정보 보호정책은 사람 검토자가 콘텐츠를 검토할 수 있음을 나타낸다. 엔터프라이즈급 프라이버시를 원한다면 <strong>구글 클라우드 플랫폼</strong>을 통한 <strong>노트북LM 엔터프라이즈</strong>를 고려하라. 데이터 거주지 제어와 학습 금지 보장을 제공한다.</p>
             </div>
         </section>
 
-        <!-- Section 12: Product Philosophy -->
+        <!-- Section 14: Secret Sauce -->
         <section class="content-section fade-in">
             <div class="section-header">
-                <div class="section-number">12</div>
-                <h2 class="section-title">비밀 소스: 제품 철학<span class="en">THE SECRET SAUCE</span></h2>
+                <div class="section-number">14</div>
+                <h2 class="section-title">비밀 소스: 팀의 제품 철학<span class="en">SECRET SAUCE</span></h2>
             </div>
 
-            <p><strong>Latent Space</strong> 팟캐스트 인터뷰에서 <strong>NotebookLM</strong> 성공을 이끈 5가지 핵심 원칙이 드러났다.</p>
+            <p><strong>Latent Space</strong> 팟캐스트에서 진행된 인터뷰는 노트북LM 성공을 이끄는 다섯 가지 핵심 원칙을 드러냈다:</p>
 
-            <div class="table-container">
-                <table>
-                    <thead>
-                        <tr>
-                            <th>원칙</th>
-                            <th>설명</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td><strong>적을수록 많다</strong></td>
-                            <td>첫 버전에는 커스터마이징 옵션이 없었다. 그냥 소스를 업로드하고 버튼을 누르면 된다. 대부분의 사용자는 "temperature"가 뭔지 모른다. 옵션을 추가하면 마법이 사라진다.</td>
-                        </tr>
-                        <tr>
-                            <td><strong>실시간 피드백</strong></td>
-                            <td>65,000명 회원의 Discord 커뮤니티가 내부 모니터링보다 빠르게 이슈를 보고한다. 초기 제품에서는 직접 사용자 핑이 집계된 지표보다 낫다.</td>
-                        </tr>
-                        <tr>
-                            <td><strong>비결정성을 받아들여라</strong></td>
-                            <td>AI 출력의 변동성은 기능이지 버그가 아니다. 기능을 제어할 토글을 만들되, 처음부터 과도하게 제약하지 마라.</td>
-                        </tr>
-                        <tr>
-                            <td><strong>안목으로 큐레이션하라</strong></td>
-                            <td>자사 제품을 써보고 구리면 데이터가 필요 없다. 폐기하고 반복하라.</td>
-                        </tr>
-                        <tr>
-                            <td><strong>직접 손을 대라</strong></td>
-                            <td>팀은 NotebookLM을 매일 사용하고 경쟁 제품을 지속적으로 써보며 시장 지형을 파악한다.</td>
-                        </tr>
-                    </tbody>
-                </table>
+            <div class="feature-grid">
+                <div class="feature-card">
+                    <h4>적을수록 좋다</h4>
+                    <p>첫 버전은 커스터마이징 옵션이 없었다. 소스를 업로드하고 버튼만 누르면 됐다. 대부분의 사용자는 "temperature"가 뭔지 모른다.</p>
+                </div>
+                <div class="feature-card">
+                    <h4>실시간 피드백</h4>
+                    <p>65,000명 규모의 Discord 커뮤니티가 내부 모니터링보다 문제를 빨리 보고한다—때로는 구글 자체 모니터링 시스템보다 먼저 다운타임을 알아챈다.</p>
+                </div>
+                <div class="feature-card">
+                    <h4>비결정성을 받아들여라</h4>
+                    <p>AI 출력의 변동성은 버그가 아니라 기능이다. 기능 제어를 위한 토글을 만들되, 처음부터 과도하게 제약하지 마라.</p>
+                </div>
+                <div class="feature-card">
+                    <h4>취향으로 큐레이션</h4>
+                    <p>제품을 써보고 별로면 데이터 확인이 필요 없다. 버리고 반복하라.</p>
+                </div>
+                <div class="feature-card">
+                    <h4>손에 흙을 묻혀라</h4>
+                    <p>팀은 노트북LM을 매일 쓰고 경쟁 제품을 끊임없이 시험해 시장 지형을 파악한다.</p>
+                </div>
             </div>
         </section>
 
-        <!-- Section 13: Final Verdict -->
+        <!-- Section 15: Final Verdict -->
         <section class="content-section fade-in">
             <div class="section-header">
-                <div class="section-number">13</div>
-                <h2 class="section-title">최종 평가<span class="en">WHO SHOULD USE NOTEBOOKLM</span></h2>
+                <div class="section-number">15</div>
+                <h2 class="section-title">최종 평결: 누가 노트북LM을 써야 하는가?<span class="en">FINAL VERDICT</span></h2>
             </div>
 
-            <div class="table-container">
-                <table>
-                    <thead>
-                        <tr>
-                            <th>사용자 유형</th>
-                            <th>추천도</th>
-                            <th>이유</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td><strong>학생/연구자</strong></td>
-                            <td><span class="check">필수</span></td>
-                            <td>교과서 Q&A, 논문 분석, 학습용 팟캐스트</td>
-                        </tr>
-                        <tr>
-                            <td><strong>콘텐츠 크리에이터</strong></td>
-                            <td><span class="check">필수</span></td>
-                            <td>소스 -> 팟캐스트/비디오 파이프라인</td>
-                        </tr>
-                        <tr>
-                            <td><strong>비즈니스 전문가</strong></td>
-                            <td><strong>강력 추천</strong></td>
-                            <td>회의 분석, 입찰 문서, 세일즈 리서치</td>
-                        </tr>
-                        <tr>
-                            <td><strong>개발자</strong></td>
-                            <td>좋은 보조 도구</td>
-                            <td>문서 분석 (코딩은 Claude/ChatGPT가 우수)</td>
-                        </tr>
-                        <tr>
-                            <td><strong>일반 사용자</strong></td>
-                            <td>추천</td>
-                            <td>책 요약, YouTube 영상 분석</td>
-                        </tr>
-                    </tbody>
-                </table>
+            <div class="verdict-grid">
+                <div class="verdict-card">
+                    <div class="icon">📚</div>
+                    <div class="user-type">학생/연구자</div>
+                    <div class="rating">필수</div>
+                    <div class="reason">교과서 Q&A, 논문 분석, 학습 팟캐스트, 데이터 테이블</div>
+                </div>
+                <div class="verdict-card">
+                    <div class="icon">🎙️</div>
+                    <div class="user-type">콘텐츠 크리에이터</div>
+                    <div class="rating">필수</div>
+                    <div class="reason">소스 → 팟캐스트/비디오 파이프라인, 강의 모드 (예정)</div>
+                </div>
+                <div class="verdict-card">
+                    <div class="icon">💼</div>
+                    <div class="user-type">비즈니스 전문가</div>
+                    <div class="rating">강력 추천</div>
+                    <div class="reason">회의 분석, 데이터 테이블 내보내기, 제미나이 통합</div>
+                </div>
+                <div class="verdict-card">
+                    <div class="icon">💻</div>
+                    <div class="user-type">개발자</div>
+                    <div class="rating">좋은 보완재</div>
+                    <div class="reason">문서 분석 (하지만 코딩에는 Claude/ChatGPT가 낫다)</div>
+                </div>
+                <div class="verdict-card">
+                    <div class="icon">🌐</div>
+                    <div class="user-type">일반 사용자</div>
+                    <div class="rating">추천</div>
+                    <div class="reason">책 요약, 유튜브 영상 분석</div>
+                </div>
             </div>
-
-            <h3>"10년에 한 번 나오는 제품" 평가</h3>
 
             <div class="callout">
-                <p>"내 의견으로는, 10년에 한 번 나오는 제품/서비스다."</p>
-                <div class="callout-source">— u/IanWaring</div>
+                <p>"내 생각에 이건 10년에 한 번 나올 제품/서비스다."</p>
+                <div class="callout-source">— u/IanWaring, Reddit</div>
             </div>
 
-            <p>동의하든 말든, <strong>NotebookLM</strong>은 <strong>AI</strong> 리서치 어시스턴트의 새로운 기준을 세웠다. 경쟁사 누구도 따라잡지 못한 <strong>오디오/비디오 오버뷰</strong>와 결합된 <strong>소스 그라운딩</strong> 철학, 그리고 놀라울 정도로 관대한 무료 티어. 문서를 다루고, 복잡한 주제를 공부하고, 콘텐츠를 더 빨리 이해하려는 모든 사람에게 필수 도구다.</p>
+            <p>동의하든 아니든, 노트북LM은 AI 연구 어시스턴트의 새로운 기준을 세웠다. <strong>소스 그라운딩</strong> 철학, 경쟁사가 따라잡지 못한 <strong>오디오/비디오 오버뷰</strong>, 놀랍도록 관대한 무료 티어가 결합되어 문서를 다루거나, 복잡한 주제를 공부하거나, 콘텐츠를 더 빨리 이해하고 싶은 모든 이에게 필수 도구가 됐다.</p>
 
-            <p>업데이트 속도도 늦춰질 기미가 없다. 사용자가 실제로 요청하는 기능을 주 단위로 추가한다. <strong>US$19.99/월</strong>(또는 가벼운 사용은 무료)에 시도하지 않을 이유가 없다.</p>
+            <p>2025년 12월 업데이트—<strong>제미나이 3</strong> 전환, <strong>제미나이</strong> 앱 통합, <strong>데이터 테이블</strong>, 4단계 구독 구조—는 <strong>구글</strong>이 노트북LM을 AI 생태계의 초석으로 배팅하고 있음을 보여준다. 특히 제미나이 통합은 노트북LM을 독립형 연구 도구에서 더 넓은 제미나이 경험의 "메모리" 레이어로 변모시킨다.</p>
 
             <div class="achievement">
-                <div class="achievement-icon">!</div>
+                <div class="achievement-icon">GG</div>
                 <div class="achievement-content">
-                    <div class="achievement-title">ONCE-IN-A-DECADE PRODUCT</div>
-                    <div class="achievement-desc">소스 그라운딩 철학 + 독보적 오디오/비디오 오버뷰 + 관대한 무료 티어 = AI 리서치 어시스턴트의 새로운 기준</div>
+                    <div class="achievement-title">NOTEBOOKLM MASTERY ACHIEVED</div>
+                    <div class="achievement-desc">업데이트 속도는 둔화될 기미가 없다—사용자들이 실제로 요청한 기능을 추가하는 주간 릴리스가 이어지고 있다. 월 19.99달러(또는 가벼운 사용에는 무료)로, 시도하지 않을 이유가 없다.</div>
                 </div>
             </div>
         </section>
@@ -1890,50 +2078,50 @@
                     <div class="reference-category">
                         <h4>OFFICIAL SOURCES</h4>
                         <ul class="reference-list">
-                            <li><a href="https://notebooklm.google.com" target="_blank">notebooklm.google.com</a></li>
-                            <li><a href="https://one.google.com/about/google-ai-plans/" target="_blank">Google AI Plans</a></li>
-                            <li><a href="https://workspaceupdates.googleblog.com/" target="_blank">Workspace Updates Blog</a></li>
-                            <li><a href="https://blog.google/technology/google-labs/" target="_blank">Google Labs Blog</a></li>
+                            <li><a href="https://notebooklm.google.com">NotebookLM 공식 사이트</a></li>
+                            <li><a href="https://one.google.com/about/google-ai-plans/">Google AI Plans</a></li>
+                            <li><a href="https://blog.google/technology/google-labs/notebooklm-data-tables/">NotebookLM Data Tables 발표</a></li>
+                            <li><a href="https://blog.google/products/gemini/gemini-3-flash/">Gemini 3 Flash 소개</a></li>
+                            <li><a href="https://support.google.com/notebooklm/answer/16213268">NotebookLM 구독 정보</a></li>
                         </ul>
                     </div>
                     <div class="reference-category">
-                        <h4>TECHNICAL ANALYSIS</h4>
+                        <h4>TECHNICAL DEEP DIVES</h4>
                         <ul class="reference-list">
-                            <li><a href="https://www.latent.space/p/notebooklm" target="_blank">Latent Space - NotebookLM Deep Dive</a></li>
-                            <li><a href="https://arxiv.org/abs/2504.09720" target="_blank">arXiv - Physics Tutor Analysis</a></li>
-                            <li><a href="https://simonwillison.net/2024/Sep/29/notebooklm-audio-overview/" target="_blank">Simon Willison - Audio Overview</a></li>
+                            <li><a href="https://www.latent.space/p/notebooklm">Latent Space 팟캐스트 인터뷰</a></li>
+                            <li><a href="https://arxiv.org/abs/2504.09720">arXiv - NotebookLM as Physics Tutor</a></li>
+                            <li><a href="https://simonwillison.net/2024/Sep/29/notebooklm-audio-overview/">Simon Willison 분석</a></li>
                         </ul>
                     </div>
                     <div class="reference-category">
                         <h4>COMMUNITY</h4>
                         <ul class="reference-list">
-                            <li><a href="https://www.reddit.com/r/notebooklm/" target="_blank">r/notebooklm</a></li>
-                            <li><a href="https://discord.gg/notebooklm" target="_blank">Discord (65,000+ members)</a></li>
+                            <li><a href="https://www.reddit.com/r/notebooklm/">r/notebooklm</a></li>
+                            <li><a href="https://discord.gg/notebooklm">Discord (65,000명 이상)</a></li>
                         </ul>
                     </div>
                     <div class="reference-category">
                         <h4>NEWS COVERAGE</h4>
                         <ul class="reference-list">
-                            <li><a href="https://www.xda-developers.com/heres-everything-google-added-to-notebooklm-in-november-2025/" target="_blank">XDA Developers - November 2025 Updates</a></li>
-                            <li><a href="https://9to5google.com/2025/11/22/google-ai-pro-ultra-features/" target="_blank">9to5Google - AI Pro Features</a></li>
-                            <li><a href="https://www.androidauthority.com/notebooklm-chat-customization-upgrade-3622570/" target="_blank">Android Authority - Customization Upgrade</a></li>
-                            <li><a href="https://time.com/7094935/google-notebooklm/" target="_blank">TIME - Google NotebookLM</a></li>
+                            <li><a href="https://9to5google.com/2025/12/19/notebooklm-gemini-3-data-tables/">9to5Google - Gemini 3 전환</a></li>
+                            <li><a href="https://9to5google.com/2025/12/17/gemini-app-notebooklm/">9to5Google - Gemini 앱 통합</a></li>
+                            <li><a href="https://time.com/7094935/google-notebooklm/">TIME - NotebookLM 스토리</a></li>
                         </ul>
                     </div>
                 </div>
             </section>
 
             <div class="footer-end">
-                <div class="footer-logo">> PLAYER ONE TECH</div>
+                <div class="footer-logo">PLAYER ONE TECH</div>
                 <p class="footer-text">
-                    YOUR AI RESEARCH PARTNER — GROUNDED IN YOUR SOURCES<br>
+                    NOTEBOOKLM — LEARNING PARADIGM SHIFTED<br>
                     <span class="pixel">PRESS START TO CONTINUE</span>
                 </p>
             </div>
         </div>
     </footer>
 
-    <div class="back-to-top" id="backToTop">^</div>
+    <div class="back-to-top" id="backToTop">↑</div>
     <div class="easter-egg">INSERT COIN</div>
 
     <script>
