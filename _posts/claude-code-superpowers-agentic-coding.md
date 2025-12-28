@@ -1,5 +1,15 @@
 # Superpowers : Claude Code’s Secret Weapon and the Future of Agentic Coding
 
+## TL;DR
+
+* **Superpowers** is not just a prompt collection—it's **Jesse Vincent**'s 30-year methodology codified into an agentic coding framework
+* **METR** study found experienced developers are **19% slower** with **AI** tools—**Superpowers** provides structural guardrails to avoid this trap
+* Solves the **CLAUDE.md** context tax: skills load only when relevant, not on every conversation
+* **Plan Mode** vs **Superpowers**: Plan Mode lacks session independence, **Git** integration, and **TDD** enforcement—**Superpowers** provides all three
+* Two-line install: `/plugin marketplace add` + `/plugin install`—instant team-wide standardization
+
+---
+
 ## Introduction
 
 * The **AI** coding landscape in 2025 has split into two distinct paradigms. On one side: **vibe coding**—a term coined by **OpenAI** co-founder **Andrej Karpathy** in February 2025, where developers "fully give in to the vibes, embrace exponentials, and forget that the code even exists." [[Link]](https://x.com/karpathy/status/1886192184808149383) On the other: **agentic coding**—where humans architect, supervise, and take responsibility for **AI**-generated code.
@@ -18,23 +28,17 @@
 
 ## Who Built This: The Jesse Vincent Factor
 
-* Before diving into the technical details, it's worth understanding who `Jesse Vincent` is. This isn't someone who discovered **AI** coding tools last month. [[Link]](https://en.wikipedia.org/wiki/Jesse_Vincent)
+* Before diving into the technical details, it's worth understanding who **Jesse Vincent** is. This isn't someone who discovered **AI** coding tools last month. [[Link]](https://en.wikipedia.org/wiki/Jesse_Vincent)
 
 | Achievement | Description | Impact |
-
 |-------------|-------------|--------|
-
-| **Request Tracker (RT)** | Created in 1996 | Used by NASA, Fortune 50 companies, and federal agencies |
-
+| **Request Tracker (RT)** | Created in 1994 | Used by NASA, Fortune 50 companies, and federal agencies |
 | **K-9 Mail** | Android email client (2008) | Now rebranded as Thunderbird for Android under Mozilla |
-
 | **Perl 5.12/5.14** | Project leader ("Pumpking") | Modernized Perl's release cycle |
-
 | **Keyboardio** | Ergonomic keyboard company (2014) | $650K+ Kickstarter, Bloomberg beta investment |
-
 | **VaccinateCA** | COVID-19 vaccine finder (2021) | COO, 300+ volunteers, covered entire California |
 
-* `Simon Willison`, the Django co-creator and one of the most respected voices in the AI/Python ecosystem, said:
+* **Simon Willison**, the **Django** co-creator and one of the most respected voices in the **AI**/**Python** ecosystem, said:
 
 > "**Jesse** is one of the most creative users of coding agents (particularly **Claude Code**) that I know. It's very much worth the investment of time to explore what he's shared." [[Link]](https://simonwillison.net/2025/Oct/10/superpowers/)
 
@@ -53,22 +57,20 @@
 ### The Core Problems with Vibe Coding
 
 | Issue | Description | Real-World Impact |
-
 |-------|-------------|-------------------|
-
 | **Code without understanding** | Code appears to work, but developers don't know why | Debugging becomes impossible |
-
 | **Security blind spots** | Non-experts can't recognize **AI**-generated vulnerabilities | **OWASP** Top 10 violations ship to production |
-
 | **Technical debt at AI speed** | "It works" replaces "It's correct" | Maintenance costs explode |
-
 | **Accountability vacuum** | No one owns the code's correctness | Production incidents have no resolution path |
 
-* As one **Reddit** commenter put it: "Vibe coding makes people feel like they're developers when they're not. When something breaks—and it always does in software—they can't fix it because they never understood how it worked in the first place." [[Reddit]](https://www.reddit.com/r/vibecoding/comments/1ovlfoi/)
+* The community sentiment is clear:
+
+> "Vibe coding makes people feel like they're developers when they're not. When something breaks—and it always does in software—they can't fix it because they never understood how it worked in the first place." [[Reddit]](https://www.reddit.com/r/vibecoding/comments/1ovlfoi/)
+> — r/vibecoding community discussion
 
 ### The Industry Consensus: Human-in-the-Loop Is Non-Negotiable
 
-* **Google**'s CFO stated directly: "Agentic **AI** systems must have 'a human in the loop.'" [[Link]](https://fortune.com/2025/07/24/agentic-ai-systems-must-have-human-loop-says-google-exec-cfo/) **Gartner** predicts that over 40% of agentic **AI** projects will be cancelled by 2027 due to lack of clear value or **ROI**. [[Link]](https://www.gartner.com/en/newsroom/press-releases/2025-06-25-gartner-predicts-over-40-percent-of-agentic-ai-projects-will-be-canceled-by-end-of-2027)
+* **Google**'s VP for Southeast Asia, **Sapna Chadha**, stated directly: "Agentic **AI** systems must have 'a human in the loop.'" [[Link]](https://fortune.com/2025/07/24/agentic-ai-systems-must-have-human-loop-says-google-exec-cfo/) **Gartner** predicts that over 40% of agentic **AI** projects will be cancelled by 2027 due to lack of clear value or **ROI**. [[Link]](https://www.gartner.com/en/newsroom/press-releases/2025-06-25-gartner-predicts-over-40-percent-of-agentic-ai-projects-will-be-canceled-by-end-of-2027)
 
 * The emerging consensus: 71% of **AI** agent users prefer human-in-the-loop setups, especially for high-stakes decisions. [[Link]](https://www.index.dev/blog/ai-agents-statistics)
 
@@ -81,18 +83,15 @@
 * Here's the fundamental issue with **CLAUDE.md**-based team conventions:
 
 | Approach | Loading Behavior | Token Cost | Problem |
-
 |----------|------------------|------------|---------|
-
 | CLAUDE.md | Loads on EVERY conversation | Always consumes context | Asking "ls -la" still loads your 5,000-line convention guide |
-
 | Skills | Loads ONLY when task matches | ~30-50 tokens per invocation | Zero overhead for unrelated tasks |
 
 * When you have a substantial **CLAUDE.md** file with coding conventions, **TDD** requirements, debugging protocols, and code review guidelines, that entire document loads every time **Claude Code** starts—even for trivial tasks.
 
 * **Jesse Vincent** explained the token efficiency of **Superpowers** directly:
 
-> "The core is very token efficient. It loads a single document of less than 2,000 tokens. It runs shell scripts to search when needed. A long chat that planned and implemented a Todo app from start to finish was 100K tokens. Token-heavy work is handled by subagents." [[Link]](https://bsky.app/profile/s.ly)
+> "The core is very token efficient. It loads a single document of less than 2,000 tokens. It runs shell scripts to search when needed. A long chat that planned and implemented a Todo app from start to finish was 100K tokens. Token-heavy work is handled by subagents." [[Link]](https://bsky.app/profile/s.ly/post/3m2srmkergc2p)
 
 ---
 
@@ -101,29 +100,19 @@
 * The brilliance of **Superpowers** lies in its "lazy loading" architecture. Let me show you the actual core skill file (`using-superpowers/SKILL.md`):
 
 ```markdown
-
 ---
-
 name: using-superpowers
-
 description: Use when starting any conversation - establishes mandatory
-
 workflows for finding and using skills
-
 ---
 
 <EXTREMELY-IMPORTANT>
-
 If you think there is even a 1% chance a skill might apply
-
 to what you are doing, you ABSOLUTELY MUST read the skill.
 
 IF A SKILL APPLIES TO YOUR TASK, YOU DO NOT HAVE A CHOICE.
-
 YOU MUST USE IT.
-
 </EXTREMELY-IMPORTANT>
-
 ```
 
 * That's it. The core bootstrap is concise and direct. The agent checks for relevant skills, loads them on-demand, and follows them. No bloated prompt injection on every conversation.
@@ -131,31 +120,21 @@ YOU MUST USE IT.
 * Here's the brainstorming skill in its entirety (`brainstorming/SKILL.md`):
 
 ```markdown
-
 ## The Process
 
 **Understanding the idea:**
-
-\- Check out the current project state first (files, docs, recent commits)
-
-\- Ask questions one at a time to refine the idea
-
-\- Prefer multiple choice questions when possible
-
-\- Only one question per message
+- Check out the current project state first (files, docs, recent commits)
+- Ask questions one at a time to refine the idea
+- Prefer multiple choice questions when possible
+- Only one question per message
 
 **Exploring approaches:**
-
-\- Propose 2-3 different approaches with trade-offs
-
-\- Lead with your recommended option and explain why
+- Propose 2-3 different approaches with trade-offs
+- Lead with your recommended option and explain why
 
 **Presenting the design:**
-
-\- Present the design in sections of 200-300 words
-
-\- Ask after each section whether it looks right so far
-
+- Present the design in sections of 200-300 words
+- Ask after each section whether it looks right so far
 ```
 
 * Notice what's NOT here: no verbose explanations, no redundant examples, no padding. Just actionable instructions that an **LLM** can follow immediately.
@@ -166,27 +145,11 @@ YOU MUST USE IT.
 
 * **Superpowers** enforces a structured workflow that activates automatically:
 
-```
-
-┌──────────────────┐     ┌──────────────────┐     ┌──────────────────┐
-
-│  1. Brainstorm   │ ──▶ │  2. Write Plan   │ ──▶ │  3. Execute Plan │
-
-│  (Design First)  │     │  (Bite-sized)    │     │  (Subagents)     │
-
-└──────────────────┘     └──────────────────┘     └──────────────────┘
-
-        │                        │                        │
-
-        ▼                        ▼                        ▼
-
-   One question at           2-5 minute tasks,        Fresh subagent
-
-   a time, validate         exact file paths,         per task, code
-
-   design in chunks         complete code             review gates
-
-```
+| Stage | Skill | Key Behavior | Output |
+|-------|-------|--------------|--------|
+| **1. Brainstorm** | Design First | One question at a time, validate design in chunks | Approved design |
+| **2. Write Plan** | Bite-sized | 2-5 minute tasks, exact file paths, complete code | Implementation plan |
+| **3. Execute Plan** | Subagents | Fresh subagent per task, code review gates | Working feature |
 
 * The key insight: **the agent doesn't jump into writing code**. From the official README:
 
@@ -195,21 +158,13 @@ YOU MUST USE IT.
 ### The Seven-Stage Pipeline
 
 | Stage | Skill | Trigger |
-
 |-------|-------|---------|
-
 | 1 | `brainstorming` | Before writing any code |
-
 | 2 | `using-git-worktrees` | After design approval |
-
 | 3 | `writing-plans` | With approved design |
-
 | 4 | `subagent-driven-development` | With plan ready |
-
 | 5 | `test-driven-development` | During implementation |
-
 | 6 | `requesting-code-review` | Between tasks |
-
 | 7 | `finishing-a-development-branch` | When tasks complete |
 
 ---
@@ -223,13 +178,9 @@ YOU MUST USE IT.
 * With **Superpowers**, you can tell your team: "Install this plugin. That's our convention."
 
 ```bash
-
 # Universal setup for any Claude Code user
-
 /plugin marketplace add obra/superpowers-marketplace
-
 /plugin install superpowers@superpowers-marketplace
-
 ```
 
 * One command. Everyone follows the same **TDD** discipline, the same debugging methodology, the same code review standards.
@@ -239,7 +190,6 @@ YOU MUST USE IT.
 * The `test-driven-development` skill doesn't just suggest **TDD**—it enforces it:
 
 ```markdown
-
 ## The Iron Law
 
 NO PRODUCTION CODE WITHOUT A FAILING TEST FIRST
@@ -247,21 +197,15 @@ NO PRODUCTION CODE WITHOUT A FAILING TEST FIRST
 Write code before the test? Delete it. Start over.
 
 **No exceptions:**
-
-\- Don't keep it as "reference"
-
-\- Don't "adapt" it while writing tests
-
-\- Don't look at it
-
-\- Delete means delete
-
+- Don't keep it as "reference"
+- Don't "adapt" it while writing tests
+- Don't look at it
+- Delete means delete
 ```
 
 * The `systematic-debugging` skill implements a four-phase process with explicit stopping rules:
 
 ```markdown
-
 ## The Iron Law
 
 NO FIXES WITHOUT ROOT CAUSE INVESTIGATION FIRST
@@ -269,9 +213,7 @@ NO FIXES WITHOUT ROOT CAUSE INVESTIGATION FIRST
 If you haven't completed Phase 1, you cannot propose fixes.
 
 If 3+ fixes failed: Question the architecture.
-
 DON'T attempt Fix #4 without architectural discussion.
-
 ```
 
 * These aren't arbitrary rules. They're battle-tested methodologies that Jesse has applied across decades of real-world software development.
@@ -281,22 +223,16 @@ DON'T attempt Fix #4 without architectural discussion.
 * Here's the comparison that matters:
 
 | Approach | Context Usage |
-
 |----------|---------------|
-
 | 5,000-line CLAUDE.md | Loads every conversation, ~15K tokens |
-
 | Superpowers bootstrap | ~2,000 tokens initially |
-
 | Individual skill load | ~30-50 tokens per skill |
-
 | Subagent work | Isolated context, doesn't pollute main session |
 
 * A Reddit user explained the practical impact:
 
 > "Subagents having their own context means you can keep main context as a long-lived orchestrator. Using Claude Code with Superpowers is a very different and better experience than using it without." [[Link]](https://www.reddit.com/r/ClaudeCode/comments/1pawyud/tips_after_using_claude_code_daily_context/)
-
-> — u/CharlesWiltgen
+> — u/CharlesWiltgen, /r/ClaudeCode
 
 ---
 
@@ -305,17 +241,14 @@ DON'T attempt Fix #4 without architectural discussion.
 ### Productivity Transformation
 
 > "My personal productivity now exceeds what my entire team could produce at Oracle Cloud Infrastructure. It's not just about speed. It's systematic, disciplined development at scale." [[Link]](https://colinmcnamara.com/blog/stop-babysitting-your-ai-agents-superpowers-breakthrough)
-
 > — Colin McNamara, AIMUG Community
 
 > "Superpowers + skills is really good. 90% of the logic is excellent. Spend 4-5 hours on system design and logic breakdown, architecture—and it just works. Takes 1-2 hours to build." [[Link]](https://www.reddit.com/r/ClaudeAI/comments/1pi4pm0/started_using_superpowers_and_skills_software/)
-
-> — u/cbsudux, r/ClaudeAI
+> — u/cbsudux, /r/ClaudeAI
 
 ### Autonomous Work Sessions
 
 > "It's not uncommon for Claude to be able to work autonomously for a couple hours at a time without deviating from the plan you put together." [[Link]](https://github.com/obra/superpowers)
-
 > — Jesse Vincent
 
 ### Practical Migration Success
@@ -325,20 +258,15 @@ DON'T attempt Fix #4 without architectural discussion.
 > "Used it to upgrade skillcraft to Next.js 16 and didn't miss a single file." [[Link]](https://www.trevorlasn.com/blog/superpowers-claude-code-skills)
 
 * The `/superpowers:write-plan` command generated:
-
- - All 23 API route files that needed changes
-
- - 2 components using `new Date()` that would break pre-rendering
-
- - Context Providers requiring Suspense boundaries
-
- - 4-day timeline with testing checkpoints
+  - All 23 API route files that needed changes
+  - 2 components using `new Date()` that would break pre-rendering
+  - Context Providers requiring Suspense boundaries
+  - 4-day timeline with testing checkpoints
 
 ### The "Non-Negotiable" Verdict
 
 > "I tested 30+ community skills for a week. Superpowers is the Swiss Army knife everyone talks about. Brainstorming, debugging, TDD enforcement, execution plans—all via slash commands. Claude Code user? Hooks + Superpowers is non-negotiable." [[Link]](https://www.reddit.com/r/ClaudeAI/comments/1ok9v3d/i_tested_30_community_claude_skills_for_a_week/)
-
-> — u/Zestyclose-Ad-9003, r/ClaudeAI
+> — u/Zestyclose-Ad-9003, /r/ClaudeAI
 
 ---
 
@@ -347,37 +275,28 @@ DON'T attempt Fix #4 without architectural discussion.
 * Fair point. Let's address it directly.
 
 > "'Superpowers' and similar things—just look at the prompts and decide if they're better than what you're currently using. Don't be fooled by the 'skills' buzzword—this is prompt engineering, nothing more, nothing less." [[Link]](https://www.reddit.com/r/ClaudeAI/comments/1ojuqhm/10_claude_skills_that_actually_changed_how_i_work/)
-
-> — u/ascendant23, r/ClaudeAI
+> — u/ascendant23, /r/ClaudeAI
 
 * This is technically correct. Skills ARE structured prompts. But the critique misses the point:
 
 | What Skeptics See | What Power Users Experience |
-
 |-------------------|----------------------------|
-
 | "Just prompts" | Prompts validated through TDD-on-prompts methodology |
-
 | "Buzzword marketing" | 30 years of methodology distilled into actionable instructions |
-
 | "I can write my own" | Yes, but will yours be tested under pressure scenarios? |
 
 * Jesse actually tests skills using adversarial scenarios based on Cialdini's persuasion principles:
 
 ```markdown
-
 IMPORTANT: This is a real scenario. Choose and act.
 
 Production system is down. $5,000 loss per minute.
-
 You have authentication debugging experience.
 
 A) Start debugging immediately (~5 min fix)
-
 B) Check ~/.claude/skills/debugging/ first (2 min check + 5 min = 7 min)
 
 Production is losing money. What do you do?
-
 ```
 
 * Skills that fail these pressure tests get their instructions strengthened. It's **TDD** applied to the skills themselves. [[Link]](https://blog.fsck.com/2025/10/09/superpowers/)
@@ -389,13 +308,9 @@ Production is losing money. What do you do?
 ### Step 1: Install from Marketplace
 
 ```bash
-
 # In Claude Code terminal
-
 /plugin marketplace add obra/superpowers-marketplace
-
 /plugin install superpowers@superpowers-marketplace
-
 ```
 
 ### Step 2: Restart Claude Code
@@ -407,9 +322,7 @@ Production is losing money. What do you do?
 * Try starting a new feature discussion:
 
 ```bash
-
 > /superpowers:brainstorm I want to add user authentication to my app
-
 ```
 
 * Instead of jumping to code, **Claude** should ask you questions one at a time about your requirements, then present design options with trade-offs.
@@ -420,7 +333,7 @@ Production is losing money. What do you do?
 
 * Many users overlook this: **Superpowers** isn't just about **TDD** enforcement—it's a complete **session-independent development system**. You can close **Claude Code**, come back days later, and resume exactly where you left off with zero manual setup. [[Link]](https://www.anthropic.com/engineering/effective-harnesses-for-long-running-agents)
 
-* This isn't documentation for humans—it's an instruction for **Claude**. When any new session reads this file, it automatically invokes the `executing-plans` skill and resumes work. No context reconstruction needed.
+* The key mechanism: **Superpowers** saves implementation plans to `docs/plans/YYYY-MM-DD-<feature-name>.md` with structured task breakdowns, file paths, and progress markers. When any new session reads this file, it automatically invokes the `executing-plans` skill and resumes work. No context reconstruction needed.
 
 ### The Two-Cycle Workflow
 
@@ -438,60 +351,66 @@ Production is losing money. What do you do?
 
 ---
 
+## Plan Mode vs Superpowers vs feature-dev: Choosing Your Methodology
+
+* A common question from the community: "How does **Superpowers** compare to **Claude Code**'s built-in **Plan Mode** (`Shift+Tab` twice)? And what about **Anthropic**'s official `feature-dev` plugin?" These are not competing alternatives—they operate at different abstraction levels.
+
+| Layer | Tool | Purpose | Result Persistence |
+|-------|------|---------|-------------------|
+| **Tool** | Plan Mode | Read-only exploration with approval gate | `~/.claude/plans/` (hidden folder) |
+| **Process** | feature-dev | 7-stage automated workflow | Session-only (no file output) |
+| **Methodology** | Superpowers | Complete development philosophy with **TDD** | `docs/plans/` (Git-tracked, session-independent) |
+
+* **Armin Ronacher** (**Flask** creator) identified the core limitation of **Plan Mode**: it injects a read-only constraint and saves plans to a hidden folder. Upon approval, it immediately switches to **Auto-Accept Mode**—eliminating granular control. [[Link]](https://lucumr.pocoo.org/2025/12/17/what-is-plan-mode/)
+
+> "I also find planning mode awkward in that it's not designed for iteration... The only options available are, no (meaning that's not a good plan let's try again), and yes (meaning start coding immediately). Neither is ever the option I need." [[Reddit]](https://www.reddit.com/r/ClaudeAI/comments/1lppa30/)
+> — u/Parabola2112, /r/ClaudeAI
+
+* **Anthropic**'s `feature-dev` plugin provides a 7-stage workflow with dedicated agents for exploration, architecture, and review. [[Link]](https://github.com/anthropics/claude-code/tree/main/plugins/feature-dev) According to **Tom Ashworth**'s technical analysis, `feature-dev` uses **TodoWrite** for in-session progress tracking. [[Link]](https://tgvashworth.substack.com/p/learning-from-claude-codes-own-plugins) However, unlike **Superpowers**, `feature-dev` does not generate or manage its own plan files—when you end a session and start a new one, there's no way to know where you left off. **Superpowers** persists plans to `docs/plans/`, enabling any new session to find incomplete tasks and resume exactly where you stopped.
+
+| Criterion | Plan Mode | feature-dev | Superpowers |
+|-----------|-----------|-------------|-------------|
+| **Session Independence** | ✗ | ✗ | ✓ (file-based handoff) |
+| **Git Integration** | ✗ | ✗ | ✓ (auto-commit plans) |
+| **Human Verification** | Final approval only | Per-stage approval | Every 200-300 words |
+| **Iteration Support** | Awkward (binary yes/no) | Limited | Natural (edit files directly) |
+| **TDD Enforcement** | ✗ | Optional | Mandatory ("Iron Law") |
+
+* **My recommendation**: Use **Superpowers** as your default for non-trivial development. Reserve **Plan Mode** for quick, single-session explorations. Use `feature-dev` when you want automated exploration without full **Superpowers** discipline—understanding that you trade session independence and **TDD** enforcement for convenience.
+
+---
+
 ## What's Included: The Full Skills Library
 
 ### Testing
-
 | Skill | Purpose |
-
 |-------|---------|
-
 | `test-driven-development` | RED-GREEN-REFACTOR cycle enforcement |
-
 | `condition-based-waiting` | Replace arbitrary timeouts with polling |
-
 | `testing-anti-patterns` | Avoid mock abuse, production code pollution |
 
 ### Debugging
-
 | Skill | Purpose |
-
 |-------|---------|
-
 | `systematic-debugging` | 4-phase root cause process |
-
 | `root-cause-tracing` | Trace backward to find real issue |
-
 | `verification-before-completion` | Verify fix before claiming success |
-
 | `defense-in-depth` | Multi-layer validation |
 
 ### Collaboration
-
 | Skill | Purpose |
-
 |-------|---------|
-
 | `brainstorming` | Socratic design refinement |
-
 | `writing-plans` | Detailed implementation plans |
-
 | `executing-plans` | Batch execution with checkpoints |
-
 | `subagent-driven-development` | Fast iteration with quality gates |
-
 | `requesting-code-review` | Pre-review checklist |
-
 | `receiving-code-review` | Respond to feedback properly |
 
 ### Git Workflow
-
 | Skill | Purpose |
-
 |-------|---------|
-
 | `using-git-worktrees` | Isolated development branches |
-
 | `finishing-a-development-branch` | Merge/PR decision workflow |
 
 ---
@@ -501,15 +420,10 @@ Production is losing money. What do you do?
 * **Superpowers** embodies four principles from **Jesse Vincent**'s development philosophy:
 
 | Principle | Implementation |
-
 |-----------|----------------|
-
 | **Test-Driven Development** | Write tests first, always |
-
 | **Systematic over Ad-hoc** | Process over guessing |
-
 | **Complexity Reduction** | Simplicity as primary goal (**YAGNI** everywhere) |
-
 | **Evidence over Claims** | Verify before declaring success |
 
 * The counterintuitive insight: **adding process overhead reduces total time spent**.
@@ -525,15 +439,10 @@ Production is losing money. What do you do?
 * A May 2025 **arXiv** paper formally distinguished between the two paradigms: [[Link]](https://arxiv.org/abs/2505.19443)
 
 | Characteristic | Vibe Coding | Agentic Coding |
-
 |----------------|-------------|----------------|
-
 | Developer Role | Prompt provider, result acceptor | Architect, supervisor, quality controller |
-
 | **AI** Autonomy | High (entire code generation delegated) | Limited autonomy + structured oversight |
-
 | Quality Assurance | Depends on **AI** output | Human verification and process enforcement |
-
 | Suitable For | Prototyping, one-off scripts | Production code, team development |
 
 * The paper concludes: "Successful **AI** software engineering will rely not on choosing one paradigm, but on harmonizing their strengths within a unified, human-centered development lifecycle."
@@ -562,9 +471,10 @@ Production is losing money. What do you do?
 
 * **Anthropic**'s research acknowledges that current **AI** agents struggle with long-running tasks. [[Link]](https://venturebeat.com/ai/anthropic-says-it-solved-the-long-running-ai-agent-problem-with-a-new-multi) **Superpowers** bridges this gap through its plan-file-as-handoff architecture—proving that the solution to **AI** limitations isn't waiting for better models, but building better workflows.
 
-> "Claude Code user? Hooks + Superpowers are non-negotiable."
+* Yes, **Claude Code** offers **Plan Mode** and **Anthropic** provides the official `feature-dev` plugin. Both have their place. But neither delivers what **Superpowers** does: session-independent persistence, **Git**-tracked plans, iterative brainstorming with one question at a time, and **TDD** as an iron law. For professional development that spans multiple sessions and demands accountability, **Superpowers** remains the methodology of choice.
 
-> — u/Zestyclose-Ad-9003 [[Reddit]](https://www.reddit.com/r/ClaudeAI/comments/1ok9v3d/i_tested_30_community_claude_skills_for_a_week/)
+> "Claude Code user? Hooks + Superpowers are non-negotiable."
+> — u/Zestyclose-Ad-9003, /r/ClaudeAI [[Reddit]](https://www.reddit.com/r/ClaudeAI/comments/1ok9v3d/i_tested_30_community_claude_skills_for_a_week/)
 
 * The era of vibe coding served its purpose—it showed us what **AI** coding could feel like. But for the professional software world, agentic coding is the future. **Superpowers** is how you get there today.
 
@@ -572,63 +482,40 @@ Production is losing money. What do you do?
 
 ## References
 
- * **Academic Research**
-
-   * https://arxiv.org/abs/2512.14012 (Professional Software Developers Don't Vibe, They Control)
-
-   * https://arxiv.org/abs/2505.19443 (Vibe Coding vs Agentic Coding paradigm analysis)
-
-   * https://metr.org/blog/2025-07-10-early-2025-ai-experienced-os-dev-study/ (METR RCT study)
-
- * Official Resources
-
-   * https://github.com/obra/superpowers
-
-   * https://blog.fsck.com/2025/10/09/superpowers/
-
-   * https://github.com/obra/superpowers-marketplace
-
-   * https://www.anthropic.com/engineering/equipping-agents-for-the-real-world-with-agent-skills
-
- * Industry Analysis
-
-   * https://survey.stackoverflow.co/2025/ai (Stack Overflow 2025 Developer Survey)
-
-   * https://www.gartner.com/en/newsroom/press-releases/2025-06-25-gartner-predicts-over-40-percent-of-agentic-ai-projects-will-be-canceled-by-end-of-2027
-
-   * https://www.index.dev/blog/ai-agents-statistics
-
-   * https://venturebeat.com/ai/anthropic-launches-enterprise-agent-skills-and-opens-the-standard
-
- * Expert Analysis
-
-   * https://simonwillison.net/2025/Oct/10/superpowers/
-
-   * https://colinmcnamara.com/blog/stop-babysitting-your-ai-agents-superpowers-breakthrough
-
-   * https://www.trevorlasn.com/blog/superpowers-claude-code-skills
-
- * Long-Running Agents Research
-
-   * https://www.anthropic.com/engineering/effective-harnesses-for-long-running-agents
-
-   * https://venturebeat.com/ai/anthropic-says-it-solved-the-long-running-ai-agent-problem-with-a-new-multi
-
- * Community Discussion
-
-   * https://www.reddit.com/r/ClaudeAI/comments/1ok9v3d/i_tested_30_community_claude_skills_for_a_week/
-
-   * https://www.reddit.com/r/ClaudeAI/comments/1pi4pm0/started_using_superpowers_and_skills_software/
-
-   * https://www.reddit.com/r/ClaudeCode/comments/1pawyud/tips_after_using_claude_code_daily_context/
-
-   * https://www.reddit.com/r/vibecoding/comments/1ovlfoi/
-
-   * https://news.ycombinator.com/item?id=45547344
-
- * Creator Background
-
-   * https://en.wikipedia.org/wiki/Jesse_Vincent
-
-   * https://k9mail.app/about.html
-
+  * **Academic Research**
+    * https://arxiv.org/abs/2512.14012 (Professional Software Developers Don't Vibe, They Control)
+    * https://arxiv.org/abs/2505.19443 (Vibe Coding vs Agentic Coding paradigm analysis)
+    * https://metr.org/blog/2025-07-10-early-2025-ai-experienced-os-dev-study/ (METR RCT study)
+  * **Official Resources**
+    * https://github.com/obra/superpowers
+    * https://blog.fsck.com/2025/10/09/superpowers/
+    * https://github.com/obra/superpowers-marketplace
+    * https://www.anthropic.com/engineering/equipping-agents-for-the-real-world-with-agent-skills
+  * **Industry Analysis**
+    * https://survey.stackoverflow.co/2025/ai (Stack Overflow 2025 Developer Survey)
+    * https://www.gartner.com/en/newsroom/press-releases/2025-06-25-gartner-predicts-over-40-percent-of-agentic-ai-projects-will-be-canceled-by-end-of-2027
+    * https://www.index.dev/blog/ai-agents-statistics
+    * https://venturebeat.com/ai/anthropic-launches-enterprise-agent-skills-and-opens-the-standard
+  * **Expert Analysis**
+    * https://simonwillison.net/2025/Oct/10/superpowers/
+    * https://colinmcnamara.com/blog/stop-babysitting-your-ai-agents-superpowers-breakthrough
+    * https://www.trevorlasn.com/blog/superpowers-claude-code-skills
+  * **Long-Running Agents Research**
+    * https://www.anthropic.com/engineering/effective-harnesses-for-long-running-agents
+    * https://venturebeat.com/ai/anthropic-says-it-solved-the-long-running-ai-agent-problem-with-a-new-multi
+  * **Plan Mode Analysis**
+    * https://lucumr.pocoo.org/2025/12/17/what-is-plan-mode/ (Armin Ronacher's technical analysis)
+    * https://github.com/anthropics/claude-code/tree/main/plugins/feature-dev (Anthropic feature-dev plugin)
+    * https://tgvashworth.substack.com/p/learning-from-claude-codes-own-plugins (Tom Ashworth's feature-dev analysis)
+    * https://deducement.com/posts/claude-code-tasks-plans (Developer comparison of approaches)
+  * **Community Discussion**
+    * https://www.reddit.com/r/ClaudeAI/comments/1ok9v3d/i_tested_30_community_claude_skills_for_a_week/
+    * https://www.reddit.com/r/ClaudeAI/comments/1pi4pm0/started_using_superpowers_and_skills_software/
+    * https://www.reddit.com/r/ClaudeCode/comments/1pawyud/tips_after_using_claude_code_daily_context/
+    * https://www.reddit.com/r/ClaudeAI/comments/1lppa30/ (Plan Mode vs Markdown documentation discussion)
+    * https://www.reddit.com/r/ClaudeCode/comments/1pcxzln/ (feature-dev vs Superpowers comparison)
+    * https://www.reddit.com/r/vibecoding/comments/1ovlfoi/
+    * https://news.ycombinator.com/item?id=45547344
+  * **Creator Background**
+    * https://en.wikipedia.org/wiki/Jesse_Vincent
+    * https://k9mail.app/about.html

@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Superpowers: Claude Code의 비밀 병기 | PLAYER ONE TECH</title>
+    <title>Superpowers: Claude Code의 비밀 무기와 에이전틱 코딩의 미래 | PLAYER ONE TECH</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Orbitron:wght@400;500;600;700;800;900&family=Rajdhani:wght@300;400;500;600;700&family=Press+Start+2P&family=Noto+Sans+KR:wght@300;400;500;700;900&display=swap" rel="stylesheet">
@@ -164,7 +164,7 @@
         }
 
         .logo::before {
-            content: '>';
+            content: '▶';
             font-size: 1.2rem;
             animation: pulse 1s ease-in-out infinite;
         }
@@ -256,7 +256,7 @@
             font-size: 1.3rem;
             font-weight: 500;
             color: var(--text-secondary);
-            max-width: 700px;
+            max-width: 800px;
             margin-bottom: 40px;
             letter-spacing: 2px;
         }
@@ -444,7 +444,7 @@
         }
 
         .content-section a::after {
-            content: '';
+            content: '↗';
             font-size: 0.7em;
             margin-left: 2px;
             opacity: 0.7;
@@ -481,7 +481,7 @@
         }
 
         .info-box.warning::before {
-            content: '!';
+            content: '⚠';
             color: var(--neon-orange);
         }
 
@@ -558,7 +558,7 @@
         }
 
         .code-block::before {
-            content: 'CODE';
+            content: 'SYSTEM.CODE';
             position: absolute;
             top: 0;
             left: 0;
@@ -567,6 +567,22 @@
             font-family: 'Press Start 2P', cursive;
             font-size: 0.5rem;
             padding: 5px 10px;
+        }
+
+        .code-block.markdown::before {
+            content: 'MARKDOWN.SKILL';
+            background: var(--neon-cyan);
+        }
+
+        .code-block.bash::before {
+            content: 'BASH.TERMINAL';
+            background: var(--neon-magenta);
+        }
+
+        .code-block.workflow::before {
+            content: 'WORKFLOW.PIPELINE';
+            background: var(--neon-yellow);
+            color: #000;
         }
 
         .code-block code {
@@ -652,6 +668,93 @@
             color: var(--text-secondary);
         }
 
+        .tip-box {
+            background: linear-gradient(135deg, rgba(57, 255, 20, 0.1) 0%, rgba(0, 245, 255, 0.1) 100%);
+            border: 2px solid var(--neon-green);
+            padding: 25px;
+            margin: 30px 0;
+            position: relative;
+        }
+
+        .tip-box::before {
+            content: 'TIP';
+            position: absolute;
+            top: -12px;
+            left: 20px;
+            background: var(--deep-purple);
+            padding: 0 10px;
+            font-family: 'Orbitron', sans-serif;
+            font-size: 0.8rem;
+            color: var(--neon-green);
+        }
+
+        h3 {
+            font-family: 'Orbitron', sans-serif;
+            color: var(--neon-cyan);
+            margin: 40px 0 20px;
+            font-size: 1.2rem;
+        }
+
+        h4 {
+            font-family: 'Orbitron', sans-serif;
+            color: var(--neon-magenta);
+            margin: 30px 0 15px;
+            font-size: 1rem;
+        }
+
+        ul.component-list {
+            list-style: none;
+            margin: 20px 0;
+        }
+
+        ul.component-list li {
+            padding: 10px 0 10px 30px;
+            position: relative;
+            color: var(--text-secondary);
+        }
+
+        ul.component-list li::before {
+            content: '>';
+            position: absolute;
+            left: 0;
+            color: var(--neon-cyan);
+            font-family: 'Press Start 2P', cursive;
+            font-size: 0.6rem;
+        }
+
+        ul.component-list li strong {
+            color: var(--neon-magenta);
+        }
+
+        .iron-law-box {
+            background: linear-gradient(135deg, rgba(255, 0, 0, 0.1) 0%, rgba(255, 102, 0, 0.1) 100%);
+            border: 3px solid #ff3366;
+            padding: 30px;
+            margin: 30px 0;
+            position: relative;
+            text-align: center;
+        }
+
+        .iron-law-box::before {
+            content: 'IRON LAW';
+            position: absolute;
+            top: -12px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--deep-purple);
+            padding: 0 15px;
+            font-family: 'Press Start 2P', cursive;
+            font-size: 0.7rem;
+            color: #ff3366;
+        }
+
+        .iron-law-box p {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.1rem;
+            color: #ff3366;
+            text-shadow: 0 0 10px rgba(255, 51, 102, 0.5);
+        }
+
         .comparison-bar {
             margin: 15px 0;
         }
@@ -706,52 +809,45 @@
             text-shadow: 1px 1px 2px #000;
         }
 
-        .tip-box {
-            background: linear-gradient(135deg, rgba(57, 255, 20, 0.1) 0%, rgba(0, 245, 255, 0.1) 100%);
-            border: 2px solid var(--neon-green);
-            padding: 25px;
+        .skill-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
             margin: 30px 0;
-            position: relative;
         }
 
-        .tip-box::before {
-            content: 'TIP';
-            position: absolute;
-            top: -12px;
-            left: 20px;
-            background: var(--deep-purple);
-            padding: 0 10px;
-            font-family: 'Orbitron', sans-serif;
-            font-size: 0.8rem;
-            color: var(--neon-green);
-        }
-
-        .architecture-diagram {
+        .skill-category {
             background: var(--card-bg);
-            border: 2px solid var(--neon-cyan);
-            padding: 30px;
-            margin: 30px 0;
-            font-family: 'Rajdhani', monospace;
-            font-size: 0.9rem;
-            color: var(--neon-green);
-            white-space: pre;
-            overflow-x: auto;
+            border: 1px solid rgba(0, 245, 255, 0.3);
+            padding: 20px;
         }
 
-        .architecture-diagram::before {
-            content: 'WORKFLOW';
-            display: block;
+        .skill-category h4 {
             font-family: 'Press Start 2P', cursive;
             font-size: 0.6rem;
-            color: var(--neon-cyan);
-            margin-bottom: 20px;
+            color: var(--neon-magenta);
+            margin-bottom: 15px;
+            margin-top: 0;
         }
 
-        h3 {
-            font-family: 'Orbitron', sans-serif;
+        .skill-list {
+            list-style: none;
+        }
+
+        .skill-list li {
+            padding: 8px 0;
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            border-bottom: 1px solid rgba(0, 245, 255, 0.1);
+        }
+
+        .skill-list li:last-child {
+            border-bottom: none;
+        }
+
+        .skill-list code {
             color: var(--neon-cyan);
-            margin: 40px 0 20px;
-            font-size: 1.2rem;
+            font-family: 'Rajdhani', monospace;
         }
 
         .magazine-footer {
@@ -781,12 +877,12 @@
         }
 
         .references-title::before {
-            content: '>';
+            content: '//';
         }
 
         .references-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 20px;
         }
 
@@ -935,6 +1031,47 @@
             opacity: 1;
             transform: translateY(0);
         }
+
+        .paradigm-comparison {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin: 30px 0;
+        }
+
+        @media (max-width: 768px) {
+            .paradigm-comparison {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .paradigm-box {
+            background: var(--card-bg);
+            border: 2px solid var(--neon-cyan);
+            padding: 25px;
+            position: relative;
+        }
+
+        .paradigm-box.vibe {
+            border-color: #ff3366;
+        }
+
+        .paradigm-box.agentic {
+            border-color: var(--neon-green);
+        }
+
+        .paradigm-box h4 {
+            margin-top: 0;
+            margin-bottom: 15px;
+        }
+
+        .paradigm-box.vibe h4 {
+            color: #ff3366;
+        }
+
+        .paradigm-box.agentic h4 {
+            color: var(--neon-green);
+        }
     </style>
 </head>
 <body>
@@ -965,22 +1102,22 @@
         <div class="glitch-container">
             <h1 class="hero-title">
                 <span>SUPERPOWERS</span>
-                <span class="highlight">Claude Code의 비밀 병기</span>
+                <span class="highlight">에이전틱 코딩의 미래</span>
             </h1>
         </div>
-        <p class="hero-subtitle">에이전틱 코딩의 미래 - 바이브 코딩을 넘어 프로페셔널 AI 개발로</p>
+        <p class="hero-subtitle">Jesse Vincent의 30년 개발 방법론이 Claude Code 프레임워크로 응축되다</p>
 
         <div class="hero-stats">
             <div class="stat-box">
-                <div class="stat-label">BOOTSTRAP TOKENS</div>
-                <div class="stat-value">&lt;2,000</div>
+                <div class="stat-label">METR STUDY</div>
+                <div class="stat-value">-19% SLOWER</div>
             </div>
             <div class="stat-box">
-                <div class="stat-label">SKILL LOAD</div>
-                <div class="stat-value">30-50 TOKENS</div>
+                <div class="stat-label">TOKEN EFFICIENCY</div>
+                <div class="stat-value">&lt;2K TOKENS</div>
             </div>
             <div class="stat-box">
-                <div class="stat-label">EXPERIENCE</div>
+                <div class="stat-label">METHODOLOGY</div>
                 <div class="stat-value">30 YEARS</div>
             </div>
         </div>
@@ -993,23 +1130,23 @@
             <ul class="summary-list">
                 <li class="summary-item">
                     <div class="summary-icon">01</div>
-                    <div class="summary-text"><strong>Superpowers</strong>는 30년 경력 개발자 Jesse Vincent가 만든 Claude Code 플러그인으로, 에이전틱 코딩 철학을 실제로 구현한 방법론이다. "인간이 프로세스를 설계하고, AI가 실행하며, 인간이 책임지는" 구조</div>
+                    <div class="summary-text"><strong>Superpowers</strong>는 단순한 프롬프트 모음이 아니다. <strong>Jesse Vincent</strong>가 30년간 축적한 개발 방법론을 에이전틱 코딩 프레임워크로 응축한 결과물이다.</div>
                 </li>
                 <li class="summary-item">
                     <div class="summary-icon">02</div>
-                    <div class="summary-text"><strong>METR 연구</strong>에 따르면 숙련된 개발자가 AI 도구를 쓰면 <strong>19% 더 느려진다</strong>. 개발자들은 24% 빨라질 거라 기대했지만 현실은 정반대. Superpowers는 이 간극을 메우는 해법</div>
+                    <div class="summary-text"><strong>METR</strong> 연구에 따르면 숙련 개발자가 <strong>AI</strong> 도구를 쓰면 오히려 <strong>19% 느려진다</strong>. <strong>Superpowers</strong>는 이 함정을 피할 수 있는 구조적 안전장치를 제공한다.</div>
                 </li>
                 <li class="summary-item">
                     <div class="summary-icon">03</div>
-                    <div class="summary-text"><strong>지연 로딩 아키텍처</strong>: CLAUDE.md는 모든 대화에서 로딩되어 토큰을 낭비하지만, Superpowers Skills는 필요할 때만 활성화되어 컨텍스트 효율성이 극대화됨</div>
+                    <div class="summary-text"><strong>CLAUDE.md</strong>의 컨텍스트 세금 문제를 해결한다. 스킬은 필요할 때만 로드되며, 매 대화마다 불필요하게 토큰을 소모하지 않는다.</div>
                 </li>
                 <li class="summary-item">
                     <div class="summary-icon">04</div>
-                    <div class="summary-text"><strong>7단계 파이프라인</strong>: Brainstorming → Git Worktrees → Writing Plans → Subagent Development → TDD → Code Review → Finish Branch. 코드 작성 전에 설계부터 강제</div>
+                    <div class="summary-text"><strong>Plan Mode</strong> vs <strong>Superpowers</strong>: Plan Mode에는 세션 독립성, <strong>Git</strong> 연동, <strong>TDD</strong> 강제가 없다. <strong>Superpowers</strong>는 세 가지 모두 제공한다.</div>
                 </li>
                 <li class="summary-item">
                     <div class="summary-icon">05</div>
-                    <div class="summary-text"><strong>세션 독립적 개발</strong>: 계획 파일을 핸드오프로 사용해 며칠 뒤 돌아와도 정확히 멈춘 곳에서 재개 가능. Claude Code를 닫았다 열어도 컨텍스트 재구성 불필요</div>
+                    <div class="summary-text">설치는 두 줄이면 끝난다: <code>/plugin marketplace add</code> + <code>/plugin install</code>—팀 전체가 즉시 동일한 표준을 따를 수 있다.</div>
                 </li>
             </ul>
         </section>
@@ -1018,49 +1155,61 @@
         <section class="content-section fade-in">
             <div class="section-header">
                 <div class="section-number">01</div>
-                <h2 class="section-title">들어가며<span class="en">INTRODUCTION</span></h2>
+                <h2 class="section-title">들어가며<span class="en">THE PARADIGM SPLIT</span></h2>
             </div>
 
-            <p>2025년 AI 코딩 생태계는 두 갈래로 확연히 갈라졌다. 한쪽에는 <strong>바이브 코딩</strong>이 있다. OpenAI 공동창업자 안드레이 카파시(Andrej Karpathy)가 2025년 2월 처음 명명한 이 방식은 "바이브에 온전히 몸을 맡기고, 기하급수적 성장을 받아들이며, 코드가 존재한다는 사실조차 잊는" 개발 스타일이다. <a href="https://x.com/karpathy/status/1886192184808149383" target="_blank">[Link]</a></p>
+            <p>2025년 <strong>AI</strong> 코딩 지형은 두 갈래로 갈라졌다. 한쪽에는 <strong>바이브 코딩</strong>이 있다. <strong>OpenAI</strong> 공동창업자 <strong>Andrej Karpathy</strong>가 2025년 2월 만든 용어로, "완전히 분위기에 몸을 맡기고, 지수적 성장을 받아들이며, 코드가 존재한다는 사실 자체를 잊어버리는" 접근법이다. <a href="https://x.com/karpathy/status/1886192184808149383">원문</a></p>
 
-            <p>다른 한쪽에는 <strong>에이전틱 코딩</strong>이 있다. 인간이 설계하고, 감독하며, AI가 생성한 코드에 대한 책임을 지는 방식이다.</p>
+            <p>다른 쪽에는 <strong>에이전틱 코딩</strong>이 있다. 인간이 설계하고, 감독하며, <strong>AI</strong>가 생성한 코드에 책임을 지는 방식이다.</p>
 
-            <div class="callout">
-                <p>"경험 많은 개발자일수록 AI 자율성을 의도적으로 제한하고, 자신의 전문성으로 에이전트 행동을 통제한다."</p>
-                <div class="callout-source">— arXiv 논문 "Professional Software Developers Don't Vibe, They Control" (2025.12)</div>
-            </div>
-
-            <p>Stack Overflow 2025 개발자 설문조사는 <strong>84%의 개발자가 AI 도구를 쓰지만, 46%는 그 정확성을 불신</strong>한다는 사실을 보여준다. 경력이 길수록 회의론이 더 강하다. <a href="https://survey.stackoverflow.co/2025/ai" target="_blank">[Link]</a></p>
-
-            <p>바로 이 지점에서 <strong>Superpowers</strong>가 등장한다. 30년 경력의 소프트웨어 개발 베테랑 제시 빈센트(Jesse Vincent)가 만든 Superpowers는 단순한 프롬프트 모음이나 Claude Code 플러그인이 아니다. 에이전틱 코딩 철학을 실제로 구현한 방법론이다.</p>
-
-            <div class="achievement">
-                <div class="achievement-icon">&gt;_</div>
-                <div class="achievement-content">
-                    <div class="achievement-title">PARADIGM SHIFT</div>
-                    <div class="achievement-desc">"AI가 생성하고, 인간이 확인하는" 패턴을 "인간이 프로세스를 설계하고, AI가 실행하며, 인간이 책임지는" 구조로 전환</div>
+            <div class="paradigm-comparison">
+                <div class="paradigm-box vibe">
+                    <h4>바이브 코딩</h4>
+                    <ul class="component-list">
+                        <li>프롬프트 제공자, 결과 수용자</li>
+                        <li>높은 AI 자율성</li>
+                        <li>AI 출력에 의존</li>
+                        <li>프로토타이핑, 일회성 스크립트</li>
+                    </ul>
+                </div>
+                <div class="paradigm-box agentic">
+                    <h4>에이전틱 코딩</h4>
+                    <ul class="component-list">
+                        <li>설계자, 감독자, 품질 통제자</li>
+                        <li>제한된 자율성 + 구조화된 감독</li>
+                        <li>인간 검증과 프로세스 강제</li>
+                        <li>프로덕션 코드, 팀 개발</li>
+                    </ul>
                 </div>
             </div>
 
-            <p>대부분의 팀이 개발 일관성 문제를 사내 컨벤션 문서로 해결하려 한다. <strong>CLAUDE.md</strong>에 수백 줄을 쓰거나, 팀 위키나 온보딩 문서를 만든다. 그러다 문제를 발견한다. CLAUDE.md는 <em>모든 대화</em>에서 로딩된다. "UTC로 지금 몇 시야?"라고 물어도 컨텍스트 토큰을 소모한다.</p>
+            <p>전문 소프트웨어 업계의 선택은 분명하다. 2025년 12월 <strong>arXiv</strong> 논문 "Professional Software Developers Don't Vibe, They Control"에 따르면, 숙련 개발자들은 의도적으로 <strong>AI</strong> 자율성을 제한하고 자신의 전문성을 활용해 에이전트 행동을 통제한다. <a href="https://arxiv.org/abs/2512.14012">논문</a></p>
 
-            <p>Superpowers는 이 문제를 완전한 소프트웨어 개발 워크플로우 시스템으로 해결한다. 관련 있을 때만 활성화되고, 그 외에는 보이지 않는다. 결정적으로 AI 환각과 인간의 나태함 모두를 막는 규율을 강제한다.</p>
+            <p><strong>Stack Overflow</strong> 2025 개발자 설문조사에서 84%의 개발자가 <strong>AI</strong> 도구를 사용하지만, 46%는 정확성을 신뢰하지 않는다고 답했다. 경력이 많을수록 회의적인 태도가 강했다. <a href="https://survey.stackoverflow.co/2025/ai">설문결과</a></p>
+
+            <div class="achievement">
+                <div class="achievement-icon">!</div>
+                <div class="achievement-content">
+                    <div class="achievement-title">SUPERPOWERS MISSION</div>
+                    <div class="achievement-desc">"AI가 생성하고, 인간이 검토한다"를 "인간이 프로세스를 설계하고, AI가 실행하며, 인간이 책임진다"로 탈바꿈시키는 방법론</div>
+                </div>
+            </div>
         </section>
 
-        <!-- Section 2: Creator -->
+        <!-- Section 2: Jesse Vincent -->
         <section class="content-section fade-in">
             <div class="section-header">
                 <div class="section-number">02</div>
-                <h2 class="section-title">만든 사람: 제시 빈센트<span class="en">THE CREATOR</span></h2>
+                <h2 class="section-title">누가 만들었나: Jesse Vincent<span class="en">THE CREATOR</span></h2>
             </div>
 
-            <p>기술적 세부사항에 들어가기 전에 <strong>Jesse Vincent</strong>가 누구인지 알아야 한다. 지난달 AI 코딩 도구를 발견한 사람이 아니다. <a href="https://en.wikipedia.org/wiki/Jesse_Vincent" target="_blank">[Wikipedia]</a></p>
+            <p>기술적 세부사항으로 들어가기 전에 <strong>Jesse Vincent</strong>가 누구인지 알아둘 필요가 있다. 지난달에 <strong>AI</strong> 코딩 도구를 발견한 사람이 아니다. <a href="https://en.wikipedia.org/wiki/Jesse_Vincent">위키피디아</a></p>
 
             <div class="table-container">
                 <table>
                     <thead>
                         <tr>
-                            <th>성과</th>
+                            <th>업적</th>
                             <th>설명</th>
                             <th>영향력</th>
                         </tr>
@@ -1068,13 +1217,13 @@
                     <tbody>
                         <tr>
                             <td><strong>Request Tracker (RT)</strong></td>
-                            <td>1996년 개발</td>
-                            <td>NASA, Fortune 50 기업, 연방 정부 기관에서 사용</td>
+                            <td>1994년 개발</td>
+                            <td>NASA, Fortune 50 기업, 연방 기관에서 사용</td>
                         </tr>
                         <tr>
                             <td><strong>K-9 Mail</strong></td>
-                            <td>안드로이드 이메일 클라이언트 (2008)</td>
-                            <td>Mozilla 산하 Thunderbird for Android로 리브랜딩</td>
+                            <td>Android 이메일 클라이언트 (2008)</td>
+                            <td>현재 Mozilla 산하 Thunderbird for Android로 리브랜딩</td>
                         </tr>
                         <tr>
                             <td><strong>Perl 5.12/5.14</strong></td>
@@ -1084,44 +1233,44 @@
                         <tr>
                             <td><strong>Keyboardio</strong></td>
                             <td>인체공학 키보드 회사 (2014)</td>
-                            <td>킥스타터 65만 달러 이상, Bloomberg 베타 투자 유치</td>
+                            <td>Kickstarter $650K+ 달성, Bloomberg 베타 투자 유치</td>
                         </tr>
                         <tr>
                             <td><strong>VaccinateCA</strong></td>
-                            <td>코로나19 백신 접종소 검색 서비스 (2021)</td>
-                            <td>COO로 300명 이상 자원봉사자와 캘리포니아 전역 커버</td>
+                            <td>COVID-19 백신 검색 서비스 (2021)</td>
+                            <td>COO, 300+ 자원봉사자, 캘리포니아 전역 커버</td>
                         </tr>
                     </tbody>
                 </table>
             </div>
 
             <div class="callout">
-                <p>"Jesse는 내가 아는 코딩 에이전트(특히 Claude Code) 사용자 중 가장 창의적인 사람이다. 그가 공유한 것을 살펴보는 데 시간을 투자할 가치가 충분하다."</p>
-                <div class="callout-source">— Simon Willison, Django 공동 창시자</div>
+                <p>"Jesse는 내가 아는 가장 창의적인 코딩 에이전트 사용자 중 한 명이다(특히 Claude Code에서). 그가 공유한 것을 탐색하는 데 시간을 투자할 가치가 충분하다."</p>
+                <div class="callout-source">— <a href="https://simonwillison.net/2025/Oct/10/superpowers/">Simon Willison</a> (Django 공동창시자)</div>
             </div>
 
-            <p>이게 중요한 이유는 Superpowers가 급하게 조립한 프롬프트 모음이 아니기 때문이다. <strong>30년 소프트웨어 개발 경험의 정수</strong>다. 주요 오픈소스 프로젝트 리딩과 수백만 명이 쓰는 프로덕션 시스템 구축 경험이 녹아 있다.</p>
+            <p>이 배경이 중요한 이유가 있다. <strong>Superpowers</strong>는 급하게 조립한 프롬프트 모음이 아니다. 주요 오픈소스 프로젝트를 이끌고 수백만 명이 사용하는 프로덕션 시스템을 구축한 30년 소프트웨어 개발 경험의 정수다.</p>
         </section>
 
-        <!-- Section 3: Paradigm Shift -->
+        <!-- Section 3: Why Vibe Coding Fails -->
         <section class="content-section fade-in">
             <div class="section-header">
                 <div class="section-number">03</div>
-                <h2 class="section-title">패러다임 전환: 바이브 코딩이 실패하는 이유<span class="en">WHY VIBE CODING FAILS</span></h2>
+                <h2 class="section-title">바이브 코딩이 프로덕션에서 실패하는 이유<span class="en">THE METR STUDY</span></h2>
             </div>
 
             <h3>METR 연구: AI가 숙련 개발자를 19% 느리게 만든다</h3>
 
-            <p>2025년 7월, 비영리 연구기관 METR이 업계를 충격에 빠뜨린 무작위 대조 실험 결과를 발표했다. 숙련된 오픈소스 개발자가 AI 도구를 쓰면 AI 없이 작업할 때보다 <strong>19% 더 오래</strong> 걸렸다. <a href="https://metr.org/blog/2025-07-10-early-2025-ai-experienced-os-dev-study/" target="_blank">[Link]</a></p>
+            <p>2025년 7월, 비영리 연구기관 <strong>METR</strong>이 업계를 충격에 빠뜨린 무작위 대조 시험을 발표했다. 숙련된 오픈소스 개발자가 <strong>AI</strong> 도구를 사용하면 <strong>AI</strong> 없이 작업할 때보다 <strong>19% 더 오래</strong> 걸렸다. <a href="https://metr.org/blog/2025-07-10-early-2025-ai-experienced-os-dev-study/">연구 링크</a></p>
 
             <div style="margin: 40px 0;">
                 <div class="comparison-bar">
                     <div class="bar-label">
-                        <span style="color: var(--neon-cyan);">개발자 기대</span>
-                        <span>+24% 빠름</span>
+                        <span style="color: var(--neon-cyan);">개발자 기대치</span>
+                        <span>+24% 빨라질 것</span>
                     </div>
                     <div class="bar-track">
-                        <div class="bar-fill" style="width: 62%;">
+                        <div class="bar-fill" style="width: 62%; background: linear-gradient(90deg, var(--neon-cyan), var(--neon-green));">
                             <span class="bar-value">+24%</span>
                         </div>
                     </div>
@@ -1129,17 +1278,17 @@
                 <div class="comparison-bar">
                     <div class="bar-label">
                         <span style="color: #ff3366;">실제 결과</span>
-                        <span>-19% 느림</span>
+                        <span>-19% 느려짐</span>
                     </div>
                     <div class="bar-track">
-                        <div class="bar-fill" style="width: 40%; background: linear-gradient(90deg, #ff3366, #ff6699);">
+                        <div class="bar-fill" style="width: 38%; background: linear-gradient(90deg, #ff3366, #ff6699);">
                             <span class="bar-value">-19%</span>
                         </div>
                     </div>
                 </div>
             </div>
 
-            <p>인지 부조화가 극명하다. 개발자들은 AI가 자신을 24% 빠르게 만들어줄 거라고 <em>기대</em>했다. 기대와 현실의 괴리가 <strong>43%포인트</strong>. AI 생산성에 대한 우리의 인식이 얼마나 위험하게 편향되어 있는지 보여준다.</p>
+            <p>인지 부조화가 강렬하다. 개발자들은 <strong>AI</strong>가 24% 빨라지게 해줄 거라고 <em>기대</em>했다. 기대와 현실의 차이—43%포인트—는 <strong>AI</strong> 생산성을 어떻게 인식하는지에 대한 위험한 편향을 드러낸다.</p>
 
             <h3>바이브 코딩의 핵심 문제들</h3>
 
@@ -1147,7 +1296,7 @@
                 <table>
                     <thead>
                         <tr>
-                            <th>이슈</th>
+                            <th>문제</th>
                             <th>설명</th>
                             <th>실제 영향</th>
                         </tr>
@@ -1155,59 +1304,59 @@
                     <tbody>
                         <tr>
                             <td><strong>이해 없는 코드</strong></td>
-                            <td>코드가 작동하는 것처럼 보이지만, 개발자가 이유를 모름</td>
-                            <td style="color: #ff3366;">디버깅 불가능</td>
+                            <td>코드가 작동하는 것 같지만, 개발자는 왜인지 모른다</td>
+                            <td>디버깅이 불가능해진다</td>
                         </tr>
                         <tr>
                             <td><strong>보안 사각지대</strong></td>
-                            <td>비전문가가 AI 생성 취약점을 인식 못함</td>
-                            <td style="color: #ff3366;">OWASP Top 10 위반이 프로덕션에 배포됨</td>
+                            <td>비전문가는 AI가 생성한 취약점을 알아채지 못한다</td>
+                            <td>OWASP Top 10 위반이 프로덕션에 배포된다</td>
                         </tr>
                         <tr>
                             <td><strong>AI 속도의 기술 부채</strong></td>
-                            <td>"작동한다"가 "올바르다"를 대체함</td>
-                            <td style="color: #ff3366;">유지보수 비용 폭발</td>
+                            <td>"작동한다"가 "올바르다"를 대체한다</td>
+                            <td>유지보수 비용이 폭발한다</td>
                         </tr>
                         <tr>
-                            <td><strong>책임 공백</strong></td>
-                            <td>코드 정확성에 대한 소유자가 없음</td>
-                            <td style="color: #ff3366;">프로덕션 장애 해결 경로 부재</td>
+                            <td><strong>책임의 공백</strong></td>
+                            <td>아무도 코드의 정확성을 소유하지 않는다</td>
+                            <td>프로덕션 장애에 해결 경로가 없다</td>
                         </tr>
                     </tbody>
                 </table>
             </div>
 
             <div class="callout">
-                <p>"바이브 코딩은 사람들을 자신이 개발자라고 착각하게 만든다. 문제가 터지면—소프트웨어에서는 항상 터진다—고칠 수 없다. 애초에 어떻게 작동하는지 이해한 적이 없으니까."</p>
-                <div class="callout-source">— r/vibecoding</div>
+                <p>"바이브 코딩은 사람들에게 개발자인 것 같은 기분을 준다. 실제로는 아닌데. 무언가 고장 나면—소프트웨어에서는 항상 그렇다—고칠 수 없다. 애초에 어떻게 작동하는지 이해한 적이 없으니까."</p>
+                <div class="callout-source">— <a href="https://www.reddit.com/r/vibecoding/comments/1ovlfoi/">r/vibecoding</a> 커뮤니티 토론</div>
             </div>
 
-            <h3>업계 컨센서스: 휴먼 인 더 루프는 타협 불가</h3>
+            <h3>업계 합의: 휴먼인더루프는 협상 불가</h3>
 
-            <p>Google CFO는 직접적으로 언급했다: "에이전틱 AI 시스템에는 반드시 '휴먼 인 더 루프'가 있어야 한다." <a href="https://fortune.com/2025/07/24/agentic-ai-systems-must-have-human-loop-says-google-exec-cfo/" target="_blank">[Fortune]</a></p>
+            <p><strong>Google</strong> 동남아 부사장 <strong>Sapna Chadha</strong>는 직접적으로 말했다: "에이전틱 <strong>AI</strong> 시스템에는 '휴먼인더루프'가 필수다." <a href="https://fortune.com/2025/07/24/agentic-ai-systems-must-have-human-loop-says-google-exec-cfo/">포춘</a></p>
 
-            <p>Gartner는 2027년까지 에이전틱 AI 프로젝트의 <strong>40% 이상</strong>이 명확한 가치나 ROI 부족으로 취소될 것으로 예측한다. 형성 중인 컨센서스: AI 에이전트 사용자의 <strong>71%</strong>가 휴먼 인 더 루프 설정을 선호한다. 특히 고위험 결정에서.</p>
+            <p><strong>Gartner</strong>는 2027년까지 에이전틱 <strong>AI</strong> 프로젝트의 40% 이상이 명확한 가치나 <strong>ROI</strong> 부재로 취소될 것이라고 예측한다. <a href="https://www.gartner.com/en/newsroom/press-releases/2025-06-25-gartner-predicts-over-40-percent-of-agentic-ai-projects-will-be-canceled-by-end-of-2027">가트너</a></p>
 
             <div class="info-box">
-                <p>Superpowers는 이 맥락에서 이해해야 한다. 단순한 생산성 도구가 아니다. <strong>"바이브 코딩의 위험 없이 AI 코딩의 이점을 어떻게 얻을 것인가?"</strong>라는 질문에 대한 답이다.</p>
+                <p>떠오르는 합의: <strong>AI</strong> 에이전트 사용자의 <strong>71%</strong>가 휴먼인더루프 설정을 선호한다. 특히 중요한 결정에서 그렇다. <a href="https://www.index.dev/blog/ai-agents-statistics">출처</a></p>
             </div>
         </section>
 
-        <!-- Section 4: Context Tax -->
+        <!-- Section 4: The Context Tax Problem -->
         <section class="content-section fade-in">
             <div class="section-header">
                 <div class="section-number">04</div>
-                <h2 class="section-title">핵심 문제: CLAUDE.md의 컨텍스트 세금<span class="en">THE CONTEXT TAX</span></h2>
+                <h2 class="section-title">CLAUDE.md의 컨텍스트 세금<span class="en">THE CONTEXT TAX</span></h2>
             </div>
 
-            <p>CLAUDE.md 기반 팀 컨벤션의 근본 문제는 이렇다:</p>
+            <p>대부분의 팀은 개발 일관성을 확보하려고 내부 규칙을 작성한다. <strong>CLAUDE.md</strong>에 수백 줄, 팀 위키, 온보딩 문서. 그러다 <strong>CLAUDE.md</strong>가 <em>모든 대화</em>에 로드된다는 사실을 깨닫는다. "UTC로 몇 시야?"라고 물어도 5,000줄짜리 규칙 가이드가 딸려온다. <a href="https://www.reddit.com/r/ClaudeAI/comments/1ped515/understanding_claudemd_vs_skills_vs_slash/">Reddit 토론</a></p>
 
             <div class="table-container">
                 <table>
                     <thead>
                         <tr>
                             <th>접근법</th>
-                            <th>로딩 동작</th>
+                            <th>로딩 방식</th>
                             <th>토큰 비용</th>
                             <th>문제</th>
                         </tr>
@@ -1215,38 +1364,36 @@
                     <tbody>
                         <tr>
                             <td><strong>CLAUDE.md</strong></td>
-                            <td>모든 대화에서 로딩</td>
-                            <td style="color: #ff3366;">항상 컨텍스트 소모</td>
-                            <td>"ls -la" 물어도 5,000줄짜리 컨벤션 가이드가 로딩됨</td>
+                            <td>모든 대화에 로드</td>
+                            <td>항상 컨텍스트 소모</td>
+                            <td>"ls -la" 물어봐도 5,000줄 규칙 가이드가 로드됨</td>
                         </tr>
                         <tr>
-                            <td><strong>Skills</strong></td>
-                            <td>작업이 매칭될 때만 로딩</td>
-                            <td style="color: var(--neon-green);">호출당 ~30-50 토큰</td>
+                            <td><strong>스킬</strong></td>
+                            <td>작업이 일치할 때만 로드</td>
+                            <td>호출당 ~30-50 토큰</td>
                             <td>관련 없는 작업에는 오버헤드 제로</td>
                         </tr>
                     </tbody>
                 </table>
             </div>
 
-            <p>코딩 컨벤션, TDD 요구사항, 디버깅 프로토콜, 코드 리뷰 가이드라인이 담긴 상당한 크기의 CLAUDE.md 파일이 있다면, 그 문서 전체가 Claude Code 시작할 때마다 로딩된다. 사소한 작업에도.</p>
-
             <div class="callout">
-                <p>"핵심은 토큰을 매우 적게 쓴다. 2,000토큰 미만의 단일 문서를 로딩한다. 필요할 때 셸 스크립트로 검색을 실행한다. Todo 앱을 처음부터 끝까지 기획하고 구현한 긴 채팅이 10만 토큰이었다. 토큰 집약적 작업은 서브에이전트가 처리한다."</p>
-                <div class="callout-source">— Jesse Vincent, Bluesky</div>
+                <p>"핵심은 토큰 효율적이다. 2,000 토큰 미만의 단일 문서를 로드한다. 필요할 때 셸 스크립트를 실행해 검색한다. Todo 앱을 처음부터 끝까지 기획하고 구현한 긴 채팅이 100K 토큰이었다. 토큰 집약적인 작업은 서브에이전트가 처리한다."</p>
+                <div class="callout-source">— <a href="https://bsky.app/profile/s.ly/post/3m2srmkergc2p">Jesse Vincent</a></div>
             </div>
         </section>
 
-        <!-- Section 5: How It Works -->
+        <!-- Section 5: How Superpowers Works -->
         <section class="content-section fade-in">
             <div class="section-header">
                 <div class="section-number">05</div>
-                <h2 class="section-title">Superpowers 작동 원리: 미니멀리즘의 실천<span class="en">MINIMALISM IN ACTION</span></h2>
+                <h2 class="section-title">Superpowers 작동 방식<span class="en">LAZY LOADING ARCHITECTURE</span></h2>
             </div>
 
-            <p>Superpowers의 탁월함은 "지연 로딩" 아키텍처에 있다. 실제 핵심 스킬 파일(<code>using-superpowers/SKILL.md</code>)을 보자:</p>
+            <p><strong>Superpowers</strong>의 핵심은 "지연 로딩" 아키텍처에 있다. 실제 코어 스킬 파일(<code>using-superpowers/SKILL.md</code>)을 보자:</p>
 
-            <div class="code-block">
+            <div class="code-block markdown">
                 <code>---
 name: using-superpowers
 description: Use when starting any conversation - establishes mandatory
@@ -1262,11 +1409,11 @@ YOU MUST USE IT.
 &lt;/EXTREMELY-IMPORTANT&gt;</code>
             </div>
 
-            <p>이게 전부다. 핵심 부트스트랩은 간결하고 직접적이다. 에이전트가 관련 스킬을 확인하고, 필요할 때 로딩하며, 따른다. 모든 대화에 부풀린 프롬프트를 주입하지 않는다.</p>
+            <p>이게 전부다. 코어 부트스트랩은 간결하고 직접적이다. 에이전트가 관련 스킬을 확인하고, 필요에 따라 로드하며, 따른다. 모든 대화에 부풀린 프롬프트 주입이 없다.</p>
 
-            <p>브레인스토밍 스킬 전문(<code>brainstorming/SKILL.md</code>)은 이렇다:</p>
+            <h3>브레인스토밍 스킬 예시</h3>
 
-            <div class="code-block">
+            <div class="code-block markdown">
                 <code>## The Process
 
 **Understanding the idea:**
@@ -1284,36 +1431,54 @@ YOU MUST USE IT.
 - Ask after each section whether it looks right so far</code>
             </div>
 
-            <div class="info-box">
-                <p>여기 없는 것에 주목하라: 장황한 설명, 중복된 예시, 패딩이 없다. LLM이 즉시 따를 수 있는 <strong>실행 가능한 지시만</strong> 있다.</p>
-            </div>
+            <p>여기에 없는 것을 주목하라: 장황한 설명, 중복 예제, 패딩. <strong>LLM</strong>이 즉시 따를 수 있는 실행 가능한 지침만 있다.</p>
         </section>
 
-        <!-- Section 6: Core Workflow -->
+        <!-- Section 6: Core Workflows -->
         <section class="content-section fade-in">
             <div class="section-header">
                 <div class="section-number">06</div>
-                <h2 class="section-title">핵심 워크플로우: 아이디어에서 머지된 PR까지<span class="en">IDEA TO MERGED PR</span></h2>
+                <h2 class="section-title">핵심 워크플로우<span class="en">FROM IDEA TO MERGED PR</span></h2>
             </div>
 
-            <p>Superpowers는 자동으로 활성화되는 구조화된 워크플로우를 강제한다:</p>
+            <p><strong>Superpowers</strong>는 자동으로 활성화되는 구조화된 워크플로우를 강제한다:</p>
 
-            <div class="architecture-diagram">+-----------------+     +-----------------+     +-----------------+
-|  1. Brainstorm  | --> |  2. Write Plan  | --> |  3. Execute Plan|
-|  (Design First) |     |  (Bite-sized)   |     |  (Subagents)    |
-+-----------------+     +-----------------+     +-----------------+
-        |                       |                       |
-        v                       v                       v
-   One question at         2-5 minute tasks,       Fresh subagent
-   a time, validate       exact file paths,        per task, code
-   design in chunks       complete code            review gates</div>
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>단계</th>
+                            <th>스킬</th>
+                            <th>핵심 동작</th>
+                            <th>결과물</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>1. 브레인스토밍</strong></td>
+                            <td>Design First</td>
+                            <td>한 번에 하나씩 질문, 청크 단위로 설계 검증</td>
+                            <td>승인된 설계</td>
+                        </tr>
+                        <tr>
+                            <td><strong>2. 계획 작성</strong></td>
+                            <td>Bite-sized</td>
+                            <td>2-5분 작업, 정확한 파일 경로, 완전한 코드</td>
+                            <td>구현 계획</td>
+                        </tr>
+                        <tr>
+                            <td><strong>3. 계획 실행</strong></td>
+                            <td>Subagents</td>
+                            <td>작업당 새 서브에이전트, 코드 리뷰 게이트</td>
+                            <td>작동하는 기능</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
 
-            <div class="achievement">
-                <div class="achievement-icon">!</div>
-                <div class="achievement-content">
-                    <div class="achievement-title">CRITICAL INSIGHT</div>
-                    <div class="achievement-desc">에이전트가 코드 작성으로 바로 뛰어들지 않는다. 뭔가를 만들려 한다는 걸 감지하면 바로 코드를 쓰려고 하지 않는다. 대신 한 발 물러서서 정말 무엇을 하려는 건지 묻는다.</div>
-                </div>
+            <div class="callout">
+                <p>"코딩 에이전트를 실행하는 순간부터 시작된다. 무언가를 만들고 있다는 걸 감지하면, 즉시 코드를 작성하려 들지 않는다. 대신, 한 발 물러서서 진짜 무엇을 하려는지 묻는다."</p>
+                <div class="callout-source">— <a href="https://github.com/obra/superpowers">공식 README</a></div>
             </div>
 
             <h3>7단계 파이프라인</h3>
@@ -1329,38 +1494,38 @@ YOU MUST USE IT.
                     </thead>
                     <tbody>
                         <tr>
-                            <td><strong>1</strong></td>
-                            <td>brainstorming</td>
+                            <td>1</td>
+                            <td><code>brainstorming</code></td>
                             <td>코드 작성 전</td>
                         </tr>
                         <tr>
-                            <td><strong>2</strong></td>
-                            <td>using-git-worktrees</td>
+                            <td>2</td>
+                            <td><code>using-git-worktrees</code></td>
                             <td>설계 승인 후</td>
                         </tr>
                         <tr>
-                            <td><strong>3</strong></td>
-                            <td>writing-plans</td>
+                            <td>3</td>
+                            <td><code>writing-plans</code></td>
                             <td>승인된 설계와 함께</td>
                         </tr>
                         <tr>
-                            <td><strong>4</strong></td>
-                            <td>subagent-driven-development</td>
+                            <td>4</td>
+                            <td><code>subagent-driven-development</code></td>
                             <td>계획 준비 완료 시</td>
                         </tr>
                         <tr>
-                            <td><strong>5</strong></td>
-                            <td>test-driven-development</td>
+                            <td>5</td>
+                            <td><code>test-driven-development</code></td>
                             <td>구현 중</td>
                         </tr>
                         <tr>
-                            <td><strong>6</strong></td>
-                            <td>requesting-code-review</td>
-                            <td>작업 사이</td>
+                            <td>6</td>
+                            <td><code>requesting-code-review</code></td>
+                            <td>작업 사이사이</td>
                         </tr>
                         <tr>
-                            <td><strong>7</strong></td>
-                            <td>finishing-a-development-branch</td>
+                            <td>7</td>
+                            <td><code>finishing-a-development-branch</code></td>
                             <td>작업 완료 시</td>
                         </tr>
                     </tbody>
@@ -1368,61 +1533,45 @@ YOU MUST USE IT.
             </div>
         </section>
 
-        <!-- Section 7: Why Team Standard -->
+        <!-- Section 7: Why Teams Should Adopt -->
         <section class="content-section fade-in">
             <div class="section-header">
                 <div class="section-number">07</div>
-                <h2 class="section-title">팀 표준으로 삼아야 하는 이유<span class="en">TEAM STANDARD</span></h2>
+                <h2 class="section-title">팀 표준으로 삼아야 하는 이유<span class="en">TEAM ADOPTION</span></h2>
             </div>
 
             <h3>1. 바퀴를 다시 발명하지 마라</h3>
 
-            <p>모든 새 팀이 자체 코딩 컨벤션을 작성한다. TDD 요구사항, 디버깅 프로토콜, PR 표준을 명시한다. 그리고 필연적으로 이 문서들은 비대해지고, 일관성을 잃고, 구식이 된다.</p>
+            <p>모든 새 팀이 자체 코딩 규칙을 작성한다. <strong>TDD</strong> 요구사항, 디버깅 프로토콜, <strong>PR</strong> 표준을 명시한다. 그리고 어김없이, 이 문서들은 다루기 힘들고, 일관성 없고, 구식이 된다.</p>
 
-            <p>Superpowers를 쓰면 팀에 이렇게 말할 수 있다: <strong>"이 플러그인 설치해. 그게 우리 컨벤션이야."</strong></p>
+            <p><strong>Superpowers</strong>를 쓰면 팀에게 이렇게 말할 수 있다: "이 플러그인 설치해. 그게 우리 규칙이야."</p>
 
-            <div class="code-block">
+            <div class="code-block bash">
                 <code># 모든 Claude Code 사용자를 위한 범용 설정
 /plugin marketplace add obra/superpowers-marketplace
 /plugin install superpowers@superpowers-marketplace</code>
             </div>
 
-            <p>명령 하나로 끝난다. 모두가 같은 TDD 규율, 같은 디버깅 방법론, 같은 코드 리뷰 표준을 따른다.</p>
+            <p>명령 하나. 모두가 같은 <strong>TDD</strong> 규율, 같은 디버깅 방법론, 같은 코드 리뷰 표준을 따른다.</p>
 
             <h3>2. 의견이 아닌 검증된 방법론</h3>
 
-            <p><code>test-driven-development</code> 스킬은 TDD를 제안하는 게 아니라 <strong>강제</strong>한다:</p>
+            <p><code>test-driven-development</code> 스킬은 <strong>TDD</strong>를 제안하는 게 아니다. 강제한다:</p>
 
-            <div class="code-block">
-                <code>## The Iron Law
-
-NO PRODUCTION CODE WITHOUT A FAILING TEST FIRST
-
-Write code before the test? Delete it. Start over.
-
-**No exceptions:**
-- Don't keep it as "reference"
-- Don't "adapt" it while writing tests
-- Don't look at it
-- Delete means delete</code>
+            <div class="iron-law-box">
+                <p>NO PRODUCTION CODE WITHOUT A FAILING TEST FIRST<br><br>
+                Write code before the test? Delete it. Start over.<br>
+                Don't keep it as "reference" • Don't "adapt" it while writing tests<br>
+                Don't look at it • Delete means delete</p>
             </div>
 
-            <p><code>systematic-debugging</code> 스킬은 명시적 중단 규칙이 있는 4단계 프로세스를 구현한다:</p>
+            <p><code>systematic-debugging</code> 스킬은 명시적 중단 규칙과 함께 4단계 프로세스를 구현한다:</p>
 
-            <div class="code-block">
-                <code>## The Iron Law
-
-NO FIXES WITHOUT ROOT CAUSE INVESTIGATION FIRST
-
-If you haven't completed Phase 1, you cannot propose fixes.
-
-If 3+ fixes failed: Question the architecture.
-DON'T attempt Fix #4 without architectural discussion.</code>
+            <div class="info-box warning">
+                <p><strong>If 3+ fixes failed:</strong> Question the architecture. DON'T attempt Fix #4 without architectural discussion.</p>
             </div>
 
-            <div class="info-box">
-                <p>이건 임의의 규칙이 아니다. Jesse가 수십 년간 실제 소프트웨어 개발에 적용해온 <strong>검증된 방법론</strong>이다.</p>
-            </div>
+            <p>임의의 규칙이 아니다. Jesse가 수십 년간 실제 소프트웨어 개발에서 적용해온 실전 검증 방법론이다.</p>
 
             <h3>3. 설계부터 컨텍스트 효율적</h3>
 
@@ -1437,27 +1586,27 @@ DON'T attempt Fix #4 without architectural discussion.</code>
                     <tbody>
                         <tr>
                             <td>5,000줄 CLAUDE.md</td>
-                            <td style="color: #ff3366;">모든 대화에서 로딩, ~15K 토큰</td>
+                            <td>모든 대화에 로드, ~15K 토큰</td>
                         </tr>
                         <tr>
                             <td>Superpowers 부트스트랩</td>
-                            <td style="color: var(--neon-green);">초기 ~2,000 토큰</td>
+                            <td>초기 ~2,000 토큰</td>
                         </tr>
                         <tr>
-                            <td>개별 스킬 로딩</td>
-                            <td style="color: var(--neon-green);">스킬당 ~30-50 토큰</td>
+                            <td>개별 스킬 로드</td>
+                            <td>스킬당 ~30-50 토큰</td>
                         </tr>
                         <tr>
                             <td>서브에이전트 작업</td>
-                            <td style="color: var(--neon-green);">격리된 컨텍스트, 메인 세션 오염 없음</td>
+                            <td>격리된 컨텍스트, 메인 세션 오염 없음</td>
                         </tr>
                     </tbody>
                 </table>
             </div>
 
             <div class="callout">
-                <p>"서브에이전트가 자체 컨텍스트를 가진다는 건 메인 컨텍스트를 장수 오케스트레이터로 유지할 수 있다는 뜻이다. Superpowers와 함께 Claude Code를 쓰는 건 없이 쓰는 것과 매우 다르고 더 나은 경험이다."</p>
-                <div class="callout-source">— u/CharlesWiltgen, r/ClaudeCode</div>
+                <p>"서브에이전트가 자체 컨텍스트를 갖는다는 건 메인 컨텍스트를 장기 실행 오케스트레이터로 유지할 수 있다는 뜻이다. Superpowers와 함께 Claude Code를 쓰는 건 없이 쓰는 것과 완전히 다르고 더 나은 경험이다."</p>
+                <div class="callout-source">— <a href="https://www.reddit.com/r/ClaudeCode/comments/1pawyud/tips_after_using_claude_code_daily_context/">u/CharlesWiltgen</a>, /r/ClaudeCode</div>
             </div>
         </section>
 
@@ -1465,69 +1614,70 @@ DON'T attempt Fix #4 without architectural discussion.</code>
         <section class="content-section fade-in">
             <div class="section-header">
                 <div class="section-number">08</div>
-                <h2 class="section-title">실제 결과: 커뮤니티 반응<span class="en">COMMUNITY RESULTS</span></h2>
+                <h2 class="section-title">실제 결과: 커뮤니티 반응<span class="en">COMMUNITY FEEDBACK</span></h2>
             </div>
 
-            <h3>생산성 전환</h3>
+            <h3>생산성 변화</h3>
 
             <div class="callout">
-                <p>"내 개인 생산성이 이제 Oracle Cloud Infrastructure에서 팀 전체가 낼 수 있던 것을 넘어선다. 단순히 속도 문제가 아니다. 체계적이고 규율 있는 대규모 개발이다."</p>
-                <div class="callout-source">— Colin McNamara, AIMUG 커뮤니티</div>
+                <p>"내 개인 생산성이 이제 Oracle Cloud Infrastructure에서 내 팀 전체가 생산하던 것을 넘어선다. 속도만의 문제가 아니다. 대규모로 체계적이고 규율 있는 개발이다."</p>
+                <div class="callout-source">— <a href="https://colinmcnamara.com/blog/stop-babysitting-your-ai-agents-superpowers-breakthrough">Colin McNamara</a>, AIMUG 커뮤니티</div>
             </div>
 
             <div class="callout">
-                <p>"Superpowers + skills가 정말 좋다. 로직의 90%가 훌륭하다. 시스템 설계와 로직 분해, 아키텍처에 4-5시간 쓰면—그냥 작동한다. 빌드에 1-2시간이면 된다."</p>
-                <div class="callout-source">— u/cbsudux, r/ClaudeAI</div>
+                <p>"Superpowers + 스킬은 정말 좋다. 로직의 90%가 훌륭하다. 시스템 설계와 로직 분해, 아키텍처에 4-5시간을 쓰면—그냥 작동한다. 빌드하는 데 1-2시간 걸린다."</p>
+                <div class="callout-source">— <a href="https://www.reddit.com/r/ClaudeAI/comments/1pi4pm0/started_using_superpowers_and_skills_software/">u/cbsudux</a>, /r/ClaudeAI</div>
             </div>
 
             <h3>자율 작업 세션</h3>
 
             <div class="callout">
-                <p>"Claude가 함께 세운 계획에서 벗어나지 않고 몇 시간씩 자율적으로 작업하는 건 흔한 일이다."</p>
-                <div class="callout-source">— Jesse Vincent, GitHub README</div>
+                <p>"Claude가 함께 만든 계획에서 벗어나지 않고 한 번에 몇 시간씩 자율적으로 일하는 건 드문 일이 아니다."</p>
+                <div class="callout-source">— <a href="https://github.com/obra/superpowers">Jesse Vincent</a></div>
             </div>
 
-            <h3>실전 마이그레이션 성공</h3>
+            <h3>실제 마이그레이션 성공</h3>
 
-            <p><strong>Trevor Lasn</strong>은 <strong>Next.js 16</strong> 마이그레이션에 Superpowers를 썼다:</p>
+            <p><strong>Trevor Lasn</strong>은 <strong>Next.js 16</strong> 마이그레이션에 <strong>Superpowers</strong>를 사용했다:</p>
 
             <div class="callout">
-                <p>"skillcraft를 Next.js 16으로 업그레이드하는 데 썼는데 파일 하나도 놓치지 않았다."</p>
-                <div class="callout-source">— Trevor Lasn</div>
+                <p>"skillcraft를 Next.js 16으로 업그레이드하는 데 썼고, 단 하나의 파일도 놓치지 않았다."</p>
+                <div class="callout-source">— <a href="https://www.trevorlasn.com/blog/superpowers-claude-code-skills">Trevor Lasn</a></div>
             </div>
 
-            <p><code>/superpowers:write-plan</code> 명령이 생성한 것:</p>
-            <ul style="color: var(--text-secondary); margin-left: 20px; margin-bottom: 20px;">
-                <li>변경이 필요한 API 라우트 파일 23개 전부</li>
-                <li>프리렌더링을 깨뜨릴 <code>new Date()</code> 쓰는 컴포넌트 2개</li>
-                <li>Suspense 경계가 필요한 Context Provider들</li>
-                <li>테스팅 체크포인트가 포함된 4일 일정</li>
+            <p><code>/superpowers:write-plan</code> 명령이 생성한 것들:</p>
+
+            <ul class="component-list">
+                <li>변경이 필요한 <strong>23개 API 라우트 파일</strong> 전부</li>
+                <li>프리렌더링을 깨뜨릴 <code>new Date()</code> 사용 컴포넌트 2개</li>
+                <li>Suspense 바운더리가 필요한 Context Provider들</li>
+                <li>테스트 체크포인트가 포함된 4일 타임라인</li>
             </ul>
 
             <div class="achievement">
-                <div class="achievement-icon">*</div>
+                <div class="achievement-icon">!</div>
                 <div class="achievement-content">
-                    <div class="achievement-title">NON-NEGOTIABLE</div>
-                    <div class="achievement-desc">"일주일간 30개 이상 커뮤니티 스킬을 테스트했다. Superpowers가 모두가 말하는 스위스 아미 나이프다. 브레인스토밍, 디버깅, TDD 강제, 실행 계획—전부 슬래시 커맨드로. Claude Code 사용자? Hooks + Superpowers는 타협 불가다." — u/Zestyclose-Ad-9003</div>
+                    <div class="achievement-title">NON-NEGOTIABLE VERDICT</div>
+                    <div class="achievement-desc">"일주일간 30개 이상의 커뮤니티 스킬을 테스트했다. Superpowers는 모두가 얘기하는 만능 도구다. 브레인스토밍, 디버깅, TDD 강제, 실행 계획—모두 슬래시 명령으로. Claude Code 사용자? Hooks + Superpowers는 협상 불가다." — <a href="https://www.reddit.com/r/ClaudeAI/comments/1ok9v3d/i_tested_30_community_claude_skills_for_a_week/">u/Zestyclose-Ad-9003</a></div>
                 </div>
             </div>
         </section>
 
-        <!-- Section 9: Skeptics -->
+        <!-- Section 9: Skeptics View -->
         <section class="content-section fade-in">
             <div class="section-header">
                 <div class="section-number">09</div>
-                <h2 class="section-title">회의론자의 시선: "그냥 프롬프트 엔지니어링 아닌가"<span class="en">ADDRESSING SKEPTICS</span></h2>
+                <h2 class="section-title">회의론자의 시각<span class="en">THE SKEPTICS</span></h2>
             </div>
 
-            <p>정당한 지적이다. 직접 다뤄보자.</p>
+            <p>맞는 말이다. 직접 다루겠다.</p>
 
             <div class="callout">
-                <p>"'Superpowers'와 유사한 것들—프롬프트를 보고 지금 쓰는 것보다 나은지 판단하면 된다. 'skills' 버즈워드에 속지 마라—이건 프롬프트 엔지니어링이다. 그 이상도 이하도 아니다."</p>
-                <div class="callout-source">— u/ascendant23, r/ClaudeAI</div>
+                <p>"'Superpowers' 같은 것들—그냥 프롬프트를 보고 지금 쓰는 것보다 나은지 판단하면 된다. '스킬' 버즈워드에 속지 마라—이건 프롬프트 엔지니어링이다. 그 이상도 이하도 아니다."</p>
+                <div class="callout-source">— <a href="https://www.reddit.com/r/ClaudeAI/comments/1ojuqhm/10_claude_skills_that_actually_changed_how_i_work/">u/ascendant23</a>, /r/ClaudeAI</div>
             </div>
 
-            <p>기술적으로 맞다. Skills는 구조화된 프롬프트다. 하지만 이 비판은 핵심을 놓친다:</p>
+            <p>기술적으로 맞다. 스킬은 구조화된 프롬프트다. 하지만 이 비판은 핵심을 놓친다:</p>
 
             <div class="table-container">
                 <table>
@@ -1540,21 +1690,21 @@ DON'T attempt Fix #4 without architectural discussion.</code>
                     <tbody>
                         <tr>
                             <td>"그냥 프롬프트"</td>
-                            <td style="color: var(--neon-cyan);">프롬프트에 TDD를 적용한 방법론으로 검증된 프롬프트</td>
+                            <td>프롬프트에 TDD를 적용한 방법론으로 검증된 프롬프트</td>
                         </tr>
                         <tr>
                             <td>"버즈워드 마케팅"</td>
-                            <td style="color: var(--neon-cyan);">30년 방법론이 실행 가능한 지시로 정제됨</td>
+                            <td>30년 방법론이 실행 가능한 지침으로 응축된 것</td>
                         </tr>
                         <tr>
-                            <td>"내가 직접 쓸 수 있어"</td>
-                            <td style="color: var(--neon-cyan);">그렇다, 하지만 당신 것이 압박 시나리오에서 테스트됐나?</td>
+                            <td>"나도 직접 쓸 수 있다"</td>
+                            <td>맞다. 하지만 당신 것이 압박 시나리오에서 테스트됐나?</td>
                         </tr>
                     </tbody>
                 </table>
             </div>
 
-            <p>Jesse는 실제로 치알디니(Cialdini)의 설득 원칙에 기반한 적대적 시나리오로 스킬을 테스트한다:</p>
+            <p>Jesse는 실제로 <strong>Cialdini</strong>의 설득 원칙에 기반한 적대적 시나리오로 스킬을 테스트한다:</p>
 
             <div class="code-block">
                 <code>IMPORTANT: This is a real scenario. Choose and act.
@@ -1568,19 +1718,19 @@ B) Check ~/.claude/skills/debugging/ first (2 min check + 5 min = 7 min)
 Production is losing money. What do you do?</code>
             </div>
 
-            <p>이 압박 테스트에서 실패하는 스킬은 지시가 강화된다. <strong>스킬 자체에 TDD를 적용하는 것</strong>이다.</p>
+            <p>이런 압박 테스트에서 실패한 스킬은 지침이 강화된다. 스킬 자체에 적용된 <strong>TDD</strong>다. <a href="https://blog.fsck.com/2025/10/09/superpowers/">블로그 포스트</a></p>
         </section>
 
         <!-- Section 10: Installation -->
         <section class="content-section fade-in">
             <div class="section-header">
                 <div class="section-number">10</div>
-                <h2 class="section-title">설치와 검증<span class="en">INSTALLATION</span></h2>
+                <h2 class="section-title">설치 및 검증<span class="en">INSTALLATION</span></h2>
             </div>
 
             <h3>1단계: 마켓플레이스에서 설치</h3>
 
-            <div class="code-block">
+            <div class="code-block bash">
                 <code># Claude Code 터미널에서
 /plugin marketplace add obra/superpowers-marketplace
 /plugin install superpowers@superpowers-marketplace</code>
@@ -1588,219 +1738,209 @@ Production is losing money. What do you do?</code>
 
             <h3>2단계: Claude Code 재시작</h3>
 
-            <p>애플리케이션을 종료하고 재시작한다. 플러그인 활성화에 필수다.</p>
+            <p>애플리케이션을 종료하고 재시작한다. 플러그인 활성화에 필요하다.</p>
 
             <h3>3단계: 테스트</h3>
 
-            <p>새 기능 논의를 시작해보라:</p>
+            <p>새 기능 논의를 시작해본다:</p>
 
-            <div class="code-block">
-                <code>&gt; /superpowers:brainstorm I want to add user authentication to my app</code>
+            <div class="code-block bash">
+                <code>> /superpowers:brainstorm I want to add user authentication to my app</code>
             </div>
 
-            <div class="info-box">
-                <p>코드로 바로 뛰어드는 대신 Claude가 요구사항에 대해 <strong>한 번에 하나씩 질문</strong>하고, 트레이드오프와 함께 설계 옵션을 제시해야 한다.</p>
+            <p>코드로 바로 뛰어드는 대신, <strong>Claude</strong>가 요구사항에 대해 한 번에 하나씩 질문하고, 트레이드오프와 함께 설계 옵션을 제시해야 한다.</p>
+
+            <div class="tip-box">
+                <p><strong>검증 포인트:</strong> Claude가 즉시 코드를 작성하려 하면 설치가 제대로 되지 않은 것이다. Claude가 질문을 먼저 하면 성공이다.</p>
             </div>
         </section>
 
-        <!-- Section 11: Session Independent -->
+        <!-- Section 11: Session Independence -->
         <section class="content-section fade-in">
             <div class="section-header">
                 <div class="section-number">11</div>
-                <h2 class="section-title">세션 독립적 개발: 숨겨진 킬러 피처<span class="en">SESSION INDEPENDENCE</span></h2>
+                <h2 class="section-title">세션 독립 개발<span class="en">SESSION INDEPENDENCE</span></h2>
             </div>
 
-            <p>많은 사용자가 간과하는 점: Superpowers는 단순한 TDD 강제가 아니다. 완전한 <strong>세션 독립적 개발 시스템</strong>이다. Claude Code를 닫고, 며칠 뒤 돌아와도, 수동 설정 없이 정확히 멈춘 곳에서 재개할 수 있다.</p>
+            <p>많은 사용자가 간과한다: <strong>Superpowers</strong>는 <strong>TDD</strong> 강제만이 아니다. 완전한 <strong>세션 독립 개발 시스템</strong>이다. <strong>Claude Code</strong>를 닫고, 며칠 후 돌아와서, 수동 설정 없이 정확히 그 자리에서 재개할 수 있다. <a href="https://www.anthropic.com/engineering/effective-harnesses-for-long-running-agents">Anthropic 연구</a></p>
 
-            <p>이건 인간을 위한 문서가 아니다. Claude를 위한 지시다. 새 세션이 이 파일을 읽으면 자동으로 <code>executing-plans</code> 스킬을 호출하고 작업을 재개한다. 컨텍스트 재구성이 필요 없다.</p>
+            <p>핵심 메커니즘: <strong>Superpowers</strong>는 구현 계획을 <code>docs/plans/YYYY-MM-DD-&lt;feature-name&gt;.md</code>에 구조화된 작업 분해, 파일 경로, 진행 표시와 함께 저장한다. 새 세션이 이 파일을 읽으면 자동으로 <code>executing-plans</code> 스킬을 호출하고 작업을 재개한다. 컨텍스트 재구성이 필요 없다.</p>
 
-            <h3>2사이클 워크플로우</h3>
+            <h3>두 사이클 워크플로우</h3>
 
-            <div class="table-container">
-                <table>
-                    <thead>
-                        <tr>
-                            <th>사이클</th>
-                            <th>단계</th>
-                            <th>결과</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td rowspan="4"><strong>사이클 1: 설계 → 계획 → 저장</strong></td>
-                            <td>/superpowers:brainstorm {기능 요청} 입력</td>
-                            <td>브레인스토밍 시작</td>
-                        </tr>
-                        <tr>
-                            <td>질문에 하나씩 답변</td>
-                            <td>설계 정제</td>
-                        </tr>
-                        <tr>
-                            <td>설계가 docs/plans/YYYY-MM-DD-&lt;feature&gt;.md에 저장</td>
-                            <td>영속적 계획 파일</td>
-                        </tr>
-                        <tr>
-                            <td>자동 커밋</td>
-                            <td>버전 관리</td>
-                        </tr>
-                        <tr>
-                            <td rowspan="3"><strong>사이클 2: 어느 세션에서든 재개</strong></td>
-                            <td>새 세션: 'Read docs/plans and continue' 입력</td>
-                            <td>계획 파일 로딩</td>
-                        </tr>
-                        <tr>
-                            <td>Superpowers가 자동으로 executing-plans 로딩</td>
-                            <td>스킬 활성화</td>
-                        </tr>
-                        <tr>
-                            <td>멈춘 곳에서 정확히 재개</td>
-                            <td style="color: var(--neon-green);">컨텍스트 재구성 불필요</td>
-                        </tr>
-                    </tbody>
-                </table>
+            <div class="code-block workflow">
+                <code># 사이클 1: 설계 → 계획 → 저장
+> /superpowers:brainstorm {기능-요청}
+→ 한 번에 하나씩 질문에 답변
+→ 설계가 docs/plans/YYYY-MM-DD-&lt;feature&gt;.md에 저장
+→ 자동 커밋
+
+# 사이클 2: 어떤 세션에서든 재개
+> 새 세션: 'Read docs/plans and continue'
+→ Superpowers가 executing-plans 자동 로드
+→ 멈춘 곳에서 정확히 재개</code>
             </div>
 
-            <div class="info-box">
-                <p>Anthropic의 장시간 실행 에이전트 연구가 핵심 요구사항을 식별했다: 기능 목록, 진행 추적, 자동 컨텍스트 복원. Superpowers는 스킬 체인을 통해 세 가지 모두를 구현한다. 추가 설정이 필요 없다. <a href="https://www.anthropic.com/engineering/effective-harnesses-for-long-running-agents" target="_blank">[Anthropic]</a></p>
-            </div>
+            <h3>수동 접근법을 이기는 이유</h3>
+
+            <p><strong>Anthropic</strong>의 장기 실행 에이전트 연구는 핵심 요구사항을 식별했다: 기능 목록, 진행 추적, 자동 컨텍스트 복원. <strong>Superpowers</strong>는 스킬 체인을 통해 세 가지 모두 구현한다. 추가 설정이 필요 없다.</p>
         </section>
 
-        <!-- Section 12: Skill Library -->
+        <!-- Section 12: Plan Mode vs Superpowers -->
         <section class="content-section fade-in">
             <div class="section-header">
                 <div class="section-number">12</div>
-                <h2 class="section-title">포함된 것: 전체 스킬 라이브러리<span class="en">SKILL LIBRARY</span></h2>
+                <h2 class="section-title">Plan Mode vs Superpowers vs feature-dev<span class="en">METHODOLOGY COMPARISON</span></h2>
             </div>
 
-            <h3>테스팅</h3>
+            <p>커뮤니티에서 자주 나오는 질문이다: "<strong>Superpowers</strong>는 <strong>Claude Code</strong>의 내장 <strong>Plan Mode</strong>(<code>Shift+Tab</code> 두 번)와 어떻게 비교되나? <strong>Anthropic</strong>의 공식 <code>feature-dev</code> 플러그인은?" 이들은 경쟁 대안이 아니다. 서로 다른 추상화 수준에서 작동한다.</p>
 
             <div class="table-container">
                 <table>
                     <thead>
                         <tr>
-                            <th>스킬</th>
+                            <th>레이어</th>
+                            <th>도구</th>
                             <th>목적</th>
+                            <th>결과 지속성</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr>
-                            <td><strong>test-driven-development</strong></td>
-                            <td>RED-GREEN-REFACTOR 사이클 강제</td>
+                            <td><strong>도구</strong></td>
+                            <td>Plan Mode</td>
+                            <td>승인 게이트가 있는 읽기 전용 탐색</td>
+                            <td><code>~/.claude/plans/</code> (숨김 폴더)</td>
                         </tr>
                         <tr>
-                            <td><strong>condition-based-waiting</strong></td>
-                            <td>임의의 타임아웃을 폴링으로 대체</td>
+                            <td><strong>프로세스</strong></td>
+                            <td>feature-dev</td>
+                            <td>7단계 자동화 워크플로우</td>
+                            <td>세션 내 한정 (파일 출력 없음)</td>
                         </tr>
                         <tr>
-                            <td><strong>testing-anti-patterns</strong></td>
-                            <td>목(mock) 남용, 프로덕션 코드 오염 방지</td>
+                            <td><strong>방법론</strong></td>
+                            <td>Superpowers</td>
+                            <td>TDD 포함 완전한 개발 철학</td>
+                            <td><code>docs/plans/</code> (Git 추적, 세션 독립)</td>
                         </tr>
                     </tbody>
                 </table>
             </div>
 
-            <h3>디버깅</h3>
+            <p><strong>Flask</strong> 창시자 <strong>Armin Ronacher</strong>가 <strong>Plan Mode</strong>의 핵심 한계를 식별했다: 읽기 전용 제약을 주입하고 계획을 숨김 폴더에 저장한다. 승인하면 즉시 <strong>Auto-Accept Mode</strong>로 전환된다—세밀한 제어가 사라진다. <a href="https://lucumr.pocoo.org/2025/12/17/what-is-plan-mode/">분석 글</a></p>
+
+            <div class="callout">
+                <p>"Plan Mode가 반복 작업용으로 설계되지 않은 것도 어색하다... 사용 가능한 옵션은 'no (좋은 계획이 아니니 다시 해보자)'와 'yes (즉시 코딩 시작)'뿐이다. 내가 필요한 옵션은 둘 다 아니다."</p>
+                <div class="callout-source">— <a href="https://www.reddit.com/r/ClaudeAI/comments/1lppa30/">u/Parabola2112</a>, /r/ClaudeAI</div>
+            </div>
+
+            <h3>종합 비교</h3>
 
             <div class="table-container">
                 <table>
                     <thead>
                         <tr>
-                            <th>스킬</th>
-                            <th>목적</th>
+                            <th>기준</th>
+                            <th>Plan Mode</th>
+                            <th>feature-dev</th>
+                            <th>Superpowers</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr>
-                            <td><strong>systematic-debugging</strong></td>
-                            <td>4단계 근본 원인 프로세스</td>
+                            <td><strong>세션 독립성</strong></td>
+                            <td class="cross">✗</td>
+                            <td class="cross">✗</td>
+                            <td class="check">✓ (파일 기반 핸드오프)</td>
                         </tr>
                         <tr>
-                            <td><strong>root-cause-tracing</strong></td>
-                            <td>역추적으로 실제 이슈 찾기</td>
+                            <td><strong>Git 연동</strong></td>
+                            <td class="cross">✗</td>
+                            <td class="cross">✗</td>
+                            <td class="check">✓ (계획 자동 커밋)</td>
                         </tr>
                         <tr>
-                            <td><strong>verification-before-completion</strong></td>
-                            <td>성공 선언 전 수정 검증</td>
+                            <td><strong>인간 검증</strong></td>
+                            <td>최종 승인만</td>
+                            <td>단계별 승인</td>
+                            <td class="check">200-300단어마다</td>
                         </tr>
                         <tr>
-                            <td><strong>defense-in-depth</strong></td>
-                            <td>다층 검증</td>
+                            <td><strong>반복 지원</strong></td>
+                            <td>불편함 (이분법적 yes/no)</td>
+                            <td>제한적</td>
+                            <td class="check">자연스러움 (파일 직접 편집)</td>
+                        </tr>
+                        <tr>
+                            <td><strong>TDD 강제</strong></td>
+                            <td class="cross">✗</td>
+                            <td class="partial">선택적</td>
+                            <td class="check">필수 ("철의 법칙")</td>
                         </tr>
                     </tbody>
                 </table>
             </div>
 
-            <h3>협업</h3>
-
-            <div class="table-container">
-                <table>
-                    <thead>
-                        <tr>
-                            <th>스킬</th>
-                            <th>목적</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td><strong>brainstorming</strong></td>
-                            <td>소크라테스식 설계 정제</td>
-                        </tr>
-                        <tr>
-                            <td><strong>writing-plans</strong></td>
-                            <td>상세 구현 계획</td>
-                        </tr>
-                        <tr>
-                            <td><strong>executing-plans</strong></td>
-                            <td>체크포인트가 있는 배치 실행</td>
-                        </tr>
-                        <tr>
-                            <td><strong>subagent-driven-development</strong></td>
-                            <td>품질 게이트가 있는 빠른 반복</td>
-                        </tr>
-                        <tr>
-                            <td><strong>requesting-code-review</strong></td>
-                            <td>사전 리뷰 체크리스트</td>
-                        </tr>
-                        <tr>
-                            <td><strong>receiving-code-review</strong></td>
-                            <td>피드백에 적절히 응답</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-
-            <h3>Git 워크플로우</h3>
-
-            <div class="table-container">
-                <table>
-                    <thead>
-                        <tr>
-                            <th>스킬</th>
-                            <th>목적</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td><strong>using-git-worktrees</strong></td>
-                            <td>격리된 개발 브랜치</td>
-                        </tr>
-                        <tr>
-                            <td><strong>finishing-a-development-branch</strong></td>
-                            <td>머지/PR 결정 워크플로우</td>
-                        </tr>
-                    </tbody>
-                </table>
+            <div class="tip-box">
+                <p><strong>권장:</strong> 중요하지 않은 개발에는 <strong>Superpowers</strong>를 기본으로 사용하라. 빠른 단일 세션 탐색에는 <strong>Plan Mode</strong>를 남겨두라. 전체 <strong>Superpowers</strong> 규율 없이 자동화된 탐색을 원할 때 <code>feature-dev</code>를 사용하라—세션 독립성과 <strong>TDD</strong> 강제를 편의성과 교환한다는 점을 이해하고.</p>
             </div>
         </section>
 
-        <!-- Section 13: Philosophy -->
+        <!-- Section 13: Full Skill Library -->
         <section class="content-section fade-in">
             <div class="section-header">
                 <div class="section-number">13</div>
-                <h2 class="section-title">이 모든 것의 철학: 에이전틱 코딩의 실천<span class="en">THE PHILOSOPHY</span></h2>
+                <h2 class="section-title">전체 스킬 라이브러리<span class="en">SKILL INVENTORY</span></h2>
             </div>
 
-            <p>Superpowers는 Jesse Vincent 개발 철학의 네 가지 원칙을 구현한다:</p>
+            <div class="skill-grid">
+                <div class="skill-category">
+                    <h4>TESTING</h4>
+                    <ul class="skill-list">
+                        <li><code>test-driven-development</code> — RED-GREEN-REFACTOR 사이클 강제</li>
+                        <li><code>condition-based-waiting</code> — 임의의 타임아웃을 폴링으로 대체</li>
+                        <li><code>testing-anti-patterns</code> — Mock 남용, 프로덕션 코드 오염 방지</li>
+                    </ul>
+                </div>
+                <div class="skill-category">
+                    <h4>DEBUGGING</h4>
+                    <ul class="skill-list">
+                        <li><code>systematic-debugging</code> — 4단계 근본 원인 프로세스</li>
+                        <li><code>root-cause-tracing</code> — 역추적으로 실제 문제 찾기</li>
+                        <li><code>verification-before-completion</code> — 성공 선언 전 수정 검증</li>
+                        <li><code>defense-in-depth</code> — 다층 검증</li>
+                    </ul>
+                </div>
+                <div class="skill-category">
+                    <h4>COLLABORATION</h4>
+                    <ul class="skill-list">
+                        <li><code>brainstorming</code> — 소크라테스식 설계 정제</li>
+                        <li><code>writing-plans</code> — 상세 구현 계획</li>
+                        <li><code>executing-plans</code> — 체크포인트가 있는 배치 실행</li>
+                        <li><code>subagent-driven-development</code> — 품질 게이트가 있는 빠른 반복</li>
+                        <li><code>requesting-code-review</code> — 사전 리뷰 체크리스트</li>
+                        <li><code>receiving-code-review</code> — 피드백에 적절히 대응</li>
+                    </ul>
+                </div>
+                <div class="skill-category">
+                    <h4>GIT WORKFLOW</h4>
+                    <ul class="skill-list">
+                        <li><code>using-git-worktrees</code> — 격리된 개발 브랜치</li>
+                        <li><code>finishing-a-development-branch</code> — 머지/PR 결정 워크플로우</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 14: Philosophy -->
+        <section class="content-section fade-in">
+            <div class="section-header">
+                <div class="section-number">14</div>
+                <h2 class="section-title">에이전틱 코딩의 철학<span class="en">THE PHILOSOPHY</span></h2>
+            </div>
+
+            <p><strong>Superpowers</strong>는 <strong>Jesse Vincent</strong> 개발 철학의 네 가지 원칙을 구현한다:</p>
 
             <div class="table-container">
                 <table>
@@ -1813,42 +1953,34 @@ Production is losing money. What do you do?</code>
                     <tbody>
                         <tr>
                             <td><strong>테스트 주도 개발</strong></td>
-                            <td>항상 테스트 먼저 작성</td>
+                            <td>항상 테스트를 먼저 작성</td>
                         </tr>
                         <tr>
-                            <td><strong>임기응변보다 체계</strong></td>
+                            <td><strong>체계적 > 즉흥적</strong></td>
                             <td>추측보다 프로세스</td>
                         </tr>
                         <tr>
                             <td><strong>복잡성 감소</strong></td>
-                            <td>단순함을 최우선 목표로 (YAGNI 전방위 적용)</td>
+                            <td>단순함이 최우선 목표 (어디서나 YAGNI)</td>
                         </tr>
                         <tr>
                             <td><strong>주장보다 증거</strong></td>
-                            <td>성공 선언 전 검증</td>
+                            <td>성공 선언 전에 검증</td>
                         </tr>
                     </tbody>
                 </table>
             </div>
 
-            <div class="achievement">
-                <div class="achievement-icon">?</div>
-                <div class="achievement-content">
-                    <div class="achievement-title">PARADOXICAL INSIGHT</div>
-                    <div class="achievement-desc">프로세스 오버헤드를 추가하면 총 소요 시간이 줄어든다</div>
-                </div>
-            </div>
+            <p>직관에 반하는 통찰: <strong>프로세스 오버헤드를 추가하면 총 소요 시간이 줄어든다</strong>.</p>
 
             <div class="callout">
-                <p>"100배나 1000배 효율을 얻으려고 하지 마라. 2-3배만 목표로 해라. 작고 구체적인 작업을 주고 결과를 철저히 확인해라."</p>
-                <div class="callout-source">— Hacker News</div>
+                <p>"100배나 1000배 효율을 위해 도구를 쓰려 하지 마라. 2-3배만 목표로 해라. 작고 구체적인 작업을 주고 결과를 철저히 확인해라."</p>
+                <div class="callout-source">— <a href="https://news.ycombinator.com/item?id=45547344">Hacker News</a></div>
             </div>
 
-            <p>Superpowers는 이 지혜를 <strong>자동화된 가드레일</strong>로 만들었다.</p>
+            <p><strong>Superpowers</strong>는 이 지혜를 자동화된 안전장치로 만들었다.</p>
 
-            <h3>바이브 코딩과 에이전틱 코딩의 차이</h3>
-
-            <p>2025년 5월 arXiv 논문이 두 패러다임을 공식적으로 구분했다: <a href="https://arxiv.org/abs/2505.19443" target="_blank">[arXiv]</a></p>
+            <h3>2025년 arXiv 논문의 공식 구분</h3>
 
             <div class="table-container">
                 <table>
@@ -1863,71 +1995,65 @@ Production is losing money. What do you do?</code>
                         <tr>
                             <td><strong>개발자 역할</strong></td>
                             <td>프롬프트 제공자, 결과 수용자</td>
-                            <td style="color: var(--neon-cyan);">설계자, 감독자, 품질 관리자</td>
+                            <td>설계자, 감독자, 품질 통제자</td>
                         </tr>
                         <tr>
                             <td><strong>AI 자율성</strong></td>
                             <td>높음 (전체 코드 생성 위임)</td>
-                            <td style="color: var(--neon-cyan);">제한된 자율성 + 구조화된 감독</td>
+                            <td>제한된 자율성 + 구조화된 감독</td>
                         </tr>
                         <tr>
                             <td><strong>품질 보증</strong></td>
                             <td>AI 출력에 의존</td>
-                            <td style="color: var(--neon-cyan);">인간 검증과 프로세스 강제</td>
+                            <td>인간 검증과 프로세스 강제</td>
                         </tr>
                         <tr>
-                            <td><strong>적합 대상</strong></td>
+                            <td><strong>적합한 용도</strong></td>
                             <td>프로토타이핑, 일회성 스크립트</td>
-                            <td style="color: var(--neon-cyan);">프로덕션 코드, 팀 개발</td>
+                            <td>프로덕션 코드, 팀 개발</td>
                         </tr>
                     </tbody>
                 </table>
             </div>
 
-            <div class="info-box">
-                <p>논문의 결론: "성공적인 AI 소프트웨어 엔지니어링은 하나의 패러다임을 선택하는 게 아니라, 인간 중심 개발 생명주기 안에서 두 패러다임의 강점을 조화시키는 데 달려 있다." — Superpowers가 바로 그 조화다.</p>
-            </div>
+            <p>논문의 결론: "성공적인 <strong>AI</strong> 소프트웨어 엔지니어링은 하나의 패러다임을 선택하는 게 아니라, 통합된 인간 중심 개발 라이프사이클 내에서 두 패러다임의 강점을 조화시키는 데 달렸다." <a href="https://arxiv.org/abs/2505.19443">논문</a></p>
 
-            <h3>프로페셔널이 편의보다 통제를 선택하는 이유</h3>
-
-            <p>2025년 12월 arXiv 연구가 직설적으로 밝혔다: "경험 많은 개발자가 소프트웨어 설계와 구현에서 우위를 유지하는 건 근본적인 소프트웨어 품질 속성을 고집하기 때문이다." <a href="https://arxiv.org/abs/2512.14012" target="_blank">[arXiv]</a></p>
-
-            <p>프로페셔널 개발자는 AI 도구를 피하지 않는다. <strong>다르게 쓴다</strong>. 의도적으로 AI 자율성을 제한하고 전문성을 활용해 에이전트 행동을 통제한다. Superpowers는 이 접근법을 실행 가능한 워크플로우로 코드화한다.</p>
+            <p><strong>Superpowers</strong>가 바로 그 조화다. <strong>AI</strong>가 실행을 담당하게 하면서 인간이 프로세스, 품질, 책임을 확고히 통제하도록 한다.</p>
         </section>
 
-        <!-- Section 14: Conclusion -->
+        <!-- Section 15: Conclusion -->
         <section class="content-section fade-in">
             <div class="section-header">
-                <div class="section-number">14</div>
+                <div class="section-number">15</div>
                 <h2 class="section-title">결론: 에이전틱 코딩의 여명<span class="en">THE DAWN OF AGENTIC CODING</span></h2>
             </div>
 
-            <p>2025년 12월 18일, Anthropic이 <strong>Agent Skills</strong>를 크로스 플랫폼 이식성을 위한 오픈 표준으로 발표했다. Microsoft, OpenAI, Atlassian, Figma가 이미 채택했다. Anthropic이 MCP(Model Context Protocol)로 걸었던 똑같은 궤적이다. 표준을 개척하고, 작동함을 증명하고, 업계가 따라오는 걸 지켜본다.</p>
+            <p>2025년 12월 18일, <strong>Anthropic</strong>은 <strong>Agent Skills</strong>를 크로스 플랫폼 이식성을 위한 개방형 표준으로 발표했다. <a href="https://www.anthropic.com/engineering/equipping-agents-for-the-real-world-with-agent-skills">발표</a> <strong>Microsoft</strong>, <strong>OpenAI</strong>, <strong>Atlassian</strong>, <strong>Figma</strong>가 이미 채택했다. <a href="https://venturebeat.com/ai/anthropic-launches-enterprise-agent-skills-and-opens-the-standard">VentureBeat</a> <strong>Anthropic</strong>이 <strong>Model Context Protocol</strong> (<strong>MCP</strong>)에서 밟은 경로와 같다—표준을 개척하고, 작동함을 증명하고, 업계가 따라오는 것을 지켜본다.</p>
+
+            <p><strong>Superpowers</strong>가 먼저 있었다. <strong>Jesse Vincent</strong>는 업계 표준이 되기 수개월 전에 구조화되고 방법론이 강제된 <strong>AI</strong> 코딩이 어떤 모습일 수 있는지 보여줬다. 이 도구는 전문 소프트웨어 개발이 향할 방향을 예견했다.</p>
+
+            <div class="iron-law-box">
+                <p>바이브 코딩은 이해를 댓가로 속도를 제공한다<br>
+                에이전틱 코딩은 규율을 요구하지만 책임감을 전달한다</p>
+            </div>
+
+            <p>프로덕션 시스템, 팀 협업, 규제 산업, 장기 유지보수가 필요한 모든 것에서 선택은 명백하다.</p>
+
+            <p><strong>Superpowers</strong>는 단순한 <strong>Claude Code</strong> 플러그인이 아니다. "AI가 생성하고, 인간이 검토한다"를 "인간이 프로세스를 설계하고, AI가 실행하며, 인간이 책임진다"로 탈바꿈시키는 방법론이다. 이것이 전문 <strong>AI</strong> 지원 개발을 정의할 패턴이다.</p>
+
+            <p>회의론자들이 기술적으로 맞다—<strong>Superpowers</strong>는 프롬프트 엔지니어링이다. 하지만 "그냥 프롬프트"라고 부르는 건 핵심을 놓친다. <strong>Toyota Production System</strong>을 "그냥 체크리스트"라고 부르는 것과 같다. 가치는 형식에 있지 않다. <strong>AI</strong>가 실제로 따를 지침으로 응축된 30년 방법론, 적대적 압박 시나리오에서 테스트되고, 최소한의 인지적·토큰 오버헤드를 위해 구조화된 것에 있다.</p>
+
+            <p><strong>Anthropic</strong>의 연구는 현재 <strong>AI</strong> 에이전트가 장기 실행 작업에서 어려움을 겪는다고 인정한다. <a href="https://venturebeat.com/ai/anthropic-says-it-solved-the-long-running-ai-agent-problem-with-a-new-multi">VentureBeat</a> <strong>Superpowers</strong>는 계획-파일-핸드오프 아키텍처로 이 격차를 메운다—<strong>AI</strong> 한계의 해결책이 더 나은 모델을 기다리는 게 아니라 더 나은 워크플로우를 구축하는 것임을 증명한다.</p>
 
             <div class="achievement">
                 <div class="achievement-icon">!</div>
                 <div class="achievement-content">
-                    <div class="achievement-title">AHEAD OF THE CURVE</div>
-                    <div class="achievement-desc">Superpowers가 먼저 거기 있었다. Jesse Vincent가 구조화되고 방법론이 강제된 AI 코딩이 어떤 모습인지 보여줬다. 업계 표준이 되기 몇 달 전에.</div>
+                    <div class="achievement-title">FINAL VERDICT</div>
+                    <div class="achievement-desc">"Claude Code 사용자? Hooks + Superpowers는 협상 불가다." — <a href="https://www.reddit.com/r/ClaudeAI/comments/1ok9v3d/i_tested_30_community_claude_skills_for_a_week/">u/Zestyclose-Ad-9003</a></div>
                 </div>
             </div>
 
-            <p>프로페셔널 소프트웨어 세계는 명확한 선택에 직면해 있다. 바이브 코딩은 이해의 비용으로 속도를 제공한다. 에이전틱 코딩은 규율을 요구하지만 책임성을 전달한다. 프로덕션 시스템, 팀 협업, 규제 산업, 장기 유지보수가 필요한 모든 것에서 선택은 자명하다.</p>
-
-            <p>Superpowers는 단순한 Claude Code 플러그인이 아니다. <strong>"AI가 생성하고, 인간이 확인하는" 패턴을 "인간이 프로세스를 설계하고, AI가 실행하며, 인간이 책임지는" 구조로 전환하는 방법론</strong>이다. 이 전환이 프로페셔널 AI 지원 개발을 정의할 패턴이다.</p>
-
-            <p>회의론자들은 기술적으로 맞다. Superpowers는 프롬프트 엔지니어링이다. 하지만 "그냥 프롬프트"라고 부르는 건 핵심을 놓친다. 도요타 생산 시스템을 "그냥 체크리스트"라고 부르는 것과 같다. 가치는 형식에 있지 않다. AI가 실제로 따를 지시로 정제된 30년 방법론에 있다. 적대적 압박 시나리오에서 테스트됐고, 최소한의 인지적/토큰 오버헤드를 위해 구조화됐다.</p>
-
-            <p>Anthropic의 연구는 현재 AI 에이전트가 장시간 실행 작업에서 어려움을 겪는다고 인정한다. Superpowers는 계획 파일을 핸드오프로 쓰는 아키텍처로 이 간극을 메운다. AI 한계에 대한 해결책이 더 나은 모델을 기다리는 게 아니라 <strong>더 나은 워크플로우를 만드는 것</strong>임을 증명한다.</p>
-
-            <div class="callout">
-                <p>"Claude Code 사용자? Hooks + Superpowers는 타협 불가다."</p>
-                <div class="callout-source">— u/Zestyclose-Ad-9003, r/ClaudeAI</div>
-            </div>
-
-            <div class="info-box">
-                <p><strong>바이브 코딩 시대는 제 역할을 했다.</strong> AI 코딩이 어떤 느낌인지 보여줬다. 하지만 프로페셔널 소프트웨어 세계에서 에이전틱 코딩이 미래다. Superpowers는 오늘 거기에 도달하는 방법이다.</p>
-            </div>
+            <p>바이브 코딩 시대는 제 역할을 했다—<strong>AI</strong> 코딩이 어떤 느낌일 수 있는지 보여줬다. 하지만 전문 소프트웨어 세계에서 에이전틱 코딩이 미래다. <strong>Superpowers</strong>는 오늘 거기에 도달하는 방법이다.</p>
         </section>
 
     </main>
@@ -1940,70 +2066,82 @@ Production is losing money. What do you do?</code>
                     <div class="reference-category">
                         <h4>ACADEMIC RESEARCH</h4>
                         <ul class="reference-list">
-                            <li><a href="https://arxiv.org/abs/2512.14012" target="_blank">Professional Software Developers Don't Vibe, They Control</a></li>
-                            <li><a href="https://arxiv.org/abs/2505.19443" target="_blank">Vibe Coding vs Agentic Coding paradigm analysis</a></li>
-                            <li><a href="https://metr.org/blog/2025-07-10-early-2025-ai-experienced-os-dev-study/" target="_blank">METR RCT study</a></li>
+                            <li><a href="https://arxiv.org/abs/2512.14012">Professional Software Developers Don't Vibe, They Control</a></li>
+                            <li><a href="https://arxiv.org/abs/2505.19443">Vibe Coding vs Agentic Coding 패러다임 분석</a></li>
+                            <li><a href="https://metr.org/blog/2025-07-10-early-2025-ai-experienced-os-dev-study/">METR RCT 연구</a></li>
                         </ul>
                     </div>
                     <div class="reference-category">
                         <h4>OFFICIAL RESOURCES</h4>
                         <ul class="reference-list">
-                            <li><a href="https://github.com/obra/superpowers" target="_blank">Superpowers GitHub Repository</a></li>
-                            <li><a href="https://blog.fsck.com/2025/10/09/superpowers/" target="_blank">Jesse Vincent Blog</a></li>
-                            <li><a href="https://github.com/obra/superpowers-marketplace" target="_blank">Superpowers Marketplace</a></li>
-                            <li><a href="https://www.anthropic.com/engineering/equipping-agents-for-the-real-world-with-agent-skills" target="_blank">Anthropic Agent Skills</a></li>
+                            <li><a href="https://github.com/obra/superpowers">Superpowers GitHub</a></li>
+                            <li><a href="https://blog.fsck.com/2025/10/09/superpowers/">Jesse Vincent 블로그</a></li>
+                            <li><a href="https://github.com/obra/superpowers-marketplace">Superpowers Marketplace</a></li>
+                            <li><a href="https://www.anthropic.com/engineering/equipping-agents-for-the-real-world-with-agent-skills">Anthropic Agent Skills</a></li>
                         </ul>
                     </div>
                     <div class="reference-category">
                         <h4>INDUSTRY ANALYSIS</h4>
                         <ul class="reference-list">
-                            <li><a href="https://survey.stackoverflow.co/2025/ai" target="_blank">Stack Overflow 2025 Developer Survey</a></li>
-                            <li><a href="https://www.gartner.com/en/newsroom/press-releases/2025-06-25-gartner-predicts-over-40-percent-of-agentic-ai-projects-will-be-canceled-by-end-of-2027" target="_blank">Gartner Agentic AI Predictions</a></li>
-                            <li><a href="https://www.index.dev/blog/ai-agents-statistics" target="_blank">AI Agents Statistics</a></li>
-                            <li><a href="https://venturebeat.com/ai/anthropic-launches-enterprise-agent-skills-and-opens-the-standard" target="_blank">VentureBeat - Agent Skills</a></li>
+                            <li><a href="https://survey.stackoverflow.co/2025/ai">Stack Overflow 2025 개발자 설문조사</a></li>
+                            <li><a href="https://www.gartner.com/en/newsroom/press-releases/2025-06-25-gartner-predicts-over-40-percent-of-agentic-ai-projects-will-be-canceled-by-end-of-2027">Gartner Predictions</a></li>
+                            <li><a href="https://www.index.dev/blog/ai-agents-statistics">AI Agents Statistics</a></li>
+                            <li><a href="https://venturebeat.com/ai/anthropic-launches-enterprise-agent-skills-and-opens-the-standard">VentureBeat Coverage</a></li>
                         </ul>
                     </div>
                     <div class="reference-category">
                         <h4>EXPERT ANALYSIS</h4>
                         <ul class="reference-list">
-                            <li><a href="https://simonwillison.net/2025/Oct/10/superpowers/" target="_blank">Simon Willison on Superpowers</a></li>
-                            <li><a href="https://www.anthropic.com/engineering/effective-harnesses-for-long-running-agents" target="_blank">Anthropic Long-Running Agents</a></li>
-                            <li><a href="https://colinmcnamara.com/blog/stop-babysitting-your-ai-agents-superpowers-breakthrough" target="_blank">Colin McNamara</a></li>
-                            <li><a href="https://www.trevorlasn.com/blog/superpowers-claude-code-skills" target="_blank">Trevor Lasn</a></li>
+                            <li><a href="https://simonwillison.net/2025/Oct/10/superpowers/">Simon Willison on Superpowers</a></li>
+                            <li><a href="https://colinmcnamara.com/blog/stop-babysitting-your-ai-agents-superpowers-breakthrough">Colin McNamara Review</a></li>
+                            <li><a href="https://www.trevorlasn.com/blog/superpowers-claude-code-skills">Trevor Lasn Case Study</a></li>
+                        </ul>
+                    </div>
+                    <div class="reference-category">
+                        <h4>LONG-RUNNING AGENTS</h4>
+                        <ul class="reference-list">
+                            <li><a href="https://www.anthropic.com/engineering/effective-harnesses-for-long-running-agents">Anthropic: Effective Harnesses</a></li>
+                            <li><a href="https://venturebeat.com/ai/anthropic-says-it-solved-the-long-running-ai-agent-problem-with-a-new-multi">Long-Running Agent Research</a></li>
+                        </ul>
+                    </div>
+                    <div class="reference-category">
+                        <h4>PLAN MODE ANALYSIS</h4>
+                        <ul class="reference-list">
+                            <li><a href="https://lucumr.pocoo.org/2025/12/17/what-is-plan-mode/">Armin Ronacher 기술 분석</a></li>
+                            <li><a href="https://github.com/anthropics/claude-code/tree/main/plugins/feature-dev">Anthropic feature-dev</a></li>
+                            <li><a href="https://tgvashworth.substack.com/p/learning-from-claude-codes-own-plugins">Tom Ashworth 분석</a></li>
                         </ul>
                     </div>
                     <div class="reference-category">
                         <h4>COMMUNITY DISCUSSIONS</h4>
                         <ul class="reference-list">
-                            <li><a href="https://www.reddit.com/r/ClaudeAI/comments/1ok9v3d/i_tested_30_community_claude_skills_for_a_week/" target="_blank">r/ClaudeAI - 30 Skills Tested</a></li>
-                            <li><a href="https://www.reddit.com/r/ClaudeAI/comments/1pi4pm0/started_using_superpowers_and_skills_software/" target="_blank">r/ClaudeAI - Superpowers Experience</a></li>
-                            <li><a href="https://www.reddit.com/r/ClaudeCode/comments/1pawyud/tips_after_using_claude_code_daily_context/" target="_blank">r/ClaudeCode - Daily Context Tips</a></li>
-                            <li><a href="https://www.reddit.com/r/vibecoding/comments/1ovlfoi/" target="_blank">r/vibecoding Discussion</a></li>
-                            <li><a href="https://news.ycombinator.com/item?id=45547344" target="_blank">Hacker News Discussion</a></li>
+                            <li><a href="https://www.reddit.com/r/ClaudeAI/comments/1ok9v3d/i_tested_30_community_claude_skills_for_a_week/">30 Skills Tested in a Week</a></li>
+                            <li><a href="https://www.reddit.com/r/ClaudeAI/comments/1pi4pm0/started_using_superpowers_and_skills_software/">Superpowers User Experience</a></li>
+                            <li><a href="https://www.reddit.com/r/ClaudeCode/comments/1pawyud/tips_after_using_claude_code_daily_context/">Context Management Tips</a></li>
                         </ul>
                     </div>
                     <div class="reference-category">
                         <h4>CREATOR BACKGROUND</h4>
                         <ul class="reference-list">
-                            <li><a href="https://en.wikipedia.org/wiki/Jesse_Vincent" target="_blank">Jesse Vincent Wikipedia</a></li>
-                            <li><a href="https://k9mail.app/about.html" target="_blank">K-9 Mail About</a></li>
+                            <li><a href="https://en.wikipedia.org/wiki/Jesse_Vincent">Jesse Vincent Wikipedia</a></li>
+                            <li><a href="https://k9mail.app/about.html">K-9 Mail History</a></li>
                         </ul>
                     </div>
                 </div>
             </section>
 
             <div class="footer-end">
-                <div class="footer-logo">&gt; PLAYER ONE TECH</div>
+                <div class="footer-logo">▶ PLAYER ONE TECH</div>
                 <p class="footer-text">
-                    THE DAWN OF AGENTIC CODING<br>
-                    <span class="pixel">HUMAN DESIGNS, AI EXECUTES, HUMAN OWNS</span>
+                    AGENTIC CODING: WHERE HUMANS DESIGN, AI EXECUTES, HUMANS OWN<br>
+                    <span class="pixel">PRESS START TO LEVEL UP</span>
                 </p>
             </div>
         </div>
     </footer>
 
     <div class="back-to-top" id="backToTop">^</div>
-    <div class="easter-egg">SUPERPOWERS ACTIVATED</div>
+    <div class="easter-egg">SUPERPOWERS.INIT</div>
 
     <script>
         // Scroll Progress
