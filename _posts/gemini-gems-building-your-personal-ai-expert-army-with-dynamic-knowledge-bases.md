@@ -2,11 +2,10 @@
 
 ## TL;DR
 
-* **Gemini Gems** are custom AI assistants combining system prompts with up to 10 files (100MB each) as a Knowledge Base—the killer feature is real-time sync with **Google Docs/Sheets**
-* **Critical limitation**: Gems can READ your documents but CANNOT WRITE to them—"automatic memory updates" require manual copy-paste workflows
-* **The "Gem Drift" problem**: After 5-10 prompts, Gems often stop referencing their Knowledge Base and start hallucinating—periodic reminders are mandatory
-* **Power combo**: Connect **NotebookLM** notebooks (up to 300 sources) to **Gemini** conversations for massive knowledge access beyond Gems' 10-file limit
-* **Best use case**: Repetitive specialized tasks where you need consistent expert personas with dynamically-updated reference documents
+* **Gemini Gems** combine system prompts + Knowledge Base (10 files × 100MB)—the killer feature is real-time sync with **Google Docs/Sheets**
+* **December 2025 breakthrough**: Attach **NotebookLM** notebooks (300 sources) directly to Gems' Knowledge Base, and use `@Google Keep` to bypass the **Saved Info** access limitation
+* **Critical limitation**: Gems can READ but CANNOT WRITE to documents; they also suffer from "Gem Drift" (ignoring Knowledge Base after 5-10 prompts)
+* **The Three-Layer Architecture**: NotebookLM (expertise) + Google Docs/Sheets (dynamic data) + @Google Keep (personal context) = high-end consultant experience
 
 ---
 
@@ -181,33 +180,67 @@ of all knowledge base text files"
 
 * This forces the Gem to explicitly acknowledge its Knowledge Base and self-evaluate its adherence. It's not foolproof, but it significantly improves consistency. [[Link]](https://www.reddit.com/r/GoogleGeminiAI/comments/1niqsk8/)
 
+* Despite these workarounds, the fundamental capacity limitation—10 files—remains a structural barrier for serious knowledge work. This is where the December 2025 update becomes critical.
+
 ---
 
 ## The NotebookLM Integration: Escaping the 10-File Prison
 
 * **Gemini Gems** are limited to 10 files. For many professional use cases—legal document analysis, comprehensive research projects, enterprise knowledge management—this is insufficient.
 
-* The December 2025 update changed the game: **NotebookLM** notebooks can now be attached directly to **Gemini** conversations. [[Link]](https://9to5google.com/2025/12/17/gemini-app-notebooklm/)
+* The December 2025 update changed the game: **NotebookLM** notebooks can now be attached directly to **Gems**—both during Gem creation and during conversations. [[Link]](https://9to5google.com/2025/12/17/gemini-app-notebooklm/) As one tech analysis noted:
+
+> "The NotebookLM integration works with Gemini Gems, meaning users can create custom AI assistants with expertise on the information in their NotebookLM notebooks."
+> — TheOutpost [[Link]](https://theoutpost.ai/news-story/google-integrates-notebook-lm-into-gemini-bridging-ai-tools-for-seamless-productivity-22406/)
 
 ### The New Integration Architecture
 
 | Component | Capacity | Best For |
 |-----------|----------|----------|
-| **Gem** Knowledge Base | 10 files × 100MB | Core persona + essential documents |
-| **NotebookLM** Notebook | 50 sources (free) / 300 sources (**Pro**) / 600 sources (**Ultra**) [[Link]](https://support.google.com/notebooklm/answer/16213268) | Deep research, comprehensive reference |
-| **Combined** | 10 + 300 = 310 sources | Maximum coverage |
+| **Gem** Knowledge Base (files) | 10 files × 100MB | Core persona + essential static documents |
+| **Gem** Knowledge Base (NotebookLM) | Up to 300 sources per notebook | Deep research, comprehensive domain knowledge |
+| **In-Conversation Addition** | Additional notebooks via **+** menu | Session-specific context expansion |
 
-* The workflow:
+* The December 2025 integration enables **two distinct workflows**:
+
+### Method 1: Attach NotebookLM During Gem Creation
 
 | Step | Action |
 |------|--------|
-| **1** | Create Gem with system prompt + 10 core documents |
-| **2** | Create **NotebookLM** notebook with additional sources |
-| **3** | When starting a Gem conversation, use the **+** menu |
-| **4** | Select "**NotebookLM**" and attach your notebook |
-| **5** | The conversation now has access to both Gem Knowledge Base AND notebook sources |
+| **1** | Create or edit a Gem |
+| **2** | In the Knowledge Base section, select **NotebookLM** option |
+| **3** | Choose one or more notebooks to attach permanently |
+| **4** | Save the Gem—it now has access to all notebook sources in every conversation |
+
+* This approach creates a **permanent expert** with built-in domain knowledge. The Gem inherits the notebook's sources as its foundational expertise.
+
+### Method 2: Attach NotebookLM During Conversation
+
+| Step | Action |
+|------|--------|
+| **1** | Start a conversation with your Gem |
+| **2** | Use the **+** menu at the bottom |
+| **3** | Select "**NotebookLM**" and attach your notebook |
+| **4** | The conversation now has access to both Gem Knowledge Base AND notebook sources |
+
+* This approach allows **flexible, session-specific** knowledge expansion. You can swap notebooks between conversations based on the task at hand.
+
+> "The feature becomes even more powerful when you consider that you can use multiple notebooks as sources and integrate this capability within Gems. This means you could create specialized AI assistants that have access to different knowledge domains—one for technical documentation, another for market research, and so on."
+> — Gadget Hacks [[Link]](https://android.gadgethacks.com/news/google-gemini-gets-notebooklm-integration-with-300-sources/)
 
 * This hybrid approach combines Gems' persona definition with **NotebookLM**'s **RAG**-optimized document retrieval. [[Link]](https://9to5google.com/2025/12/17/gemini-app-notebooklm/)
+
+### Why This Changes Everything
+
+* Before this integration, you faced an impossible trade-off: **NotebookLM** gave you 300 sources and accurate citations but no persona customization; **Gems** gave you persona control but limited to 10 files. Now you can have both.
+
+| Architecture | Sources | Persona | Citation Accuracy |
+|--------------|---------|---------|-------------------|
+| **NotebookLM** alone | 300 | ✗ None | ✓ High |
+| **Gem** alone | 10 files | ✓ Full control | △ Medium |
+| **Gem + NotebookLM** | 300+ | ✓ Full control | ✓ High (via NotebookLM) |
+
+* This combination enables a new category of AI assistant: **the domain expert with a personality**. Your legal research Gem now has access to 300 case documents AND follows your firm's communication style. Your medical advisor Gem can reference an entire clinical guidelines library AND speaks at the appropriate literacy level for your patients.
 
 ### A Word of Caution
 
@@ -225,6 +258,103 @@ of all knowledge base text files"
 > — u/REOreddit, r/GeminiAI [[Link]](https://www.reddit.com/r/GeminiAI/comments/1pr7cds/)
 
 * **NotebookLM**'s **RAG** architecture is optimized for its own environment. When integrated with **Gemini**, some precision is lost. The trade-off is gaining **Gemini**'s web access, creative generation capabilities, and persona customization.
+
+---
+
+## The @Google Keep Breakthrough: Bypassing the Personalization Gap
+
+* The **NotebookLM** integration solved the expertise problem. But domain knowledge alone doesn't make a consultant—**personalization** does. And here's where Gems hit an architectural wall: they cannot access **Saved Info** or **Personal Context**. Your carefully curated personal data—dietary restrictions, communication preferences, project history, medical information—stored in **Gemini**'s long-term memory systems is completely invisible to Gems.
+
+* As documented in our analysis of [[Gemini's Memory Limitations]](https://jsonobject.com/why-gemini-forgets-you-the-hidden-limits-of-saved-info-and-gems), this creates an absurd situation:
+
+> Regular **Gemini** chat knows your name, your preferences, and your context. But the moment you enter a Gem—your "specialized expert"—all that personal knowledge vanishes. Your Health Coach Gem doesn't know your allergies. Your Financial Advisor Gem doesn't know your income.
+
+* **The workaround: `@Google Keep`**
+
+* Power users have discovered that while Gems cannot access **Saved Info**, they CAN query **Google Keep** using the `@Google Keep` directive during conversations. This creates a manual but effective bridge to personal data:
+
+| Storage Location | Gem Access | Query Method |
+|------------------|------------|--------------|
+| **Saved Info** | ✗ No access | N/A |
+| **Personal Context** | ✗ No access | N/A |
+| **Google Keep** | ✓ On-demand | Type `@Google Keep [query]` in conversation |
+| **Knowledge Base** | ✓ Automatic | Built-in reference |
+
+### How to Set This Up
+
+| Step | Action |
+|------|--------|
+| **1** | Create a **Google Keep** note titled "Personal Context" |
+| **2** | Add your key personal data: health info, preferences, constraints, goals |
+| **3** | In your Gem's system prompt, add: "When personalization is needed, prompt me to query @Google Keep for my personal context" |
+| **4** | During conversation, type `@Google Keep personal context` when needed |
+
+* The Gem can then incorporate your personal data into its expert responses—transforming generic advice into personalized recommendations.
+
+### The Three-Layer Expert Architecture
+
+* Combining all available tools creates what we call the **Three-Layer Expert Architecture**:
+
+| Architecture Layer | Component | Data Type | Access Method |
+|--------------------|-----------|-----------|---------------|
+| **Container** | Gemini Gem | Persona & Instructions | System prompt |
+| **Layer 1** | NotebookLM | Domain expertise (300 sources) | Automatic via Knowledge Base |
+| **Layer 2** | Google Docs/Sheets | Dynamic data (real-time sync) | Real-time sync via Drive |
+| **Layer 3** | @Google Keep | Personal context | On-demand query |
+
+| Layer | Data Type | Sync Method | Capacity |
+|-------|-----------|-------------|----------|
+| **Expertise** | Domain knowledge | Automatic via NotebookLM | 300 sources |
+| **Dynamic Data** | Living documents | Real-time via Google Drive | 10 files × 100MB |
+| **Personal Context** | User-specific data | On-demand via @Google Keep | Unlimited notes |
+
+### Practical Example: The Personalized Health Coach
+
+* Without this architecture, a Health Coach Gem can only give generic nutrition advice.
+
+* With this architecture:
+
+| Component | Implementation | What It Provides |
+|-----------|----------------|------------------|
+| **Gem Persona** | "You are a certified nutritionist focused on sustainable meal planning" | Expert communication style |
+| **NotebookLM** | Clinical nutrition guidelines, meal prep strategies, recipe databases | Evidence-based expertise |
+| **Google Sheets** | Your weekly meal log, grocery budget tracker | Real-time eating patterns |
+| **@Google Keep** | "Allergic to shellfish, lactose intolerant, target 1800 cal/day" | Personal constraints |
+
+* The conversation flow:
+
+```
+User: "What should I have for dinner tonight?"
+
+[Gem checks NotebookLM for nutrition principles]
+[Gem checks Google Sheets for this week's meal log]
+
+Gem: "Based on your meal log, you've had limited protein variety this
+week. I'd like to personalize this further—do you want me to check
+your dietary restrictions? If so, type '@Google Keep dietary restrictions'."
+
+User: "@Google Keep dietary restrictions"
+
+[Keep returns: "Lactose intolerant, shellfish allergy, 1800 cal target"]
+
+Gem: "Given your lactose intolerance and this week's intake patterns,
+I recommend grilled salmon with quinoa and roasted vegetables.
+This provides 45g protein without dairy, approximately 650 calories,
+and complements your meal log pattern this week."
+```
+
+* This is the "premium consultant" experience—expert knowledge + current data + personal context = genuinely personalized advice.
+
+### Limitations and Caveats
+
+| Limitation | Description | Workaround |
+|------------|-------------|------------|
+| **Manual trigger required** | @Google Keep doesn't auto-inject | Add prompt instruction to remind you |
+| **No write access** | Gem cannot update your Keep notes | Manual updates after session |
+| **Context window cost** | Each Keep query consumes tokens | Keep notes concise and structured |
+| **No selective retrieval** | Returns entire note content | Organize with separate notes per domain |
+
+* Despite these limitations, the @Google Keep workaround transforms Gems from "generic experts" into "your personal consultants"—a fundamental upgrade in utility.
 
 ---
 
@@ -435,21 +565,29 @@ MANDATORY BEHAVIOR:
 
 ---
 
-## Conclusion: The Expert Army Strategy
+## Conclusion: From Expert Army to Personal Consulting Firm
 
 * **Gemini Gems** represent a fundamentally different approach to **AI** assistance than ephemeral chat sessions. Where regular conversations start fresh each time, Gems persist—retaining their persona, their knowledge, and (with manual intervention) their memory of your history.
 
 * The real-time **Google Docs/Sheets** synchronization is the genuine killer feature. No competitor offers this. When your reference documents are living artifacts—updated by teammates, evolving with projects, growing with your knowledge—Gems automatically inherit those changes. This is infrastructure for knowledge work, not just a chatbot customization.
 
-* But Gems are not "set and forget" systems. The Gem Drift phenomenon is real and well-documented. After 5-10 prompts, you must actively remind your Gems to reference their Knowledge Base. The Memory Card strategy requires manual copy-paste discipline. **Google Keep** workarounds are "hit or miss." Anyone expecting fully automated persistent memory will be disappointed.
+* But Gems are not "set and forget" systems. The Gem Drift phenomenon is real and well-documented. After 5-10 prompts, you must actively remind your Gems to reference their Knowledge Base. The Memory Card strategy requires manual copy-paste discipline. Anyone expecting fully automated persistent memory will be disappointed.
 
 * The path forward is strategic specialization. Keep casual conversations in regular **Gemini** chat. Build Gems for high-value repetitive tasks where the setup investment pays compound returns: resume tailoring, performance reviews, technical documentation, campaign management, code review within specific conventions. Create a "Gem Architect" to accelerate building new specialized assistants.
 
 * When a task takes you 30 minutes but could take a well-configured Gem 35 seconds, the math is obvious. Build the Gem. Maintain its Knowledge Base. Tolerate the semi-automatic memory workflows. This is the current state of the art—imperfect, but genuinely powerful for those willing to work within its constraints.
 
-* The December 2025 **NotebookLM** integration opens new architectural possibilities. Combining Gems' persona definition with **NotebookLM**'s 300-source capacity and superior **RAG** retrieval creates hybrid systems more capable than either tool alone. For knowledge-intensive workflows, this combination represents the current frontier.
+* **The December 2025 breakthrough changes everything.** Before this update, you faced an impossible choice: expert knowledge OR personalization. Now, **NotebookLM** gives you 300+ sources of domain expertise, while `@Google Keep` bridges the personalization gap that made Gems feel like strangers. Together with real-time **Google Docs/Sheets** synchronization, you now have the infrastructure for a **Three-Layer Expert Architecture**:
 
-* Your productivity gain isn't one Gem. It's an army of specialized experts, each optimized for a specific domain, each maintaining their own living knowledge bases, each ready to execute on command. That's the endgame—and **Gemini Gems**, despite their limitations, are the most viable path to building it today.
+| Layer | Function | What It Provides |
+|-------|----------|------------------|
+| **Expertise** | NotebookLM integration | Domain mastery (300 sources) |
+| **Dynamic Data** | Google Docs/Sheets | Real-time context awareness |
+| **Personal Context** | @Google Keep queries | Personalized recommendations |
+
+* This isn't just an "expert army" anymore—it's a **personal consulting firm**. Each Gem combines deep domain expertise, awareness of your current projects, AND knowledge of your personal constraints. The result feels less like a chatbot and more like a premium consultant who happens to work for you around the clock.
+
+* Start with one Gem for your most time-consuming repetitive task. Perfect it. Then clone the pattern. Within weeks, you'll have built something that felt impossible a year ago: an **AI** infrastructure that knows your domain, tracks your projects, and remembers your constraints. That's not a chatbot—that's a competitive advantage.
 
 ---
 
@@ -466,6 +604,8 @@ MANDATORY BEHAVIOR:
     * https://techwiser.com/google-gemini-gems-now-supports-file-uploads-to-its-knowledge/
     * https://www.remio.ai/post/the-gemini-notebooklm-integration-turning-300-sources-into-a-custom-brain
     * https://artificialanalysis.ai/articles/gemini-3-flash-everything-you-need-to-know
+    * https://theoutpost.ai/news-story/google-integrates-notebook-lm-into-gemini-bridging-ai-tools-for-seamless-productivity-22406/ (NotebookLM + Gems integration confirmation)
+    * https://android.gadgethacks.com/news/google-gemini-gets-notebooklm-integration-with-300-sources/ (Multi-notebook integration with Gems)
   * Academic Research
     * https://arxiv.org/abs/2307.03172 ("Lost in the Middle" phenomenon)
   * Community Discussions (User-Reported Experiences)
