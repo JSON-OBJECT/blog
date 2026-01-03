@@ -321,27 +321,7 @@ of all knowledge base text files"
 | **Google Sheets** | Your weekly meal log, grocery budget tracker | Real-time eating patterns |
 | **@Google Keep** | "Allergic to shellfish, lactose intolerant, target 1800 cal/day" | Personal constraints |
 
-* The conversation flow:
-
-```
-User: "What should I have for dinner tonight?"
-
-[Gem checks NotebookLM for nutrition principles]
-[Gem checks Google Sheets for this week's meal log]
-
-Gem: "Based on your meal log, you've had limited protein variety this
-week. I'd like to personalize this further—do you want me to check
-your dietary restrictions? If so, type '@Google Keep dietary restrictions'."
-
-User: "@Google Keep dietary restrictions"
-
-[Keep returns: "Lactose intolerant, shellfish allergy, 1800 cal target"]
-
-Gem: "Given your lactose intolerance and this week's intake patterns,
-I recommend grilled salmon with quinoa and roasted vegetables.
-This provides 45g protein without dairy, approximately 650 calories,
-and complements your meal log pattern this week."
-```
+* The conversation flow demonstrates how these layers combine: User asks "What should I have for dinner?" → Gem checks **NotebookLM** for nutrition principles → Gem checks **Google Sheets** for this week's meal log → User queries `@Google Keep dietary restrictions` → Gem synthesizes all three data sources into a personalized recommendation that accounts for lactose intolerance, this week's protein intake, and caloric targets.
 
 * This is the "premium consultant" experience—expert knowledge + current data + personal context = genuinely personalized advice.
 
@@ -413,6 +393,21 @@ and complements your meal log pattern this week."
 > — u/stubbornalright, r/Bard [[Link]](https://www.reddit.com/r/Bard/comments/1pbb0ix/)
 
 * This is the correct mental model. Gems aren't "set and forget" systems—they're force multipliers that handle the bulk of repetitive work while you provide quality control and judgment. As **Google**'s Deven Tokuno puts it: "Many of us have those things we go back to for help over and over. If there's something I asked Gemini for all the time and I don't want to keep rewriting the same prompt, then Gems are a great option." [[Link]](https://blog.google/products/gemini/google-gems-tips/)
+
+---
+
+## Sharing Your Gems
+
+* As of September 2025, **Google** introduced Gem sharing—working just like **Google Drive** file sharing. [[Link]](https://blog.google/products/gemini/sharing-gems/)
+
+| Key Point | Detail |
+|-----------|--------|
+| **Initiate sharing** | Web only (gemini.google.com) → Gem settings → Share |
+| **Permission management** | Via **Google Drive** → "Gemini Gems" folder |
+| **Activation required** | Recipients must open link AND send a message before Gem appears in their list [[Link]](https://support.google.com/gemini/answer/15146780) |
+| **Enterprise control** | Admins can disable via **Admin Console** → **Generative AI** → **Gemini app** [[Link]](https://support.google.com/a/answer/16460551) |
+
+* Critical caveat: shared Gems do NOT auto-appear in recipients' Gem lists. They must interact with the Gem via web browser first—only then does it show in mobile apps.
 
 ---
 
@@ -502,13 +497,15 @@ and complements your meal log pattern this week."
 
 | Capability | **Gemini Gems** | **ChatGPT GPTs** | **Claude Projects** | **NotebookLM** |
 |------------|-----------------|------------------|---------------------|----------------|
-| File Limit | 10 files × 100MB | 20 files | 10 files | 50-600 sources |
+| File Limit | 10 files × 100MB | 20 files | Unlimited (30MB each)* | 50-300 sources |
 | Real-Time Sync | ✓ **Google Docs/Sheets** only | ✗ | ✗ | ✗ |
 | Internet Access | ✓ | ✓ | ✓ | △ Deep Research only |
 | Source Citation | △ Unreliable | △ | ✓ | ✓ Inline citations |
 | Hallucination Rate | Higher | Medium | Lower | Lowest |
 | Persona Customization | ✓ Strong | ✓ Strong | ✓ | ✗ Limited |
 | **RAG** Optimization | △ Basic | △ | △ | ✓ Specialized |
+
+*\* **Claude Projects**: Unlimited files within context window; 30MB per file limit. **NotebookLM**: 50 sources (Free) / 300 sources (Pro).*
 
 * The choice depends on your primary requirement:
 
@@ -567,27 +564,13 @@ MANDATORY BEHAVIOR:
 
 ## Conclusion: From Expert Army to Personal Consulting Firm
 
-* **Gemini Gems** represent a fundamentally different approach to **AI** assistance than ephemeral chat sessions. Where regular conversations start fresh each time, Gems persist—retaining their persona, their knowledge, and (with manual intervention) their memory of your history.
+* **Gemini Gems** represent infrastructure for knowledge work, not just chatbot customization. The real-time **Google Docs/Sheets** synchronization—a feature no competitor offers—means your reference documents evolve with your projects and Gems automatically inherit those changes.
 
-* The real-time **Google Docs/Sheets** synchronization is the genuine killer feature. No competitor offers this. When your reference documents are living artifacts—updated by teammates, evolving with projects, growing with your knowledge—Gems automatically inherit those changes. This is infrastructure for knowledge work, not just a chatbot customization.
+* But Gems are not "set and forget" systems. Gem Drift is real: after 5-10 prompts, you must actively remind Gems to reference their Knowledge Base. The Memory Card strategy requires manual discipline. Anyone expecting fully automated persistent memory will be disappointed.
 
-* But Gems are not "set and forget" systems. The Gem Drift phenomenon is real and well-documented. After 5-10 prompts, you must actively remind your Gems to reference their Knowledge Base. The Memory Card strategy requires manual copy-paste discipline. Anyone expecting fully automated persistent memory will be disappointed.
+* The December 2025 breakthrough—**NotebookLM** integration (300 sources) plus `@Google Keep` for personalization—transforms the equation. You no longer choose between expert knowledge and personal context. The **Three-Layer Expert Architecture** gives you both: domain expertise, real-time project data, and personal constraints in a single assistant.
 
-* The path forward is strategic specialization. Keep casual conversations in regular **Gemini** chat. Build Gems for high-value repetitive tasks where the setup investment pays compound returns: resume tailoring, performance reviews, technical documentation, campaign management, code review within specific conventions. Create a "Gem Architect" to accelerate building new specialized assistants.
-
-* When a task takes you 30 minutes but could take a well-configured Gem 35 seconds, the math is obvious. Build the Gem. Maintain its Knowledge Base. Tolerate the semi-automatic memory workflows. This is the current state of the art—imperfect, but genuinely powerful for those willing to work within its constraints.
-
-* **The December 2025 breakthrough changes everything.** Before this update, you faced an impossible choice: expert knowledge OR personalization. Now, **NotebookLM** gives you 300+ sources of domain expertise, while `@Google Keep` bridges the personalization gap that made Gems feel like strangers. Together with real-time **Google Docs/Sheets** synchronization, you now have the infrastructure for a **Three-Layer Expert Architecture**:
-
-| Layer | Function | What It Provides |
-|-------|----------|------------------|
-| **Expertise** | NotebookLM integration | Domain mastery (300 sources) |
-| **Dynamic Data** | Google Docs/Sheets | Real-time context awareness |
-| **Personal Context** | @Google Keep queries | Personalized recommendations |
-
-* This isn't just an "expert army" anymore—it's a **personal consulting firm**. Each Gem combines deep domain expertise, awareness of your current projects, AND knowledge of your personal constraints. The result feels less like a chatbot and more like a premium consultant who happens to work for you around the clock.
-
-* Start with one Gem for your most time-consuming repetitive task. Perfect it. Then clone the pattern. Within weeks, you'll have built something that felt impossible a year ago: an **AI** infrastructure that knows your domain, tracks your projects, and remembers your constraints. That's not a chatbot—that's a competitive advantage.
+* Start with one Gem for your most time-consuming repetitive task. When 30 minutes becomes 35 seconds, the math is obvious. Perfect it, clone the pattern, and within weeks you'll have built what felt impossible a year ago: an **AI** infrastructure that knows your domain, tracks your projects, and remembers your constraints. That's not a chatbot—that's a competitive advantage.
 
 ---
 
@@ -596,7 +579,10 @@ MANDATORY BEHAVIOR:
   * **Official Google Documentation**
     * https://blog.google/products/gemini/google-gemini-update-august-2024/ (Gems launch announcement)
     * https://blog.google/products/gemini/google-gems-tips/ (Official Gems usage tips from Product Lead)
+    * https://blog.google/products/gemini/sharing-gems/ (Gems sharing feature announcement)
     * https://workspaceupdates.googleblog.com/2024/11/upload-google-docs-and-other-file-types-to-gems.html
+    * https://support.google.com/gemini/answer/15146780 (Sharing and collaborating on Gems)
+    * https://support.google.com/a/answer/16460551 (Workspace admin settings for Gem sharing)
     * https://support.google.com/notebooklm/answer/16213268 (NotebookLM usage limits)
   * Tech Analysis
     * https://9to5google.com/2024/11/12/gemini-advanced-gems-files/
@@ -619,3 +605,4 @@ MANDATORY BEHAVIOR:
     * https://www.reddit.com/r/GoogleGeminiAI/comments/1lbmg9s/ (Saved Info token limits, silent truncation)
     * https://www.reddit.com/r/Bard/comments/1kmgv0f/ (Context window real-world performance)
     * https://www.reddit.com/r/GeminiAI/comments/1pr7cds/ (NotebookLM model architecture - Flash vs Pro)
+    * https://www.reddit.com/r/GeminiAI/comments/1nl0h3p/ (Gem sharing feature, mobile app limitations)
