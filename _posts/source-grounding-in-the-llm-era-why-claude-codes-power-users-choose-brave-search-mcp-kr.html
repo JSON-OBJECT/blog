@@ -1,0 +1,1704 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LLM 시대의 소스 그라운딩: Claude Code 파워 유저가 Brave Search MCP를 선택하는 이유 | PLAYER ONE TECH</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Orbitron:wght@400;500;600;700;800;900&family=Rajdhani:wght@300;400;500;600;700&family=Press+Start+2P&family=Noto+Sans+KR:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --neon-cyan: #00f5ff;
+            --neon-magenta: #ff00ff;
+            --neon-yellow: #ffff00;
+            --neon-green: #39ff14;
+            --neon-orange: #ff6600;
+            --deep-purple: #0a0015;
+            --mid-purple: #1a0030;
+            --card-bg: rgba(20, 0, 40, 0.85);
+            --text-primary: #ffffff;
+            --text-secondary: #b8b8d0;
+            --glow-cyan: 0 0 10px var(--neon-cyan), 0 0 20px var(--neon-cyan), 0 0 40px var(--neon-cyan);
+            --glow-magenta: 0 0 10px var(--neon-magenta), 0 0 20px var(--neon-magenta), 0 0 40px var(--neon-magenta);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Noto Sans KR', 'Rajdhani', sans-serif;
+            background: var(--deep-purple);
+            color: var(--text-primary);
+            line-height: 1.8;
+            overflow-x: hidden;
+            cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='32' viewBox='0 0 32 32'%3E%3Ccircle cx='16' cy='16' r='8' fill='%2300f5ff' opacity='0.8'/%3E%3Ccircle cx='16' cy='16' r='4' fill='%23fff'/%3E%3C/svg%3E") 16 16, auto;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: repeating-linear-gradient(
+                0deg,
+                transparent,
+                transparent 2px,
+                rgba(0, 0, 0, 0.1) 2px,
+                rgba(0, 0, 0, 0.1) 4px
+            );
+            pointer-events: none;
+            z-index: 9999;
+        }
+
+        .bg-grid {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background:
+                linear-gradient(135deg, var(--deep-purple) 0%, var(--mid-purple) 50%, #0d0020 100%),
+                repeating-linear-gradient(
+                    0deg,
+                    transparent,
+                    transparent 50px,
+                    rgba(0, 245, 255, 0.03) 50px,
+                    rgba(0, 245, 255, 0.03) 51px
+                ),
+                repeating-linear-gradient(
+                    90deg,
+                    transparent,
+                    transparent 50px,
+                    rgba(255, 0, 255, 0.03) 50px,
+                    rgba(255, 0, 255, 0.03) 51px
+                );
+            z-index: -2;
+        }
+
+        .particles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+            overflow: hidden;
+        }
+
+        .particle {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: var(--neon-cyan);
+            box-shadow: 0 0 6px var(--neon-cyan);
+            animation: float 15s infinite linear;
+        }
+
+        .particle:nth-child(odd) {
+            background: var(--neon-magenta);
+            box-shadow: 0 0 6px var(--neon-magenta);
+            animation-duration: 20s;
+        }
+
+        .particle:nth-child(3n) {
+            width: 2px;
+            height: 2px;
+            background: var(--neon-yellow);
+            box-shadow: 0 0 4px var(--neon-yellow);
+            animation-duration: 25s;
+        }
+
+        @keyframes float {
+            0% {
+                transform: translateY(100vh) rotate(0deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
+            }
+            90% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-100vh) rotate(720deg);
+                opacity: 0;
+            }
+        }
+
+        .magazine-header {
+            position: relative;
+            padding: 20px;
+            border-bottom: 2px solid var(--neon-cyan);
+            background: linear-gradient(180deg, rgba(0, 245, 255, 0.1) 0%, transparent 100%);
+        }
+
+        .header-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.5rem;
+            font-weight: 900;
+            color: var(--neon-cyan);
+            text-shadow: var(--glow-cyan);
+            letter-spacing: 4px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo::before {
+            content: '▶';
+            font-size: 1.2rem;
+            animation: pulse 1s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.3; }
+        }
+
+        .issue-info {
+            font-family: 'Press Start 2P', cursive;
+            font-size: 0.6rem;
+            color: var(--neon-magenta);
+            text-shadow: var(--glow-magenta);
+        }
+
+        .hero {
+            position: relative;
+            min-height: 80vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 60px 20px;
+            text-align: center;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 800px;
+            height: 800px;
+            background: radial-gradient(circle, rgba(255, 0, 255, 0.2) 0%, transparent 70%);
+            transform: translate(-50%, -50%);
+            animation: breathe 4s ease-in-out infinite;
+        }
+
+        @keyframes breathe {
+            0%, 100% { transform: translate(-50%, -50%) scale(1); }
+            50% { transform: translate(-50%, -50%) scale(1.2); }
+        }
+
+        .glitch-container {
+            position: relative;
+        }
+
+        .hero-title {
+            font-family: 'Black Han Sans', sans-serif;
+            font-size: clamp(2.5rem, 8vw, 5rem);
+            line-height: 1.1;
+            margin-bottom: 20px;
+            position: relative;
+            text-shadow:
+                0 0 20px var(--neon-cyan),
+                0 0 40px var(--neon-cyan),
+                0 0 80px var(--neon-cyan);
+            animation: glitch 3s infinite;
+        }
+
+        .hero-title span {
+            display: block;
+        }
+
+        .hero-title .highlight {
+            color: var(--neon-magenta);
+            text-shadow: var(--glow-magenta);
+        }
+
+        @keyframes glitch {
+            0%, 90%, 100% {
+                transform: translate(0);
+            }
+            91% {
+                transform: translate(-2px, 1px);
+            }
+            92% {
+                transform: translate(2px, -1px);
+            }
+            93% {
+                transform: translate(-1px, 2px);
+            }
+        }
+
+        .hero-subtitle {
+            font-family: 'Rajdhani', sans-serif;
+            font-size: 1.3rem;
+            font-weight: 500;
+            color: var(--text-secondary);
+            max-width: 700px;
+            margin-bottom: 40px;
+            letter-spacing: 2px;
+        }
+
+        .hero-stats {
+            display: flex;
+            gap: 30px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .stat-box {
+            background: var(--card-bg);
+            border: 2px solid var(--neon-cyan);
+            padding: 20px 30px;
+            position: relative;
+            clip-path: polygon(10px 0, 100% 0, 100% calc(100% - 10px), calc(100% - 10px) 100%, 0 100%, 0 10px);
+            transition: all 0.3s ease;
+        }
+
+        .stat-box::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(0, 245, 255, 0.1) 0%, transparent 50%);
+            pointer-events: none;
+        }
+
+        .stat-box:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 245, 255, 0.3);
+            border-color: var(--neon-magenta);
+        }
+
+        .stat-label {
+            font-family: 'Press Start 2P', cursive;
+            font-size: 0.5rem;
+            color: var(--neon-yellow);
+            margin-bottom: 5px;
+            letter-spacing: 1px;
+        }
+
+        .stat-value {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--neon-cyan);
+            text-shadow: 0 0 10px var(--neon-cyan);
+        }
+
+        .main-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        .summary-section {
+            background: var(--card-bg);
+            border: 3px solid var(--neon-magenta);
+            border-radius: 0;
+            padding: 40px;
+            margin-bottom: 60px;
+            position: relative;
+            clip-path: polygon(0 0, calc(100% - 20px) 0, 100% 20px, 100% 100%, 20px 100%, 0 calc(100% - 20px));
+        }
+
+        .summary-section::before {
+            content: 'MISSION BRIEFING';
+            position: absolute;
+            top: -15px;
+            left: 30px;
+            font-family: 'Press Start 2P', cursive;
+            font-size: 0.7rem;
+            color: var(--neon-magenta);
+            background: var(--deep-purple);
+            padding: 5px 15px;
+            text-shadow: var(--glow-magenta);
+        }
+
+        .summary-list {
+            list-style: none;
+        }
+
+        .summary-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 20px;
+            padding: 20px 0;
+            border-bottom: 1px solid rgba(255, 0, 255, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        .summary-item:last-child {
+            border-bottom: none;
+        }
+
+        .summary-item:hover {
+            transform: translateX(10px);
+            background: rgba(255, 0, 255, 0.05);
+        }
+
+        .summary-icon {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, var(--neon-cyan), var(--neon-magenta));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Press Start 2P', cursive;
+            font-size: 0.6rem;
+            flex-shrink: 0;
+            clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+        }
+
+        .summary-text {
+            font-size: 1rem;
+            line-height: 1.7;
+        }
+
+        .summary-text strong {
+            color: var(--neon-cyan);
+        }
+
+        .content-section {
+            margin-bottom: 80px;
+            position: relative;
+        }
+
+        .section-header {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            margin-bottom: 30px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid transparent;
+            border-image: linear-gradient(90deg, var(--neon-cyan), var(--neon-magenta), transparent) 1;
+        }
+
+        .section-number {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 3rem;
+            font-weight: 900;
+            color: transparent;
+            -webkit-text-stroke: 2px var(--neon-cyan);
+            text-shadow: 0 0 20px var(--neon-cyan);
+            line-height: 1;
+        }
+
+        .section-title {
+            font-family: 'Black Han Sans', sans-serif;
+            font-size: clamp(1.5rem, 4vw, 2.2rem);
+            color: var(--text-primary);
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+        }
+
+        .section-title .en {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 0.7em;
+            color: var(--neon-yellow);
+            display: block;
+            margin-top: 5px;
+            letter-spacing: 3px;
+        }
+
+        .content-section p {
+            font-size: 1.05rem;
+            margin-bottom: 20px;
+            color: var(--text-secondary);
+            text-align: justify;
+        }
+
+        .content-section p strong {
+            color: var(--neon-cyan);
+            font-weight: 600;
+        }
+
+        .content-section a {
+            color: var(--neon-magenta);
+            text-decoration: none;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
+        .content-section a::after {
+            content: '↗';
+            font-size: 0.7em;
+            margin-left: 2px;
+            opacity: 0.7;
+        }
+
+        .content-section a:hover {
+            color: var(--neon-cyan);
+            text-shadow: 0 0 10px var(--neon-cyan);
+        }
+
+        .info-box {
+            background: linear-gradient(135deg, rgba(0, 245, 255, 0.1) 0%, rgba(255, 0, 255, 0.1) 100%);
+            border-left: 4px solid var(--neon-cyan);
+            padding: 25px 30px;
+            margin: 30px 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .info-box::before {
+            content: '!';
+            position: absolute;
+            top: 10px;
+            right: 15px;
+            font-family: 'Press Start 2P', cursive;
+            font-size: 1.5rem;
+            color: var(--neon-yellow);
+            opacity: 0.3;
+        }
+
+        .info-box.warning {
+            border-left-color: var(--neon-orange);
+            background: linear-gradient(135deg, rgba(255, 102, 0, 0.1) 0%, rgba(255, 0, 0, 0.05) 100%);
+        }
+
+        .info-box.warning::before {
+            content: '⚠';
+            color: var(--neon-orange);
+        }
+
+        .table-container {
+            overflow-x: auto;
+            margin: 30px 0;
+            border: 2px solid var(--neon-cyan);
+            background: var(--card-bg);
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.95rem;
+        }
+
+        thead {
+            background: linear-gradient(90deg, rgba(0, 245, 255, 0.3) 0%, rgba(255, 0, 255, 0.3) 100%);
+        }
+
+        th {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            padding: 15px 20px;
+            text-align: left;
+            color: var(--neon-cyan);
+            border-bottom: 2px solid var(--neon-cyan);
+        }
+
+        td {
+            padding: 15px 20px;
+            border-bottom: 1px solid rgba(0, 245, 255, 0.2);
+            color: var(--text-secondary);
+        }
+
+        tr:hover td {
+            background: rgba(0, 245, 255, 0.05);
+        }
+
+        td strong {
+            color: var(--neon-magenta);
+        }
+
+        .check {
+            color: var(--neon-green);
+            text-shadow: 0 0 10px var(--neon-green);
+        }
+
+        .cross {
+            color: #ff3366;
+            text-shadow: 0 0 10px #ff3366;
+        }
+
+        .partial {
+            color: var(--neon-yellow);
+            text-shadow: 0 0 10px var(--neon-yellow);
+        }
+
+        .code-block {
+            background: #0a0a0a;
+            border: 1px solid var(--neon-green);
+            border-radius: 0;
+            padding: 25px;
+            margin: 25px 0;
+            position: relative;
+            overflow-x: auto;
+            font-family: 'Rajdhani', monospace;
+            font-size: 0.9rem;
+            line-height: 1.6;
+            color: var(--neon-green);
+        }
+
+        .code-block::before {
+            content: 'SYSTEM.CODE';
+            position: absolute;
+            top: 0;
+            left: 0;
+            background: var(--neon-green);
+            color: #000;
+            font-family: 'Press Start 2P', cursive;
+            font-size: 0.5rem;
+            padding: 5px 10px;
+        }
+
+        .code-block code {
+            display: block;
+            margin-top: 20px;
+            white-space: pre-wrap;
+        }
+
+        .code-block.bash::before {
+            content: 'TERMINAL';
+        }
+
+        .code-block.json::before {
+            content: 'CONFIG.JSON';
+        }
+
+        .code-block.typescript::before {
+            content: 'INTERFACE.TS';
+        }
+
+        .callout {
+            position: relative;
+            padding: 30px 40px;
+            margin: 40px 0;
+            background: linear-gradient(135deg, rgba(0, 245, 255, 0.05) 0%, rgba(255, 0, 255, 0.05) 100%);
+            border-left: 4px solid var(--neon-magenta);
+        }
+
+        .callout::before {
+            content: '"';
+            position: absolute;
+            top: 10px;
+            left: 15px;
+            font-family: 'Orbitron', sans-serif;
+            font-size: 3rem;
+            color: var(--neon-magenta);
+            opacity: 0.5;
+        }
+
+        .callout p {
+            font-style: italic;
+            font-size: 1.1rem;
+            color: var(--text-primary);
+        }
+
+        .callout-source {
+            font-family: 'Rajdhani', sans-serif;
+            font-size: 0.85rem;
+            color: var(--neon-cyan);
+            margin-top: 15px;
+            text-align: right;
+        }
+
+        h3 {
+            font-family: 'Orbitron', sans-serif;
+            color: var(--neon-cyan);
+            margin: 40px 0 20px;
+            font-size: 1.2rem;
+        }
+
+        h4 {
+            font-family: 'Orbitron', sans-serif;
+            color: var(--neon-magenta);
+            margin: 30px 0 15px;
+            font-size: 1rem;
+        }
+
+        .comparison-bar {
+            margin: 15px 0;
+        }
+
+        .bar-label {
+            display: flex;
+            justify-content: space-between;
+            font-family: 'Orbitron', sans-serif;
+            font-size: 0.75rem;
+            margin-bottom: 5px;
+        }
+
+        .bar-track {
+            height: 20px;
+            background: rgba(0, 0, 0, 0.5);
+            border: 1px solid var(--neon-cyan);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .bar-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--neon-cyan), var(--neon-magenta));
+            position: relative;
+            transition: width 1s ease-out;
+        }
+
+        .bar-fill::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: repeating-linear-gradient(
+                90deg,
+                transparent,
+                transparent 10px,
+                rgba(255, 255, 255, 0.1) 10px,
+                rgba(255, 255, 255, 0.1) 20px
+            );
+        }
+
+        .bar-value {
+            position: absolute;
+            right: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-family: 'Press Start 2P', cursive;
+            font-size: 0.5rem;
+            color: #fff;
+            text-shadow: 1px 1px 2px #000;
+        }
+
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+            margin: 30px 0;
+        }
+
+        .feature-card {
+            background: var(--card-bg);
+            border: 2px solid rgba(0, 245, 255, 0.3);
+            padding: 25px;
+            position: relative;
+            clip-path: polygon(0 0, calc(100% - 15px) 0, 100% 15px, 100% 100%, 15px 100%, 0 calc(100% - 15px));
+            transition: all 0.3s ease;
+        }
+
+        .feature-card:hover {
+            border-color: var(--neon-cyan);
+            box-shadow: 0 0 20px rgba(0, 245, 255, 0.2);
+        }
+
+        .feature-card h4 {
+            margin-top: 0;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .feature-card h4::before {
+            content: '◆';
+            color: var(--neon-cyan);
+        }
+
+        .feature-card p {
+            font-size: 0.95rem;
+            margin-bottom: 0;
+        }
+
+        .verdict-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin: 30px 0;
+        }
+
+        .verdict-card {
+            background: var(--card-bg);
+            border: 2px solid var(--neon-cyan);
+            padding: 20px;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .verdict-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 245, 255, 0.3);
+        }
+
+        .verdict-card .icon {
+            font-size: 2rem;
+            margin-bottom: 10px;
+        }
+
+        .verdict-card .user-type {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 0.9rem;
+            color: var(--neon-cyan);
+            margin-bottom: 5px;
+        }
+
+        .verdict-card .rating {
+            font-family: 'Press Start 2P', cursive;
+            font-size: 0.6rem;
+            color: var(--neon-green);
+            margin-bottom: 10px;
+        }
+
+        .verdict-card .reason {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+        }
+
+        .magazine-footer {
+            background: linear-gradient(180deg, transparent 0%, rgba(0, 245, 255, 0.1) 100%);
+            border-top: 2px solid var(--neon-cyan);
+            padding: 60px 20px;
+            margin-top: 80px;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .references-section {
+            margin-bottom: 40px;
+        }
+
+        .references-title {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.2rem;
+            color: var(--neon-cyan);
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .references-title::before {
+            content: '//';
+        }
+
+        .references-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+
+        .reference-category {
+            background: var(--card-bg);
+            border: 1px solid rgba(0, 245, 255, 0.3);
+            padding: 20px;
+        }
+
+        .reference-category h4 {
+            font-family: 'Press Start 2P', cursive;
+            font-size: 0.6rem;
+            color: var(--neon-magenta);
+            margin-bottom: 15px;
+            margin-top: 0;
+        }
+
+        .reference-list {
+            list-style: none;
+        }
+
+        .reference-list li {
+            margin: 8px 0;
+            font-size: 0.85rem;
+        }
+
+        .reference-list a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            transition: all 0.3s ease;
+            display: block;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+
+        .reference-list a:hover {
+            color: var(--neon-cyan);
+        }
+
+        .footer-end {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid rgba(0, 245, 255, 0.2);
+        }
+
+        .footer-logo {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.5rem;
+            color: var(--neon-cyan);
+            text-shadow: var(--glow-cyan);
+            margin-bottom: 10px;
+        }
+
+        .footer-text {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+        }
+
+        .footer-text .pixel {
+            font-family: 'Press Start 2P', cursive;
+            font-size: 0.5rem;
+            color: var(--neon-magenta);
+        }
+
+        .scroll-progress {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--neon-cyan), var(--neon-magenta), var(--neon-yellow));
+            z-index: 10000;
+            transition: width 0.1s ease;
+        }
+
+        .back-to-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 50px;
+            height: 50px;
+            background: var(--card-bg);
+            border: 2px solid var(--neon-cyan);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            color: var(--neon-cyan);
+            cursor: pointer;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            z-index: 1000;
+            clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+        }
+
+        .back-to-top.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .back-to-top:hover {
+            background: var(--neon-cyan);
+            color: var(--deep-purple);
+            box-shadow: 0 0 30px var(--neon-cyan);
+        }
+
+        .easter-egg {
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+            font-family: 'Press Start 2P', cursive;
+            font-size: 0.5rem;
+            color: rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .easter-egg:hover {
+            color: var(--neon-magenta);
+            text-shadow: var(--glow-magenta);
+        }
+
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s ease-out;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .anchor-analogy {
+            background: var(--card-bg);
+            border: 2px solid var(--neon-magenta);
+            padding: 30px;
+            margin: 30px 0;
+            position: relative;
+        }
+
+        .anchor-analogy h4 {
+            font-family: 'Orbitron', sans-serif;
+            color: var(--neon-magenta);
+            margin-bottom: 15px;
+            font-size: 1rem;
+            margin-top: 0;
+        }
+
+        .anchor-analogy p {
+            margin-bottom: 15px;
+        }
+
+        .anchor-analogy p:last-child {
+            margin-bottom: 0;
+        }
+
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                gap: 10px;
+            }
+
+            .hero-stats {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .section-header {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .feature-grid,
+            .verdict-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="scroll-progress" id="scrollProgress"></div>
+    <div class="bg-grid"></div>
+
+    <div class="particles">
+        <div class="particle" style="left: 5%; animation-delay: 0s;"></div>
+        <div class="particle" style="left: 15%; animation-delay: 2s;"></div>
+        <div class="particle" style="left: 25%; animation-delay: 4s;"></div>
+        <div class="particle" style="left: 35%; animation-delay: 1s;"></div>
+        <div class="particle" style="left: 45%; animation-delay: 3s;"></div>
+        <div class="particle" style="left: 55%; animation-delay: 5s;"></div>
+        <div class="particle" style="left: 65%; animation-delay: 2s;"></div>
+        <div class="particle" style="left: 75%; animation-delay: 4s;"></div>
+        <div class="particle" style="left: 85%; animation-delay: 1s;"></div>
+        <div class="particle" style="left: 95%; animation-delay: 3s;"></div>
+    </div>
+
+    <header class="magazine-header">
+        <div class="header-content">
+            <div class="logo">PLAYER ONE TECH</div>
+            <div class="issue-info">ISSUE #2026.01 // SOURCE GROUNDING WARS</div>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="glitch-container">
+            <h1 class="hero-title">
+                <span>LLM 시대의</span>
+                <span class="highlight">소스 그라운딩</span>
+            </h1>
+        </div>
+        <p class="hero-subtitle">Claude Code 파워 유저가 Brave Search MCP를 선택하는 이유 — 같은 엔진, 다른 조종석</p>
+
+        <div class="hero-stats">
+            <div class="stat-box">
+                <div class="stat-label">BACKEND</div>
+                <div class="stat-value">Brave Search</div>
+            </div>
+            <div class="stat-box">
+                <div class="stat-label">RESULT MATCH</div>
+                <div class="stat-value">86.7%</div>
+            </div>
+            <div class="stat-box">
+                <div class="stat-label">QUOTE LIMIT</div>
+                <div class="stat-value">125자</div>
+            </div>
+            <div class="stat-box">
+                <div class="stat-label">TOKEN REDUCTION</div>
+                <div class="stat-value">최대 85%</div>
+            </div>
+        </div>
+    </section>
+
+    <main class="main-content">
+
+        <!-- Summary Section -->
+        <section class="summary-section fade-in">
+            <ul class="summary-list">
+                <li class="summary-item">
+                    <div class="summary-icon">01</div>
+                    <div class="summary-text"><strong>같은 엔진, 다른 조종석</strong>: Claude Code의 WebSearch와 Brave Search MCP는 동일한 Brave Search 백엔드를 사용한다. BraveSearchParams 발견과 86.7% 검색 결과 일치율이 이를 입증한다</div>
+                </li>
+                <li class="summary-item">
+                    <div class="summary-icon">02</div>
+                    <div class="summary-text"><strong>파라미터 격차</strong>: 내장 WebSearch에는 freshness 필터, count 조절, offset 페이지네이션이 없다. Brave MCP는 세 가지 모두 지원하며, 5가지 특화 검색 도구를 제공한다</div>
+                </li>
+                <li class="summary-item">
+                    <div class="summary-icon">03</div>
+                    <div class="summary-text"><strong>125자 함정</strong>: WebFetch는 Haiku 3.5로 페이지를 요약하며 인용문을 125자로 제한한다. 핵심 맥락이 유실될 수 있다</div>
+                </li>
+                <li class="summary-item">
+                    <div class="summary-icon">04</div>
+                    <div class="summary-text"><strong>컨텍스트 오버헤드 해결</strong>: MCP Tool Search(2026년 1월)가 오버헤드를 최대 85% 줄였다. "MCP 서버가 너무 무겁다"는 주장은 이제 유효하지 않다</div>
+                </li>
+            </ul>
+        </section>
+
+        <!-- Section 1: Introduction -->
+        <section class="content-section fade-in">
+            <div class="section-header">
+                <div class="section-number">01</div>
+                <h2 class="section-title">서론<span class="en">INTRODUCTION</span></h2>
+            </div>
+
+            <p>2023년 초, 뉴욕의 한 변호사가 연방법원에 법률 준비서면을 제출했다. 서면에는 6건의 판례가 인용되어 있었다. 사건 번호, 날짜, 법적 논리까지 완벽해 보였다. 단 하나의 문제가 있었다: 해당 판례는 모두 존재하지 않았다. <a href="https://www.reuters.com/legal/new-york-lawyers-sanctioned-using-fake-chatgpt-cases-legal-brief-2023-06-22/">Reuters</a></p>
+
+            <p>변호사는 <strong>ChatGPT</strong>로 판례를 조사했다. <strong>AI</strong>는 권위 있어 보이는 법률 인용문을 생성했지만, 전부 조작이었다. 신뢰성을 가장한 환각이었다. P. Kevin Castel 판사는 <strong>Mata v. Avianca</strong> 사건에서 두 변호사 모두에게 제재를 내렸다. 법조계가 <strong>AI</strong> 생성 콘텐츠를 바라보는 시각이 바뀐 분수령이었다. <a href="https://www.forbes.com/sites/mollybohannon/2023/06/08/lawyer-used-chatgpt-in-court-and-cited-fake-cases-a-judge-is-considering-sanctions/">Forbes</a></p>
+
+            <div class="info-box warning">
+                <p><strong>Mata v. Avianca</strong>는 시작일 뿐이었다. 2024년 2월, 브리티시 컬럼비아 재판소는 <strong>에어 캐나다</strong>에 존재하지 않는 환불 정책을 이행하라고 명령했다. 항공사의 <strong>AI</strong> 챗봇이 그 정책을 지어냈기 때문이다. <a href="https://www.bbc.com/travel/article/20240222-air-canada-chatbot-misinformation-what-travellers-should-know">BBC</a></p>
+            </div>
+
+            <p>이 사건들은 <strong>대규모 언어 모델</strong>의 근본적 한계를 선명하게 보여준다. <strong>LLM</strong>은 본질적으로 정교한 패턴 매칭 엔진이다. 학습 데이터를 기반으로 가장 확률이 높은 다음 토큰을 예측한다. 검증하지 않는다. 팩트체크하지 않는다. 권위 있게 <em>들리는</em> 텍스트를 생성할 뿐, 실제로 권위가 <em>있는지</em>는 무관하다.</p>
+
+            <p>업계는 이 현상을 완곡하게 "환각(hallucination)"이라 부른다. 더 정확한 표현은 <strong>"확신에 찬 조작"</strong>이다.</p>
+
+            <p>바로 여기서 <strong>소스 그라운딩</strong>이 등장한다. <strong>Claude Code</strong> 내 검색 도구 선택이 왜 중요한지, 그 이유가 여기에 있다.</p>
+        </section>
+
+        <!-- Section 2: What is Source Grounding -->
+        <section class="content-section fade-in">
+            <div class="section-header">
+                <div class="section-number">02</div>
+                <h2 class="section-title">소스 그라운딩이란 무엇이며, 왜 중요한가?<span class="en">SOURCE GROUNDING</span></h2>
+            </div>
+
+            <p><strong>소스 그라운딩</strong>은 <strong>LLM</strong>의 응답을 검증 가능한 외부 정보 소스에 고정하는 방식이다. 배가 망망대해로 떠내려가지 않도록 닻을 내리는 것과 같다. 그라운딩 없이 모델의 응답은 자유롭게 표류하며, 현실과 유리된다.</p>
+
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>상태</th>
+                            <th>비유</th>
+                            <th>결과</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>LLM 단독</strong></td>
+                            <td>닻 없는 배</td>
+                            <td class="cross">환각 위험</td>
+                        </tr>
+                        <tr>
+                            <td><strong>LLM + 검색 그라운딩</strong></td>
+                            <td>닻 내린 배</td>
+                            <td class="check">사실에 기반한 응답</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <p><strong>구글</strong>의 <strong>Gemini</strong>는 2024년에 "Grounding with Google Search"를 도입했다. 모델이 응답을 생성하기 전 실시간 웹 결과를 가져올 수 있게 했다. <a href="https://developers.googleblog.com/en/gemini-api-and-ai-studio-now-offer-grounding-with-google-search/">Google Developers Blog</a> <strong>Anthropic</strong>도 뒤를 이어 <strong>Claude</strong>에 웹 검색 기능을 통합했다. 두 회사 모두 같은 근본적 진실을 인정한다: 모델은 정확성을 유지하려면 외부 닻이 필요하다.</p>
+
+            <div class="callout">
+                <p>"생성 과정을 신뢰할 수 있는 소스의 사실적 정보에 그라운딩함으로써, RAG는 잘못되거나 조작된 콘텐츠를 환각할 가능성을 줄이고, 생성된 응답의 사실적 정확성과 신뢰성을 높일 수 있다."</p>
+                <div class="callout-source">— AWS 공식 문서</div>
+            </div>
+
+            <p>2026년의 리스크는 그 어느 때보다 높다. <strong>Claude Opus 4.5</strong>의 학습 데이터 컷오프는 <strong>2025년 8월</strong>이다. <a href="https://support.claude.com/en/articles/8114494-how-up-to-date-is-claude-s-training-data">Anthropic Support</a> 이 글을 쓰는 <strong>2026년 1월 28일</strong> 기준으로 모델 지식에는 최소 5개월의 공백이 있다. 프레임워크 업데이트, <strong>API</strong> 변경, 보안 취약점, 인수합병—모두 모델이 웹을 검색하지 않는 한 보이지 않는다.</p>
+
+            <div class="info-box">
+                <p>핵심 질문으로 돌아오자: <strong>Claude Code</strong>는 웹 검색에 두 가지 경로를 제공한다—내장 <strong>WebSearch</strong> 도구와 <strong>Brave Search MCP</strong>다. 둘 다 내부적으로 같은 검색 엔진을 사용한다. 그렇다면 왜 선택이 중요한가?</p>
+            </div>
+        </section>
+
+        <!-- Section 3: Same Engine, Different Cockpit -->
+        <section class="content-section fade-in">
+            <div class="section-header">
+                <div class="section-number">03</div>
+                <h2 class="section-title">같은 엔진, 다른 조종석<span class="en">SAME ENGINE, DIFFERENT COCKPIT</span></h2>
+            </div>
+
+            <p>2025년 3월, 소프트웨어 엔지니어 <strong>Antonio Zugaldia</strong>는 <strong>Anthropic</strong>이 하위 프로세서 목록에 "Brave Search"를 추가했음을 발견했다. 프로그래머 <strong>Simon Willison</strong>은 <strong>Claude</strong>와 <strong>Brave</strong>의 검색 결과가 동일한 인용을 반환함을 확인하고, <strong>Claude</strong>의 웹 검색 함수에서 <code>BraveSearchParams</code> 파라미터를 발견했다. <a href="https://techcrunch.com/2025/03/21/anthropic-appears-to-be-using-brave-to-power-web-searches-for-its-claude-chatbot/">TechCrunch</a></p>
+
+            <div class="callout">
+                <p>"Anthropic은 Claude 챗봇의 웹 검색에 Brave를 사용하는 것으로 보인다. Claude의 웹 검색 함수에는 'BraveSearchParams' 파라미터가 포함되어 있다."</p>
+                <div class="callout-source">— Kyle Wiggers, TechCrunch</div>
+            </div>
+
+            <p><strong>TryProfound</strong>의 독립 분석은 이 일치율을 86.7%(15개 결과 중 13개 일치)로 수치화했다. <a href="https://www.tryprofound.com/blog/what-is-claude-web-search-explained">TryProfound</a></p>
+
+            <div class="comparison-bar">
+                <div class="bar-label">
+                    <span>검색 결과 일치율</span>
+                    <span>86.7%</span>
+                </div>
+                <div class="bar-track">
+                    <div class="bar-fill" style="width: 86.7%;">
+                        <span class="bar-value">86.7%</span>
+                    </div>
+                </div>
+            </div>
+
+            <p>결론은 명확하다: <strong>Claude Code</strong>의 내장 <strong>WebSearch</strong>와 <strong>Brave Search MCP</strong>는 같은 <strong>Brave Search</strong> 백엔드를 공유한다. 엔진 수준의 검색 품질은 동일하다.</p>
+
+            <p>그렇다면 파워 유저는 왜 굳이 <strong>Brave Search MCP</strong>를 별도로 설정하는가?</p>
+
+            <div class="info-box">
+                <p>내비게이션 비유를 생각해보자: 두 도구 모두 같은 위성 데이터를 사용한다. 하나는 "500m 후 좌회전"만 알려주는 기본 차량용 <strong>GPS</strong>다. 다른 하나는 고도, 방향, 풍속, 연료 소비량, 기상 레이더를 표시하는 항공기 계기판이다. 데이터 소스는 같지만, 정밀도는 완전히 다르다. 위성이 같다고 계기가 같은 것은 아니다.</p>
+            </div>
+        </section>
+
+        <!-- Section 4: Feature Comparison -->
+        <section class="content-section fade-in">
+            <div class="section-header">
+                <div class="section-number">04</div>
+                <h2 class="section-title">기능 비교: 차이를 만드는 파라미터<span class="en">FEATURE COMPARISON</span></h2>
+            </div>
+
+            <h3>Claude Code 내장 WebSearch: 단순함의 대가</h3>
+
+            <p><strong>Claude Code</strong>의 <strong>WebSearch</strong> 도구는 시스템 프롬프트와 <strong>Anthropic</strong> 공식 문서에 따르면 파라미터가 극히 제한적이다: <a href="https://docs.claude.com/en/docs/agents-and-tools/tool-use/web-search-tool">Claude Docs</a></p>
+
+            <div class="code-block typescript">
+                <code>interface WebSearchTool {
+  query: string;              // 필수, 최소 2자
+  allowed_domains?: string[]; // 선택, 도메인 허용 목록
+  blocked_domains?: string[]; // 선택, 도메인 차단 목록
+  user_location?: {           // 선택, 지역화된 결과용 위치
+    type: "approximate";
+    city?: string;
+    region?: string;
+    country?: string;
+    timezone?: string;
+  };
+}</code>
+            </div>
+
+            <p>이게 전부다.</p>
+
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>파라미터</th>
+                            <th>설명</th>
+                            <th>지원 여부</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><code>query</code></td>
+                            <td>검색어</td>
+                            <td class="check">✅</td>
+                        </tr>
+                        <tr>
+                            <td><code>allowed_domains</code></td>
+                            <td>특정 도메인만 포함</td>
+                            <td class="check">✅</td>
+                        </tr>
+                        <tr>
+                            <td><code>blocked_domains</code></td>
+                            <td>특정 도메인 제외</td>
+                            <td class="check">✅</td>
+                        </tr>
+                        <tr>
+                            <td><code>user_location</code></td>
+                            <td>검색 결과 지역화</td>
+                            <td class="check">✅</td>
+                        </tr>
+                        <tr>
+                            <td><code>freshness</code></td>
+                            <td>시간 필터 (24시간/7일/30일/1년)</td>
+                            <td class="cross">❌</td>
+                        </tr>
+                        <tr>
+                            <td><code>count</code></td>
+                            <td>결과 개수</td>
+                            <td class="cross">❌</td>
+                        </tr>
+                        <tr>
+                            <td><code>offset</code></td>
+                            <td>페이지네이션</td>
+                            <td class="cross">❌</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <h3>Brave Search MCP: 정밀한 제어</h3>
+
+            <p>반면 <strong>Brave Search MCP</strong>는 <strong>Brave Search API</strong>의 전체 기능을 5가지 특화 도구로 노출한다: <a href="https://brave.com/search/api/">Brave Search API</a></p>
+
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>도구</th>
+                            <th>용도</th>
+                            <th>주요 파라미터</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><code>brave_web_search</code></td>
+                            <td>일반 웹 검색</td>
+                            <td><code>freshness</code>, <code>count</code> (1-20), <code>offset</code> (최대 9)</td>
+                        </tr>
+                        <tr>
+                            <td><code>brave_news_search</code></td>
+                            <td>뉴스 특화 검색</td>
+                            <td><code>freshness</code> (pd/pw/pm/py)</td>
+                        </tr>
+                        <tr>
+                            <td><code>brave_image_search</code></td>
+                            <td>이미지 검색</td>
+                            <td><code>count</code> (1-20)</td>
+                        </tr>
+                        <tr>
+                            <td><code>brave_video_search</code></td>
+                            <td>비디오 검색</td>
+                            <td><code>freshness</code></td>
+                        </tr>
+                        <tr>
+                            <td><code>brave_local_search</code></td>
+                            <td>지역 비즈니스 검색</td>
+                            <td>위치 기반</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <p><code>freshness</code> 파라미터 하나만으로도 격차가 드러난다:</p>
+
+            <div class="code-block json">
+                <code>{
+  "pd": "지난 24시간",
+  "pw": "지난 7일",
+  "pm": "지난 31일",
+  "py": "지난 365일",
+  "YYYY-MM-DDtoYYYY-MM-DD": "커스텀 날짜 범위"
+}</code>
+            </div>
+
+            <h3>실제 시나리오 비교</h3>
+
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>시나리오</th>
+                            <th>내장 WebSearch</th>
+                            <th>Brave Search MCP</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>"지난 24시간 AI 뉴스"</td>
+                            <td class="partial">⚠️ "AI 뉴스 오늘" 쿼리 (부정확)</td>
+                            <td class="check">✅ <code>brave_news_search(freshness="pd")</code></td>
+                        </tr>
+                        <tr>
+                            <td>"2024년 상반기 기술 트렌드"</td>
+                            <td class="cross">❌ 불가능</td>
+                            <td class="check">✅ 커스텀 날짜 범위 지원</td>
+                        </tr>
+                        <tr>
+                            <td>"강남역 근처 맛집"</td>
+                            <td class="partial">⚠️ 일반 웹 결과</td>
+                            <td class="check">✅ <code>brave_local_search</code> (리뷰/영업시간 포함)</td>
+                        </tr>
+                        <tr>
+                            <td>"React 18 튜토리얼 영상"</td>
+                            <td class="cross">❌ 미지원</td>
+                            <td class="check">✅ <code>brave_video_search</code></td>
+                        </tr>
+                        <tr>
+                            <td>"검색 결과 20개 필요"</td>
+                            <td class="cross">❌ 고정된 개수</td>
+                            <td class="check">✅ <code>count: 20</code></td>
+                        </tr>
+                        <tr>
+                            <td>"결과의 다음 페이지"</td>
+                            <td class="cross">❌ 페이지네이션 없음</td>
+                            <td class="check">✅ <code>offset</code> 파라미터</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- Section 5: Hidden Bottleneck -->
+        <section class="content-section fade-in">
+            <div class="section-header">
+                <div class="section-number">05</div>
+                <h2 class="section-title">숨겨진 병목: 125자 함정<span class="en">HIDDEN BOTTLENECK</span></h2>
+            </div>
+
+            <h3>발견 #1: WebFetch 125자 제약</h3>
+
+            <p><strong>Claude Code</strong>의 웹 기능은 두 단계로 작동한다:</p>
+
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>도구</th>
+                            <th>기능</th>
+                            <th>출력</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>WebSearch</strong></td>
+                            <td>쿼리에 맞는 URL 찾기</td>
+                            <td>URL 목록 + 제목</td>
+                        </tr>
+                        <tr>
+                            <td><strong>WebFetch</strong></td>
+                            <td>특정 URL 콘텐츠 분석</td>
+                            <td><strong>Haiku 3.5</strong> 요약 (125자 인용 제한)</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="callout">
+                <p>"WebFetch는 페이지 콘텐츠를 Haiku 3.5에 보내 요약한다. 빈 시스템 프롬프트로 실행되며, 소스 문서 인용문에 엄격한 125자 최대 제한을 적용한다."</p>
+                <div class="callout-source">— Mikhail Shilkov</div>
+            </div>
+
+            <p><strong>125자</strong>. 트윗보다 짧다. 지금 읽고 있는 이 문장만 해도 이미 89자다—URL 하나 추가하면 한계에 도달한다.</p>
+
+            <div class="info-box warning">
+                <p>공식 문서의 <strong>Kubernetes</strong> Pod 명세를 생각해보자. 일반적인 설명은 300자 이상이다. 125자 제한은 이를 핵심 세부사항이 사라진 요약으로 잘라낸다—Pod 동작을 정의하는 공유 스토리지와 네트워크 네임스페이스에 대한 정보가 유실된다.</p>
+            </div>
+
+            <h3>발견 #2: MCP Tool Search가 판도를 바꾸다</h3>
+
+            <p>"다른 <strong>MCP</strong> 서버를 실행하면 컨텍스트가 비대해지지 않나요?" 합리적인 우려였다—<strong>2026년 1월</strong> 중순까지는.</p>
+
+            <div class="callout">
+                <p>"Claude Code는 MCP 도구 설명이 컨텍스트의 10% 이상을 사용할 때 이를 감지한다. 트리거되면 도구는 미리 로드되지 않고 검색을 통해 로드된다."</p>
+                <div class="callout-source">— VentureBeat</div>
+            </div>
+
+            <p>효과 (<strong>Anthropic</strong> 엔지니어링 및 사용자 보고 기반):</p>
+
+            <div class="comparison-bar">
+                <div class="bar-label">
+                    <span>토큰 오버헤드 감소</span>
+                    <span>최대 85%</span>
+                </div>
+                <div class="bar-track">
+                    <div class="bar-fill" style="width: 85%;">
+                        <span class="bar-value">85%</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="comparison-bar">
+                <div class="bar-label">
+                    <span>실제 시나리오 (66K → 8.5K 토큰)</span>
+                    <span>87% 감소</span>
+                </div>
+                <div class="bar-track">
+                    <div class="bar-fill" style="width: 87%;">
+                        <span class="bar-value">87%</span>
+                    </div>
+                </div>
+            </div>
+
+            <p><strong>"MCP 서버가 너무 무겁다"는 주장은 이제 무효다.</strong></p>
+
+            <h3>발견 #3: 토큰 효율성 문제</h3>
+
+            <div class="callout">
+                <p>"처음에 Claude 내장 웹 검색에서 깨닫지 못한 점이 있다. 두 가지 기능이 있다. Web_search와 web_fetch다. 첫 번째는 검색에서 스니펫 결과와 URL만 가져온다. 전체 웹 페이지 내용은 아니다. 두 번째는 전체 페이지 내용을 가져올 수 있지만, web_search 결과에서 얻거나 사용자가 직접 제공한 전체 URL이 있어야 한다."</p>
+                <div class="callout-source">— u/dshipp, r/ClaudeAI</div>
+            </div>
+
+            <p>이 2단계 구조는 토큰 효율성에 영향을 미친다:</p>
+
+            <ul style="list-style: none; padding-left: 0;">
+                <li style="margin: 10px 0; padding-left: 20px; border-left: 2px solid var(--neon-cyan);"><strong>내장 WebSearch</strong>: Claude가 검색 쿼리를 생성하고 결과를 처리한다—전 과정에서 토큰 소비</li>
+                <li style="margin: 10px 0; padding-left: 20px; border-left: 2px solid var(--neon-magenta);"><strong>Brave MCP</strong>: 검색은 외부 API로 실행된다—잠재적으로 낮은 토큰 오버헤드</li>
+            </ul>
+
+            <h3>발견 #4: 확장되는 MCP 생태계</h3>
+
+            <p>검색 <strong>MCP</strong> 생태계는 <strong>2026년 1월</strong> 크게 확장되었다. 개발자들이 내장 기본값 대신 외부 도구를 선택하는 광범위한 트렌드를 보여준다.</p>
+
+            <div class="feature-grid">
+                <div class="feature-card">
+                    <h4>Kindly MCP</h4>
+                    <p>"표준 검색 MCP는 보통 불충분한 스니펫을 반환하거나, LLM을 혼란시키는 원시 HTML을 덤프한다. Kindly는 단순한 검색이 아닌, 더 스마트한 검색으로 이를 해결한다."</p>
+                </div>
+                <div class="feature-card">
+                    <h4>Google AI Mode MCP</h4>
+                    <p>"Claude가 Google AI Mode에 쿼리 → Google이 수십 개 소스를 검색하고 종합 → Claude는 인라인 인용이 포함된 깔끔한 Markdown 답변을 받는다 → 최소한의 토큰 사용."</p>
+                </div>
+            </div>
+
+            <p>시장은 "검색"을 넘어 "검색 + 검색 + 종합" 통합 파이프라인으로 진화하고 있다.</p>
+        </section>
+
+        <!-- Section 6: Making the Choice -->
+        <section class="content-section fade-in">
+            <div class="section-header">
+                <div class="section-number">06</div>
+                <h2 class="section-title">선택하기: 각 도구가 빛나는 순간<span class="en">MAKING THE CHOICE</span></h2>
+            </div>
+
+            <h3>가격 비교</h3>
+
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>시나리오</th>
+                            <th>내장 WebSearch</th>
+                            <th>Brave MCP (Base AI)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Max 5x</strong> 구독자 ($100/월), 월 1,000회 검색</td>
+                            <td class="check">$0 (포함)</td>
+                            <td>$5</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Max 5x</strong> 구독자 ($100/월), 월 10,000회 검색</td>
+                            <td class="check">$0 (포함)</td>
+                            <td>$50</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Anthropic API</strong> 직접 사용, 월 1,000회 검색</td>
+                            <td>$10</td>
+                            <td class="check">$5</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <p>순수 비용으로 보면 <strong>Max</strong> 구독자는 <strong>WebSearch</strong>를 무료로 쓸 수 있다. 이게 전부라면 이 글은 여기서 끝난다.</p>
+
+            <div class="info-box warning">
+                <p>하지만 비용이 전부가 아니고, 기능도 전부가 아니다. <strong>Brave Search MCP</strong>에도 트레이드오프가 있다: <strong>API</strong> 키 관리가 보안 책임을 추가하고, 많이 쓰면 월 비용이 누적되며, 초기 <strong>JSON</strong> 설정이 비개발자에게는 쉽지 않다.</p>
+            </div>
+
+            <div class="callout">
+                <p>"특히 Linux 명령어/설정 관련 결과를 찾을 때 Brave가 Google보다 눈에 띄게 나빴다. Brave에서는 문제 해결책을 문자 그대로 찾지 못해서 몇 가지는 구글링해야 했다."</p>
+                <div class="callout-source">— u/Beosar, r/degoogle</div>
+            </div>
+
+            <h3>빠른 결정 가이드</h3>
+
+            <div class="verdict-grid">
+                <div class="verdict-card">
+                    <div class="icon">🎮</div>
+                    <div class="user-type">캐주얼 유저</div>
+                    <div class="rating">WebSearch 추천</div>
+                    <div class="reason">무료, 설정 불필요, 일반 정보 검색에 충분</div>
+                </div>
+                <div class="verdict-card">
+                    <div class="icon">⚡</div>
+                    <div class="user-type">리서처</div>
+                    <div class="rating">Brave MCP 추천</div>
+                    <div class="reason">날짜 범위 필터링, 뉴스/비디오 검색 필수</div>
+                </div>
+                <div class="verdict-card">
+                    <div class="icon">☁️</div>
+                    <div class="user-type">AWS Bedrock 유저</div>
+                    <div class="rating">Brave MCP 필수</div>
+                    <div class="reason">WebSearch는 Bedrock에서 미지원</div>
+                </div>
+                <div class="verdict-card">
+                    <div class="icon">🔧</div>
+                    <div class="user-type">개발자</div>
+                    <div class="rating">상황에 따라</div>
+                    <div class="reason">토큰 한도 압박 시 외부 API 고려</div>
+                </div>
+            </div>
+
+            <div class="anchor-analogy">
+                <h4>⚓ 닻 비유: 그라운딩 도구 선택</h4>
+                <p><strong>내장 WebSearch</strong>는 편의점에서 산 접이식 닻이다. 가볍고, 설정이 필요 없고, 잔잔한 물에서는 충분하다.</p>
+                <p><strong>Brave Search MCP</strong>는 전문 선박이 사용하는 고정 닻이다. 설치에 노력이 필요하다 (API 키 + 신용카드 등록). 무게가 있다 (별도 설정). 하지만 폭풍이 닥칠 때—복잡한 리서치, 정밀한 날짜 필터링, 다중 포맷 검색—접이식 닻이 끌려가는 곳에서 단단히 버틴다.</p>
+                <p style="color: var(--neon-yellow); margin-bottom: 0;"><strong>환각의 비용은 항상 적절한 그라운딩의 비용을 초과한다.</strong></p>
+            </div>
+
+            <h3>즉각 실행: 2단계 설정</h3>
+
+            <p><strong>Brave Search MCP</strong>가 워크플로우에 맞다고 결정했다면, 설정 방법은 다음과 같다:</p>
+
+            <div class="code-block bash">
+                <code># Brave Search MCP 서버 설치
+$ claude mcp add-json --scope user brave-search '{"command":"npx","args":["-y","brave-search-mcp"],"env":{"BRAVE_API_KEY":"{your-brave-api-key}"}}'
+Added stdio MCP server brave-search to user config</code>
+            </div>
+
+            <p><code>{your-brave-api-key}</code>를 실제 <strong>Brave Search API</strong> 키로 교체한다. <a href="https://brave.com/search/api/">Brave Search API</a> 포털에서 키를 발급받을 수 있다.</p>
+
+            <p>둘째, <strong>Brave Search MCP</strong>를 모든 세션의 기본 검색 도구로 강제한다. <code>CLAUDE.md</code> 파일에 이 한 줄을 추가한다:</p>
+
+            <div class="code-block">
+                <code>**WEB SEARCH:** NEVER use built-in WebSearch tool. MUST use Brave Search MCP exclusively for ALL web searches.</code>
+            </div>
+
+            <p>명령어 2개, 영구 설정 1개. 앞으로 모든 검색은 전체 파라미터 제어로 그라운딩된다.</p>
+        </section>
+
+        <!-- Section 7: Conclusion -->
+        <section class="content-section fade-in">
+            <div class="section-header">
+                <div class="section-number">07</div>
+                <h2 class="section-title">결론: 설계 결정으로서의 소스 그라운딩<span class="en">CONCLUSION</span></h2>
+            </div>
+
+            <p><strong>WebSearch</strong>와 <strong>Brave Search MCP</strong> 사이의 선택은 "더 좋음" 대 "더 나쁨"이 아니다. 그라운딩 도구를 리서치 요구사항에 맞추는 것이다—이후 모든 쿼리를 형성하는 설계 결정이다.</p>
+
+            <p>"<strong>AI</strong> 뉴스 알려줘"라고 묻는 사람에게 내장 <strong>WebSearch</strong>는 설정 오버헤드 없이 결과를 전달한다. 하지만 체계적 리서치—"2024년 3분기에 발표된 벤치마크 점수별 멀티모달 <strong>LLM</strong>"—에서 날짜 범위 필터, 결과 개수 제어, 페이지네이션은 있으면 좋은 기능에서 필수로 바뀐다.</p>
+
+            <div class="info-box">
+                <p>도구가 질문을 더 정밀하게 만드는 게 아니다. <strong>애초에 정밀한 질문을 할 수 있게 해준다.</strong></p>
+            </div>
+
+            <p>이 프레이밍의 전환이 중요하다. <strong>LLM</strong> 시대의 정보 검색은 더 이상 "쿼리 입력하고 결과 받기"가 아니다. 어떤 기간, 어떤 포맷, 몇 개의 결과, 어떤 순서로 정보가 필요한지 설계하는 것이다. 그 설계의 자유가 달성할 수 있는 그라운딩의 깊이를 결정한다.</p>
+
+            <p><strong>Mata v. Avianca</strong> 사건의 변호사를 기억하는가? 6건의 조작된 판례 인용이 제재, 커리어 손상, 공개적 망신으로 이어졌다. 적절한 그라운딩이 몇 분 만에 그 결과를 막을 수 있었다. 리스크는 이론적이지 않다—전문적이고, 법적이며, 평판에 관한 것이다.</p>
+
+            <p>이 도구들 사이의 선택은 궁극적으로 <strong>확신에 찬 조작을 배경 위험으로 수용하느냐, 검증 가능한 그라운딩을 표준 관행으로 요구하느냐</strong>의 선택이다.</p>
+
+            <p><strong>Anthropic</strong>은 <strong>WebSearch</strong>를 접근성을 위해 만들었다: 설정 없음, <strong>Max</strong> 구독자에게 비용 없음, 대부분의 캐주얼 사용에 충분. <strong>Brave Search MCP</strong>는 그 제약을 벗어난 사용자를 위해 존재한다—리서치 파이프라인을 구축하는 개발자, 소스를 팩트체킹하는 기자, 날짜가 한정된 데이터가 필요한 분석가, 편의보다 정밀도가 필요한 모든 사람.</p>
+
+            <p>2026년, <strong>LLM</strong> 응답을 검증 가능한 현실에 그라운딩하는 인프라는 성숙했다. 두 도구 모두 같은 검색 엔진을 사용한다. 차이는 그 엔진에 쿼리하는 방법에 대해 얼마나 많은 제어권이 있느냐다. 많은 사용자에게 내장 <strong>WebSearch</strong>가 올바른 선택이다—단순하고, 무료이며, 충분하다. 전체 파라미터 표면이 필요한 파워 유저에게 <strong>Brave Search MCP</strong>는 설정 비용을 감수할 가치가 있다.</p>
+
+            <p style="color: var(--neon-cyan); font-size: 1.2rem; text-align: center; margin-top: 40px;"><strong>당신의 깊이에 맞는 도구를 선택하라.</strong></p>
+        </section>
+
+    </main>
+
+    <footer class="magazine-footer">
+        <div class="footer-content">
+            <div class="references-section">
+                <h3 class="references-title">참고 문헌</h3>
+                <div class="references-grid">
+                    <div class="reference-category">
+                        <h4>공식 문서</h4>
+                        <ul class="reference-list">
+                            <li><a href="https://www.anthropic.com/pricing">Anthropic 가격 티어 및 Max 구독 세부사항</a></li>
+                            <li><a href="https://docs.claude.com/en/docs/agents-and-tools/tool-use/web-search-tool">Claude Code WebSearch 공식 명세</a></li>
+                            <li><a href="https://brave.com/search/api/">Brave Search API 가격 및 파라미터</a></li>
+                            <li><a href="https://docs.cloud.google.com/vertex-ai/generative-ai/docs/partner-models/claude/web-search">Google Vertex AI에서 Claude 웹 검색</a></li>
+                        </ul>
+                    </div>
+                    <div class="reference-category">
+                        <h4>기술 분석</h4>
+                        <ul class="reference-list">
+                            <li><a href="https://mikhail.io/2025/10/claude-code-web-tools/">WebFetch/WebSearch 내부 구조 (125자 인용 제한)</a></li>
+                            <li><a href="https://techcrunch.com/2025/03/21/anthropic-appears-to-be-using-brave-to-power-web-searches-for-its-claude-chatbot/">Brave 백엔드 확인 — TechCrunch</a></li>
+                            <li><a href="https://venturebeat.com/orchestration/claude-code-just-got-updated-with-one-of-the-most-requested-user-features">MCP Tool Search 컨텍스트 감소 발표</a></li>
+                            <li><a href="https://www.atcyrus.com/stories/mcp-tool-search-claude-code-context-pollution-guide">MCP Tool Search 상세 분석</a></li>
+                        </ul>
+                    </div>
+                    <div class="reference-category">
+                        <h4>LLM 그라운딩 & RAG</h4>
+                        <ul class="reference-list">
+                            <li><a href="https://aws.amazon.com/blogs/machine-learning/reducing-hallucinations-in-large-language-models-with-custom-intervention-using-amazon-bedrock-agents/">AWS RAG를 통한 환각 감소</a></li>
+                            <li><a href="https://developers.googleblog.com/en/gemini-api-and-ai-studio-now-offer-grounding-with-google-search/">Google Gemini 그라운딩 기능</a></li>
+                        </ul>
+                    </div>
+                    <div class="reference-category">
+                        <h4>법률 사례 문서</h4>
+                        <ul class="reference-list">
+                            <li><a href="https://www.reuters.com/legal/new-york-lawyers-sanctioned-using-fake-chatgpt-cases-legal-brief-2023-06-22/">Mata v. Avianca 제재 판결 — Reuters</a></li>
+                            <li><a href="https://www.forbes.com/sites/mollybohannon/2023/06/08/lawyer-used-chatgpt-in-court-and-cited-fake-cases-a-judge-is-considering-sanctions/">Mata v. Avianca 배경 — Forbes</a></li>
+                            <li><a href="https://www.bbc.com/travel/article/20240222-air-canada-chatbot-misinformation-what-travellers-should-know">에어 캐나다 챗봇 재판소 판결 — BBC</a></li>
+                        </ul>
+                    </div>
+                    <div class="reference-category">
+                        <h4>커뮤니티 토론</h4>
+                        <ul class="reference-list">
+                            <li><a href="https://www.reddit.com/r/ClaudeCode/comments/1q2prvg/">토큰 한도 불만 (2026년 1월) — r/ClaudeCode</a></li>
+                            <li><a href="https://www.reddit.com/r/ClaudeAI/comments/1l1g21l/">WebSearch vs MCP 도구 토론 — r/ClaudeAI</a></li>
+                            <li><a href="https://www.reddit.com/r/LocalLLaMA/comments/1q6khuh/">Kindly MCP 검색 — r/LocalLLaMA</a></li>
+                            <li><a href="https://www.reddit.com/r/ClaudeAI/comments/1q6mmwy/">Google AI Mode MCP 토론 — r/ClaudeAI</a></li>
+                            <li><a href="https://www.reddit.com/r/degoogle/comments/1jlbwsg/">Brave vs Google 검색 품질 비교 — r/degoogle</a></li>
+                            <li><a href="https://www.tryprofound.com/blog/what-is-claude-web-search-explained">86.7% Brave 일치율 분석 — TryProfound</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="footer-end">
+                <div class="footer-logo">▶ PLAYER ONE TECH</div>
+                <p class="footer-text">
+                    <span class="pixel">ISSUE #2026.01 // SOURCE GROUNDING WARS</span><br>
+                    © 2026 PLAYER ONE TECH — AI 시대의 검색을 다시 설계하다
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <div class="back-to-top" id="backToTop">↑</div>
+    <div class="easter-egg">PRESS START TO GROUND</div>
+
+    <script>
+        // Scroll Progress
+        window.addEventListener('scroll', () => {
+            const scrollProgress = document.getElementById('scrollProgress');
+            const scrollTop = document.documentElement.scrollTop;
+            const scrollHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            const progress = (scrollTop / scrollHeight) * 100;
+            scrollProgress.style.width = progress + '%';
+
+            // Back to top visibility
+            const backToTop = document.getElementById('backToTop');
+            if (scrollTop > 500) {
+                backToTop.classList.add('visible');
+            } else {
+                backToTop.classList.remove('visible');
+            }
+        });
+
+        // Back to top click
+        document.getElementById('backToTop').addEventListener('click', () => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+
+        // Fade in on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+    </script>
+</body>
+</html>
