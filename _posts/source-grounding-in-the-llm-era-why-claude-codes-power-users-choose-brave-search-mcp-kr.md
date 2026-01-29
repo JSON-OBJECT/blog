@@ -299,7 +299,7 @@ interface WebSearchTool {
 
 ```bash
 # Brave Search MCP 서버 설치
-$ claude mcp add-json --scope user brave-search '{"command":"npx","args":["-y","brave-search-mcp"],"env":{"BRAVE_API_KEY":"{your-brave-api-key}"}}'
+$ claude mcp add-json --scope user brave-search '{"command":"npx","args":["-y","@brave/brave-search-mcp-server"],"env":{"BRAVE_API_KEY":"{your-brave-api-key}"}}'
 Added stdio MCP server brave-search to user config
 ```
 
